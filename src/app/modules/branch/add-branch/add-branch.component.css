@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'lato';
+  src: url('/../assets/fonts/OnlineWebFonts_COM_ac55475aaea07c7e14765b367107a5e6/@font-face/e080040fab017e068ee2901a6cdb5ec4.eot');
+  src: url('/../assets/fonts/OnlineWebFonts_COM_ac55475aaea07c7e14765b367107a5e6/@font-face/3259613ce0f20cbc51355804bc1794bd.eot') format('embedded-opentype'), url('/../assets/fonts/OnlineWebFonts_COM_ac55475aaea07c7e14765b367107a5e6/@font-face/e080040fab017e068ee2901a6cdb5ec4.woff') format('woff'), url('/../assets/fonts/OnlineWebFonts_COM_ac55475aaea07c7e14765b367107a5e6/@font-face/e080040fab017e068ee2901a6cdb5ec4.ttf') format('truetype'), url('/../assets/fonts/OnlineWebFonts_COM_ac55475aaea07c7e14765b367107a5e6/@font-face/e080040fab017e068ee2901a6cdb5ec4.svg') format('svg');
+}
+
+.add-section-heading {
+  font-family: lato;
+  font-weight: 300;
+}

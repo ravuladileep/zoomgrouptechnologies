@@ -1,0 +1,352 @@
+<div class="container">
+<!-- webcam -->
+
+<!-- webcam end -->
+
+
+
+  <div class="add-page-tittle">
+      <h3 class="add-section-heading my-3 text-center text-secondary">Payment</h3>
+  </div>
+
+  <div class="bg-white py-5" *ngIf="!paymentPage">
+      <div class="col-md-8">
+          <form [formGroup]="studentIdData" (ngSubmit)="Submit()">
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-2">
+                          <label class="control-label">Student ID:</label>
+                      </div>
+                      <div class="col-md-6">
+                          <input class="form-control" formControlName="studentId" placeholder="Student ID: ZTAM100">
+                          <div class="alert alert-danger" *ngIf="studentData.studentId.invalid && (studentData.studentId.dirty||studentData.studentId.touched)">
+                              <div *ngIf="studentData.studentId.errors.required">
+                                  StudentId is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="">
+                      <button type="submit" class="btn btn-primary " [disabled]="!studentIdData.valid ">Submit</button>
+                  </div>
+              </div>
+
+          </form>
+      </div>
+  </div>
+
+  <!-- payment -->
+  <div class="bg-white py-5" *ngIf="paymentPage">
+      <div class="p-5">
+          <form [formGroup]="paymentSpecificData" (ngSubmit)="submitPayment()">
+
+              <button class="btn btn-secondary text-white">Take a Picture</button>
+              <div class="row justify-content-center mt-4">
+                  <div class="col-md-3 upload-card">
+
+                      <img src="../../../../assets/images/user.png" data-toggle="modal" data-target="#studentphoto" alt="user" class="p-2 mx-auto d-block img-fluid">
+                      <h6 class="text-center">Student Photo</h6>
+                      <!-- modal start -->
+                      <div class="modal" id="studentphoto" tabindex="-1" role="dialog">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title">Browse Image</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                      </button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <input type="file" (change)="studentImg($event)" formControlName="studentPhoto" name="studentphoto" id="studentphoto">
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-primary">Save changes</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- modal end -->
+                  </div>
+                  <div class="col-md-3 upload-card">
+                      <img src="../../../../assets/images/photo.jpg" data-toggle="modal" data-target="#relativephoto" alt="user" class="p-2 mx-auto d-block img-fluid">
+                      <h6 class="text-center ">Relative Photo</h6>
+                      <!-- modal start -->
+                      <div class="modal" id="relativephoto" tabindex="-1" role="dialog">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title">Browse Image</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                      </button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <input type="file" formControlName="relativePhoto" name="studentphoto" id="studentphoto">
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-primary">Save changes</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- modal end -->
+                  </div>
+                  <div class="col-md-3 upload-card">
+                      <img src="../../../../assets/images/photo.jpg" alt="user" data-toggle="modal" data-target="#studentproof" class="p-2 mx-auto d-block img-fluid">
+                      <h6 class="text-center">Student ID Proof Photo</h6>
+                      <!-- modal start -->
+                      <div class="modal" id="studentproof" tabindex="-1" role="dialog">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title">Browse Image</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                      </button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <input type="file" formControlName="studentIdProof" name="studentphoto" id="studentphoto">
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-primary">Save changes</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- modal end -->
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-8">
+
+                      <div class="form-group">
+                          <div class="row mt-3">
+                              <div class="col-md-4">
+                                  <label class="control-label">Payment Options:</label>
+                              </div>
+                              <div class="col-md-6">
+
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                      <input type="radio" id="customRadioInline1" formControlName="paymentOptions" value="part" name="paymentOptions" class="custom-control-input">
+                                      <label class="custom-control-label" for="customRadioInline1">Part</label>
+                                  </div>
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                      <input type="radio" id="customRadioInline2" formControlName="paymentOptions" value="full" name="paymentOptions" class="custom-control-input">
+                                      <label class="custom-control-label" for="customRadioInline2">Full</label>
+                                  </div>
+
+                                  <div class="alert alert-danger" *ngIf="paymentData.paymentOptions.invalid && (paymentData.paymentOptions.dirty||paymentData.paymentOptions.touched)">
+                                      <div *ngIf="paymentData.paymentOptions.errors.required">
+                                          paymentOptions is required
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <label class="control-label">Mode:</label>
+                              </div>
+                              <div class="col-md-6">
+                                  <select class="form-control" formControlName="mode">
+                                      <option value="" selected disabled>Select Payment Mode</option>
+                                      <option *ngFor="let data of mode" [value]="data">{{data}}</option>
+                                  </select>
+                                  <div class="alert alert-danger" *ngIf="paymentData.mode.invalid && (paymentData.mode.dirty||paymentData.mode.touched)">
+                                      <div *ngIf="paymentData.mode.errors.required">
+                                          mode is required
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group" *ngIf="paymentData.mode.value === 'Credit/Debit Card'">
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <label class="control-label">Card Number :</label>
+                              </div>
+                              <div class="col-md-6">
+                                  <input type="text" class="form-control" placeholder="Card Number" formControlName="cardNumber">
+                                  <div class="alert alert-danger" *ngIf="paymentData.cardNumber.invalid && (paymentData.cardNumber.dirty||paymentData.cardNumber.touched)">
+                                      <div *ngIf="paymentData.cardNumber.errors.required">
+                                          cardNumber is required
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group" *ngIf="paymentData.mode.value === 'Credit/Debit Card'">
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <label class="control-label">Card Holder Name :</label>
+                              </div>
+                              <div class="col-md-6">
+                                  <input type="text" class="form-control" placeholder="Card Holder Name" formControlName="cardHolderName">
+                                  <div class="alert alert-danger" *ngIf="paymentData.cardHolderName.invalid && (paymentData.cardHolderName.dirty||paymentData.cardHolderName.touched)">
+                                      <div *ngIf="paymentData.cardHolderName.errors.required">
+                                          cardHolderName is required
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group" *ngIf="paymentData.mode.value === 'Cheque'">
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <label class="control-label">Cheque Number :</label>
+                              </div>
+                              <div class="col-md-6">
+                                  <input type="text" class="form-control" placeholder="Cheque number" formControlName="chequeNumber">
+                                  <div class="alert alert-danger" *ngIf="paymentData.chequeNumber.invalid && (paymentData.chequeNumber.dirty||paymentData.chequeNumber.touched)">
+                                      <div *ngIf="paymentData.chequeNumber.errors.required">
+                                          chequeNumber is required
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group" *ngIf="paymentData.mode.value === 'Cheque'">
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <label class="control-label">Cheque Bank Name :</label>
+                              </div>
+                              <div class="col-md-6">
+                                  <input type="text" class="form-control" placeholder="Cheque Bank Name" formControlName="chequeBankName">
+                                  <div class="alert alert-danger" *ngIf="paymentData.chequeBankName.invalid && (paymentData.chequeBankName.dirty||paymentData.chequeBankName.touched)">
+                                      <div *ngIf="paymentData.chequeBankName.errors.required">
+                                          chequeBankName is required
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <label class="control-label">Total Fees</label>
+                              </div>
+                              <div class="col-md-6">
+                                  6962
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group" *ngIf="paymentData.paymentOptions.value === 'part'">
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <label class="control-label">Part Fees:</label>
+                              </div>
+                              <div class="col-md-6">
+                                  <input type="text" class="form-control" formControlName="partFees">
+                                  <div class="alert alert-danger" *ngIf="paymentData.partFees.invalid && (paymentData.partFees.dirty||paymentData.partFees.touched)">
+                                      <div *ngIf="paymentData.partFees.errors.required">
+                                          partFees is required
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="row">
+                              <div class="col-md-4">
+                                  <label class="control-label">Remaining Balance:</label>
+                              </div>
+                              <div class="col-md-6">
+                                  <input type="text" class="form-control" readonly formControlName="remainingBalance">
+                                  <div class="alert alert-danger" *ngIf="paymentData.remainingBalance.invalid && (paymentData.remainingBalance.dirty||paymentData.remainingBalance.touched)">
+                                      <div *ngIf="paymentData.remainingBalance.errors.required">
+                                          remainingBalance is required
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+
+                  <div class="col-md-4">
+
+                      <div class="form-group">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <label class="control-label">Student ID:</label>
+                              </div>
+                              <div class="col-md-6">
+                                  ZTAM100
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <label class="control-label">Student Name:</label>
+                              </div>
+                              <div class="col-md-6">
+                                  Chandra Mouli
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <label class="control-label">Branch:</label>
+                              </div>
+                              <div class="col-md-6">
+                                  Ameerpet
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <label class="control-label">Provide Discount:</label>
+                              </div>
+                              <div class="col-md-6">
+                                  <select class="form-control" formControlName="provideDiscount">
+                                      <option value="">Select Amount</option>
+                                  </select>
+                                  <div class="alert alert-danger" *ngIf="paymentData.provideDiscount.invalid && (paymentData.provideDiscount.dirty||paymentData.provideDiscount.touched)">
+                                      <div *ngIf="paymentData.provideDiscount.errors.required">
+                                          provideDiscount is required
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="row">
+                              <div class="col-md-6">
+                              </div>
+                              <div class="col-md-6">
+                                  <button type="submit" class="btn btn-success ">Submit</button>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+
+</div>

@@ -1,0 +1,168 @@
+<div class="container">
+  <div class="bg-white mt-5 p-2">
+      <h5>List of All User</h5>
+      <hr>
+      <div class="row">
+          <div class="col-md-6  p-3">
+              Show
+              <select (change)="sortData($event)">
+                  <option value="all">All</option>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+              </select> entries
+          </div>
+          <div class="col-md-3 ml-auto">
+              <input type="text" placeholder="search" class="form-control" [(ngModel)]="term">
+          </div>
+      </div>
+  </div>
+</div>
+
+<!--Start table Branch data -->
+
+<div class="container">
+  <div class="bg-white">
+      <table class="table table-bordered table-striped table-hover text-center table-responsive-sm">
+          <thead>
+              <tr>
+                  <th>S.no</th>
+                  <th (click)="order('userEmail')">
+                      User Name
+                      <i class="fa" [ngClass]="{'fa-sort': column != 'userEmail', 'fa-sort-asc': (column == 'userEmail' && isDesc), 'fa-sort-desc': (column == 'userEmail' && !isDesc) }" aria-hidden="true"> </i>
+                  </th>
+                  <th (click)="order('fullName')">
+                      User Email
+                      <i class="fa" [ngClass]="{'fa-sort': column != 'fullName', 'fa-sort-asc': (column == 'fullName' && isDesc), 'fa-sort-desc': (column == 'fullName' && !isDesc) }" aria-hidden="true"> </i>
+                  </th>
+                  <th (click)="order('role')">
+                      Role Assigned
+                      <i class="fa" [ngClass]="{'fa-sort': column != 'role', 'fa-sort-asc': (column == 'role' && isDesc), 'fa-sort-desc': (column == 'role' && !isDesc) }" aria-hidden="true"> </i>
+                  </th>
+                  <th (click)="order('branch')">
+                      Branch
+                      <i class="fa" [ngClass]="{'fa-sort': column != 'branch', 'fa-sort-asc': (column == 'branch' && isDesc), 'fa-sort-desc': (column == 'branch' && !isDesc) }" aria-hidden="true"> </i>
+                  </th>
+                  <th>Action</th>
+
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let data of sortedData|filter:term|orderBy: {property: column, direction: direction};let i= index;">
+                  <td>{{i+1}}</td>
+                  <td>{{data.userEmail}}</td>
+                  <td>{{data.fullName}}</td>
+                  <td>{{data.role}}</td>
+                  <td>{{data.branch}}</td>
+                  <td>
+                      <button class="btn btn-success" (click)="editUserData(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
+                      <button class="btn btn-danger" (click)="deleteUserData(data)">Delete</button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+
+<!-- End table branch data -->
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+      <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <h4 class="modal-title">Modal Heading</h4>
+              <button type="button" class="close" #modal data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+              <form [formGroup]="updateuserSpecificData" (ngSubmit)="updateUser()">
+
+                  <div class="form-group">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <label class="control-label">User Email</label>
+                          </div>
+                          <div class="col-md-8">
+                              <input class="form-control" formControlName="userEmail" placeholder="User Email">
+                              <div class="alert alert-danger" *ngIf="userData.userEmail.invalid && (userData.userEmail.dirty||userData.userEmail.touched)">
+                                  <div *ngIf="userData.userEmail.errors.required">
+                                      User Email is required
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <div class="row">
+                          <div class="col-md-4 ">
+                              <label class="control-label">Full Name</label>
+                          </div>
+                          <div class="col-md-8">
+                              <input class="form-control" formControlName="fullName" placeholder="User Name">
+                              <div class="alert alert-danger" *ngIf="userData.fullName.invalid && (userData.fullName.dirty||userData.fullName.touched)">
+                                  <div *ngIf="userData.fullName.errors.required">
+                                      Full Name is required
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <div class="row">
+                          <div class="col-md-4 ">
+                              <label class="control-label">Assign Role to user</label>
+                          </div>
+                          <div class="col-md-8">
+                              <select class="form-control" placeholder="Select Role" formControlName="role">
+                                  <option disabled>Select Role</option>
+                                  <option *ngFor="let data of roles" [value]="data">{{data}}</option>
+                              </select>
+                              <div class="alert alert-danger" *ngIf="userData.role.invalid && (userData.role.dirty||userData.role.touched)">
+                                  <div *ngIf="userData.role.errors.required">
+                                      Role is required
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <label class="control-label">Branch</label>
+                          </div>
+                          <div class="col-md-8">
+                              <select class="form-control" placeholder="select branch" formControlName="branch">
+                                  <option disabled>Select Branch</option>
+                                  <option *ngFor="let data of branches" [value]="data">{{data}}</option>
+                              </select>
+                              <div class="alert alert-danger" *ngIf="userData.branch.invalid && (userData.branch.dirty||userData.branch.touched)">
+                                  <div *ngIf="userData.branch.errors.required">
+                                      Branch is required
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <div class="text-right">
+                          <button type="submit" class="btn btn-primary" [disabled]="updateuserSpecificData.invalid">Update</button>
+                          &nbsp;
+                          <button type="submit" class="btn btn-primary " data-dismiss="modal">Cancel</button>
+                      </div>
+                  </div>
+
+              </form>
+          </div>
+          <!--// End Modal body -->
+
+      </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="container">
+
+  <div class="add-page-tittle">
+      <h3 class="add-section-heading my-3 text-secondary">Add New User</h3>
+  </div>
+
+  <div class="bg-white py-5">
+      <div class="col-md-8 ">
+          <form [formGroup]="userSpecificData" (ngSubmit)="Submit()">
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">User Email</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" formControlName="userEmail" placeholder="User Email">
+                          <div class="alert alert-danger" *ngIf="userData.userEmail.invalid && (userData.userEmail.dirty||userData.userEmail.touched)">
+                              <div *ngIf="userData.userEmail.errors.required">
+                                  User Email is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4 ">
+                          <label class="control-label">Full Name</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" formControlName="fullName" placeholder="User Name">
+                          <div class="alert alert-danger" *ngIf="userData.fullName.invalid && (userData.fullName.dirty||userData.fullName.touched)">
+                              <div *ngIf="userData.fullName.errors.required">
+                                  Full Name is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4 ">
+                          <label class="control-label">Assign Role to user</label>
+                      </div>
+                      <div class="col-md-8">
+                          <select class="form-control" formControlName="role" placeholder="Select Role">
+                              <option disabled selected [value]="null">Select Role</option>
+                              <option *ngFor="let data of roles" [value]="data">{{data}}</option>
+                          </select>
+                          <div class="alert alert-danger" *ngIf="userData.role.invalid && (userData.role.dirty||userData.role.touched)">
+                              <div *ngIf="userData.role.errors.required">
+                                  Role is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Branch</label>
+                      </div>
+                      <div class="col-md-8">
+                          <select class="form-control" formControlName="branch" placeholder="Select Branch">
+                              <option [value]="null" disabled selected>Select Branch</option>
+                              <option *ngFor="let data of branches" [value]="data">{{data}}</option>
+                          </select>
+                          <div class="alert alert-danger" *ngIf="userData.branch.invalid && (userData.branch.dirty||userData.branch.touched)">
+                              <div *ngIf="userData.branch.errors.required">
+                                  Branch is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Password</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" formControlName="password" placeholder="password">
+                          <div class="alert alert-danger" *ngIf="userData.password.invalid && (userData.password.dirty||userData.password.touched)">
+                              <div *ngIf="userData.password.errors.required">
+                                  Password is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="text-right">
+                      <button type="submit" class="btn btn-primary  col-md-8" [disabled]="!userSpecificData.valid ">Submit</button>
+                  </div>
+              </div>
+
+          </form>
+      </div>
+  </div>
+</div>

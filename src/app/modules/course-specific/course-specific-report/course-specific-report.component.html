@@ -1,0 +1,72 @@
+<div class="container">
+
+  <div class="add-page-tittle">
+    <h3 class="add-section-heading my-3 text-secondary text-center">Course Specific Report</h3>
+  </div>
+
+  <div class="bg-white py-5">
+    <div class="col-md-8 ">
+      <form [formGroup]="courseSpecificData" (ngSubmit)="Submit()">
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="control-label">Course Name <span class="text-danger">*</span></label>
+            </div>
+            <div class="col-md-5">
+              <select class="form-control" formControlName="courseName" (change)="changeCourseName($event)">
+                <option value="">Choose your Course</option>
+                <option *ngFor="let course of Course" [ngValue]="course">{{course}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4 ">
+              <label class="control-label">Select Schedule Date <span class="text-danger">*</span></label>
+            </div>
+            <div class="col-md-5 invisible">
+              <select class="form-control">
+                <option value="">Select Date</option>
+                <option></option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4 ">
+              <label class="control-label">Branch</label>
+            </div>
+            <div class="col-md-5">
+              <select class="form-control" formControlName="branchName" (change)="changeBranchName($event)">
+                <option value="">Choose your Branch</option>
+                <option *ngFor="let branch of Branch" [ngValue]="branch">{{branch}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-5">
+              <button type="submit" class="btn btn-primary btn-block"
+                [disabled]="courseSpecificData.invalid">Submit</button>
+            </div>
+
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</div>

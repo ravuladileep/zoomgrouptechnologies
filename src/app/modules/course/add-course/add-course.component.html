@@ -1,0 +1,123 @@
+<div class="container">
+
+  <div class="add-page-tittle">
+      <h3 class="add-section-heading my-3 text-secondary">Add New Course</h3>
+  </div>
+
+  <div class="bg-white py-5">
+      <div class="col-md-8 ">
+          <form [formGroup]="addCourseSpecificForm" (ngSubmit)="submit()">
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Course Name</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" formControlName="coursename" placeholder="Course Name">
+                          <div class="alert alert-danger" *ngIf="courseData.coursename.invalid && (courseData.coursename.dirty||courseData.coursename.touched)">
+                              <div *ngIf="courseData.coursename.errors.required">
+                                  Course Name is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4 ">
+                          <label class="control-label">Branch</label>
+                      </div>
+                      <div class="col-md-8">
+
+                          <div class="form-check-inline" formArrayName="branch" *ngFor="let branch of addCourseSpecificForm['controls'].branch['controls']; let i = index">
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{branchesData[i].name}}
+                              </label>
+                          </div>
+
+                          <div class="alert alert-danger" *ngIf="courseData.branch.invalid && (courseData.branch.dirty||courseData.branch.touched)">
+                              <div *ngIf="courseData.branch.errors">
+                                  Branch Code is required(atleast 1 branch should be selected)
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4 ">
+                          <label class="control-label">Fees</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" formControlName="fees" placeholder="Fee" (keyup)="calculateTax()">
+                          <div class="alert alert-danger" *ngIf="courseData.fees.invalid && (courseData.fees.dirty||courseData.fees.touched)">
+                              <div *ngIf="courseData.fees.errors.required">
+                                  Branch Address is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Service Tax +(Eduction cess)</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" [value]="taxValue" readonly="true" formControlName="servicetax" placeholder="Service Tax">
+                          <div class="alert alert-danger" *ngIf="courseData.servicetax.invalid && (courseData.servicetax.dirty||courseData.servicetax.touched)">
+                              <div *ngIf="courseData.servicetax.errors.required">
+                                  servicetax is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Total Fee</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" readonly="true" [value]="totalCourseFee" formControlName="totalfee" placeholder="Total Fee">
+                          <div class="alert alert-danger" *ngIf="courseData.totalfee.invalid && (courseData.totalfee.dirty||courseData.totalfee.touched)">
+                              <div *ngIf="courseData.totalfee.errors.required">
+                                  totalfee is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Seats</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" formControlName="seats" placeholder="seats">
+                          <div class="alert alert-danger" *ngIf="courseData.seats.invalid && (courseData.seats.dirty||courseData.seats.touched)">
+                              <div *ngIf="courseData.seats.errors.required">
+                                  seats is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="text-right">
+                      <button type="submit" class="btn btn-primary  col-md-8" [disabled]="!addCourseSpecificForm.valid ">Submit</button>
+                  </div>
+              </div>
+
+          </form>
+      </div>
+  </div>
+</div>

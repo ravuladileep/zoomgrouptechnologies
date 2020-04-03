@@ -1,0 +1,45 @@
+nav{
+  height: 60px;
+  border-bottom: 5px solid #64BE5A;
+}
+@font-face {
+  font-family: 'forte';
+  src: url('../../../../assets/fonts/forte_font/@font-face/3259613ce0f20cbc51355804bc1794bd.eot');
+  src: url('../../../../assets/fonts/forte_font/@font-face/3259613ce0f20cbc51355804bc1794bd.eot') format('embedded-opentype'), url('../../../../assets/fonts/forte_font/@font-face/3259613ce0f20cbc51355804bc1794bd.woff') format('woff'), url('../../../../assets/fonts/forte_font/@font-face/3259613ce0f20cbc51355804bc1794bd.ttf') format('truetype'), url('../../../../assets/fonts/forte_font/@font-face/3259613ce0f20cbc51355804bc1794bd.svg') format('svg');
+}
+
+@media(min-width:768px) {
+  .zoom-technologies {
+    right: 30%;
+    margin-top: -5.5%;
+    position: fixed;
+  }
+}
+
+@media(min-width:1024px) {
+  .zoom-technologies {
+    right: 35%;
+    top: 28%;
+    position: sticky;
+  }
+}
+
+
+
+.title-text{
+  height: auto;
+  color: #B4B5BA;
+  font-family: forte;
+  font-size: 70px;
+  letter-spacing: -0.02em;
+  opacity: 0.75;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65), 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+.technolgies{
+  color: #77A170;
+  font-size:36px ;
+  font-weight: bold;
+}
+.welcometo{
+  font-size: 36px;
+}

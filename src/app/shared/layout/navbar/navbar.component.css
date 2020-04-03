@@ -1,0 +1,13 @@
+.fas{
+  font-size: 25px!important;
+}
+.nav-item>.nav-link{
+font-size: 12px;
+}
+.nav-item{
+  padding:10px;
+}
+.nav-item a:hover{
+  background-color: rgba(0,0,0,0.04);
+}
+

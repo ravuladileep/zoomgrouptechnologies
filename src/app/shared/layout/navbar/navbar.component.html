@@ -1,0 +1,131 @@
+<nav class="navbar navbar-expand-lg bg-white navbar-light">
+  <!-- Brand -->
+  <a class="navbar-brand  d-lg-none" href="#">Menu</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+
+          <li class="nav-item text-center">
+              <a class="nav-link" [routerLink]="['/dashboard']" routerLinkActive="router-link-active"><i class="fas fa-th"></i><br>Dashboard</a>
+          </li>
+
+          <li class="nav-item dropdown text-center">
+              <a class="nav-link dropdown-toggle"  id="navbardrop" data-toggle="dropdown">
+                  <i class="fas fa-link"></i>
+                  <br> Branch
+              </a>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" [routerLink]="['add_branch']" routerLinkActive="router-link-active">Add Branch</a>
+                  <a class="dropdown-item" [routerLink]="['edit_branch']" routerLinkActive="router-link-active">Edit Branch</a>
+              </div>
+          </li>
+
+          <li class="nav-item dropdown text-center">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  <i class="fas fa-paperclip"></i>
+                  <br> Course
+              </a>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" [routerLink]="['add_course']" routerLinkActive="router-link-active">Add Course</a>
+                  <a class="dropdown-item" [routerLink]="['edit_course']" routerLinkActive="router-link-active">Edit Course</a>
+              </div>
+          </li>
+
+          <li class="nav-item dropdown text-center">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  <i class="fas fa-pound-sign"></i>
+                  <br> Fee
+              </a>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" [routerLink]="['add_fees']" routerLinkActive="router-link-active">Add Course Fee</a>
+                  <a class="dropdown-item" [routerLink]="['edit_fees']" routerLinkActive="router-link-active">Edit Course Fee</a>
+              </div>
+          </li>
+
+          <li class="nav-item dropdown text-center">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  <i class="fas fa-credit-card"></i>
+                  <br> Course Package
+              </a>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" [routerLink]="['add_course_package']" routerLinkActive="router-link-active">Add Course Package</a>
+                  <a class="dropdown-item" [routerLink]="['edit_course_package']" routerLinkActive="router-link-active">Edit Course Package</a>
+              </div>
+          </li>
+
+          <li class="nav-item dropdown text-center">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  <i class="fas fa-chart-bar"></i>
+                  <br> Shedule
+              </a>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" [routerLink]="['add_schedule']" routerLinkActive="router-link-active">Add Course Schedule</a>
+                  <a class="dropdown-item" [routerLink]="['edit_schedule']" routerLinkActive="router-link-active">Edit Course Schedule</a>
+              </div>
+          </li>
+
+          <li class="nav-item dropdown text-center">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  <i class="fas fa-user"></i>
+                  <br> User
+              </a>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" [routerLink]="['add_user']" routerLinkActive="router-link-active">Add Employee</a>
+                  <a class="dropdown-item" [routerLink]="['edit_user']" routerLinkActive="router-link-active">Edit Employee</a>
+              </div>
+          </li>
+
+          <li class="nav-item dropdown text-center">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  <i class="fas fa-tasks"></i>
+                  <br> Role
+              </a>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" [routerLink]="['add_role']" routerLinkActive="router-link-active">Add Role</a>
+                  <a class="dropdown-item" [routerLink]="['edit_role']" routerLinkActive="router-link-active">Edit Role</a>
+              </div>
+          </li>
+
+          <li class="nav-item dropdown text-center">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  <i class="fas fa-user"></i>
+                  <br> Student Info
+              </a>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" [routerLink]="['add_student_details']" routerLinkActive="router-link-active">Add Student</a>
+                  <a class="dropdown-item" [routerLink]="['edit_student_details']" routerLinkActive="router-link-active">Edit Student</a>
+                  <a class="dropdown-item" [routerLink]="['search_student']" routerLinkActive="router-link-active">Search Student</a>
+                  <a class="dropdown-item" [routerLink]="['image_upload']" routerLinkActive="router-link-active">Student Image Upload</a>
+              </div>
+          </li>
+
+          <li class="nav-item dropdown text-center">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  <i class="fas fa-chart-bar"></i>
+                  <br> Reports
+              </a>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Add</a>
+                  <a class="dropdown-item" href="#">Edit</a>
+              </div>
+          </li>
+
+          <li class="nav-item dropdown text-center">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  <i class="fas fa-print"></i>
+                  <br> Print
+              </a>
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Add</a>
+                  <a class="dropdown-item" href="#">Edit</a>
+              </div>
+          </li>
+      </ul>
+  </div>
+</nav>
