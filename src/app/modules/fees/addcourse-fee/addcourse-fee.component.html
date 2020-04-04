@@ -1,6 +1,18 @@
 <div class="container">
 <!-- webcam -->
 
+<div class="row">
+    <div class="col-md-4">
+        <app-camera (pictureTaken)="handleImage($event)"></app-camera>
+    </div>
+    <div class="snapshot col-md-4" *ngIf="webcamImage">
+      <img [src]="webcamImage.imageAsDataUrl"  style="width:250px;height: auto;"/>
+    </div>
+</div>
+
+
+
+
 <!-- webcam end -->
 
 

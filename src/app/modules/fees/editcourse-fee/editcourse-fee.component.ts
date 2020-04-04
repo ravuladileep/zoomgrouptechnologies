@@ -12,4 +12,8 @@ export class EditcourseFeeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public studentIdSubmit() {
+    return;
+  }
+
 }

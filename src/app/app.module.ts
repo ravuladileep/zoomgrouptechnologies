@@ -43,7 +43,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { UserService } from './services/user/user.service';
 import { WebcamModule } from 'ngx-webcam';
 import { CameraComponent } from './shared/modules/camera/camera.component';
-
+import { CoursePackageService } from './services/course-package/course-package.service';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ScheduleService } from './services/schedule/schedule.service';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,8 @@ import { CameraComponent } from './shared/modules/camera/camera.component';
     ToastrModule.forRoot({
       timeOut: 3500
     }),
-    WebcamModule
+    WebcamModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     BranchService,
@@ -100,7 +103,9 @@ import { CameraComponent } from './shared/modules/camera/camera.component';
       multi: true
     },
     ToasterService,
-    UserService
+    UserService,
+    CoursePackageService,
+    ScheduleService
   ],
   bootstrap: [AppComponent]
 })

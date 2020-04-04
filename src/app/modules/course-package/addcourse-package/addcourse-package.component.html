@@ -1,1 +1,130 @@
-<p>addcourse-package works!</p>
+<div class="container">
+
+  <div class="add-page-tittle">
+      <h3 class="add-section-heading my-3 text-secondary">Add New Course Package</h3>
+  </div>
+
+  <div class="bg-white py-5">
+      <div class="col-md-8 ">
+          <form [formGroup]="addCoursePackageSpecificForm" (ngSubmit)="submit()">
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Course Package Name</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" formControlName="packageName" placeholder="Package Name">
+                          <div class="alert alert-danger" *ngIf="packageData.packageName.invalid && (packageData.packageName.dirty||packageData.packageName.touched)">
+                              <div *ngIf="packageData.packageName.errors.required">
+                                  Course Package Name is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4 ">
+                          <label class="control-label">Course Name</label>
+                      </div>
+                      <div class="col-md-8">
+
+                          <div class="form-check-inline" formArrayName="courseName" *ngFor="let courseName of addCoursePackageSpecificForm['controls'].courseName['controls']; let i = index">
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{coursesData[i]}}
+                              </label>
+                          </div>
+
+                          <div class="alert alert-danger" *ngIf="packageData.courseName.invalid && (packageData.courseName.dirty||packageData.courseName.touched)">
+                              <div *ngIf="packageData.courseName.errors">
+                                  courseName is required(atleast 1 courseName should be selected)
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4 ">
+                          <label class="control-label">Branch</label>
+                      </div>
+                      <div class="col-md-8">
+
+                          <div class="form-check-inline" formArrayName="branch" *ngFor="let branch of addCoursePackageSpecificForm['controls'].branch['controls']; let i = index">
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{branchesData[i].name}}
+                              </label>
+                          </div>
+
+                          <div class="alert alert-danger" *ngIf="packageData.branch.invalid && (packageData.branch.dirty||packageData.branch.touched)">
+                              <div *ngIf="packageData.branch.errors">
+                                  Branch is required(atleast 1 branch should be selected)
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4 ">
+                          <label class="control-label">Package Amount</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" formControlName="packageAmount" placeholder="Fee" (keyup)="calculateTax()">
+                          <div class="alert alert-danger" *ngIf="packageData.packageAmount.invalid && (packageData.packageAmount.dirty||packageData.packageAmount.touched)">
+                              <div *ngIf="packageData.packageAmount.errors.required">
+                                  packageAmount is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Service Tax +(Eduction cess)</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" [value]="taxValue" readonly="true" formControlName="servicetax" placeholder="Service Tax">
+                          <div class="alert alert-danger" *ngIf="packageData.servicetax.invalid && (packageData.servicetax.dirty||packageData.servicetax.touched)">
+                              <div *ngIf="packageData.servicetax.errors.required">
+                                  servicetax is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Total Package Amount</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" readonly="true" [value]="totalPackage" formControlName="totalPackage" placeholder="Total Fee">
+                          <div class="alert alert-danger" *ngIf="packageData.totalPackage.invalid && (packageData.totalPackage.dirty||packageData.totalPackage.touched)">
+                              <div *ngIf="packageData.totalPackage.errors.required">
+                                  totalPackage is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="text-right">
+                      <button type="submit" class="btn btn-primary  col-md-8" [disabled]="!addCoursePackageSpecificForm.valid">Submit</button>
+                  </div>
+              </div>
+
+          </form>
+      </div>
+  </div>
+</div>

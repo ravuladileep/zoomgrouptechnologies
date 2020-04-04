@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToasterService } from 'src/app/shared/dialogs/alerts/toaster.service';
-import {WebcamImage} from 'ngx-webcam';
+import { WebcamImage } from 'ngx-webcam';
 
 @Component({
   selector: 'app-addcourse-fee',

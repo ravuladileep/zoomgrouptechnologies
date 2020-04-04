@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CourseService } from 'src/app/services/course/course.service';
-import { ICourse } from 'src/app/entities/course.model';
 import { FormBuilder, Validators, FormGroup, ValidatorFn, FormArray, FormControl } from '@angular/forms';
 import { of } from 'rxjs';
 import { ToasterService } from 'src/app/shared/dialogs/alerts/toaster.service';

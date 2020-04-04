@@ -1,1 +1,168 @@
-<p>edit-role works!</p>
+<div class="container">
+  <div class="bg-white mt-5 p-2">
+      <h5>List of All Role</h5>
+      <hr>
+      <div class="row">
+          <div class="col-md-6  p-3">
+              Show
+              <select (change)="sortData($event)">
+                  <option value="all">All</option>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+              </select> entries
+          </div>
+          <div class="col-md-3 ml-auto">
+              <input type="text" placeholder="search" class="form-control" [(ngModel)]="term">
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="bg-white">
+      <table class="table table-bordered table-striped table-hover text-center table-responsive-sm">
+          <thead>
+              <tr>
+                  <th>S.no</th>
+                  <th (click)="order('roleName')">
+                      Role Name
+                      <i class="fa" [ngClass]="{'fa-sort': column != 'roleName', 'fa-sort-asc': (column == 'roleName' && isDesc), 'fa-sort-desc': (column == 'roleName' && !isDesc) }" aria-hidden="true"> </i>
+                  </th>
+
+                  <th>Action</th>
+
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let data of sortedData|filter:term|orderBy: {property: column, direction: direction};let i= index;">
+                  <td>{{i+1}}</td>
+                  <td>{{data.roleName}}</td>
+                  <td>
+                      <button class="btn btn-success" (click)="editRole(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
+                      <button class="btn btn-danger" (click)="deleteRole(data)">Delete</button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+
+<!-- End table -->
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+      <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <h4 class="modal-title">Modal Heading</h4>
+              <button type="button" class="close" #modal data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form [formGroup]="updateRoleSpecificForm" (ngSubmit)="updateRole()">
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Role Name</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" formControlName="roleName" placeholder="Package Name">
+                          <div class="alert alert-danger" *ngIf="roleData.roleName.invalid && (roleData.roleName.dirty||roleData.roleName.touched)">
+                              <div *ngIf="roleData.roleName.errors.required">
+                                  Role Name Name is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4 ">
+                          <label class="control-label">Assign Function</label>
+                      </div>
+                      <div class="col-md-8">
+
+                          <div class="form-check-inline" formArrayName="assignFunction" *ngFor="let assignFunction of updateRoleSpecificForm['controls'].assignFunction['controls']; let i = index">
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{assignFunctionData[i]}}
+                              </label>
+                          </div>
+
+                          <div class="alert alert-danger" *ngIf="roleData.assignFunction.invalid && (roleData.assignFunction.dirty||roleData.assignFunction.touched)">
+                              <div *ngIf="roleData.assignFunction.errors">
+                                  assignFunction is required(atleast 1 assignFunction should be selected)
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4 ">
+                          <label class="control-label">Reports</label>
+                      </div>
+                      <div class="col-md-8">
+
+                          <div class="form-check-inline" formArrayName="reports" *ngFor="let reports of updateRoleSpecificForm['controls'].reports['controls']; let i = index">
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{reportsData[i]}}
+                              </label>
+                          </div>
+
+                          <div class="alert alert-danger" *ngIf="roleData.reports.invalid && (roleData.reports.dirty||roleData.reports.touched)">
+                              <div *ngIf="roleData.reports.errors">
+                                  reports is required(atleast 1 report should be selected)
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4 ">
+                        <label class="control-label">Communication</label>
+                    </div>
+                    <div class="col-md-8">
+
+                        <div class="form-check-inline" formArrayName="communication" *ngFor="let communication of updateRoleSpecificForm['controls'].communication['controls']; let i = index">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="form-check-input" [formControlName]="i"> {{communicationData[i]}}
+                            </label>
+                        </div>
+
+                        <div class="alert alert-danger" *ngIf="roleData.communication.invalid && (roleData.communication.dirty||roleData.communication.touched)">
+                            <div *ngIf="roleData.communication.errors">
+                              communication is required(atleast 1 communication should be selected)
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+              <div class="form-group">
+                  <div class="text-right">
+                      <button type="submit" class="btn btn-primary  col-md-8" [disabled]="!updateRoleSpecificForm.valid">Submit</button>
+                  </div>
+              </div>
+
+          </form>
+          </div>
+          <!--// End Modal body -->
+
+      </div>
+  </div>
+</div>
+
+<!-- End modal -->

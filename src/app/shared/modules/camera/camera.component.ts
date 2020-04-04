@@ -38,6 +38,14 @@ export class CameraComponent implements OnInit {
       });
   }
 
+  public opencamera() {
+    this.showWebcam = true;
+  }
+  public closecamera() {
+    this.showWebcam = false;
+    this.pictureTaken.emit();
+  }
+
   public triggerSnapshot(): void {
     this.trigger.next();
   }
