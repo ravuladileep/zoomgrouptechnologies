@@ -71,28 +71,27 @@
               </div>
 
               <div class="form-group">
-                <div class="row">
-                    <div class="col-md-4 ">
-                        <label class="control-label">Communication</label>
-                    </div>
-                    <div class="col-md-8">
+                  <div class="row">
+                      <div class="col-md-4 ">
+                          <label class="control-label">Communication</label>
+                      </div>
+                      <div class="col-md-8">
 
-                        <div class="form-check-inline" formArrayName="communication" *ngFor="let communication of addRoleSpecificForm['controls'].communication['controls']; let i = index">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" class="form-check-input" [formControlName]="i"> {{communicationData[i]}}
-                            </label>
-                        </div>
+                          <div class="form-check-inline" formArrayName="communication" *ngFor="let communication of addRoleSpecificForm['controls'].communication['controls']; let i = index">
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{communicationData[i]}}
+                              </label>
+                          </div>
 
-                        <div class="alert alert-danger" *ngIf="roleData.communication.invalid && (roleData.communication.dirty||roleData.communication.touched)">
-                            <div *ngIf="roleData.communication.errors">
-                              communication is required(atleast 1 communication should be selected)
-                            </div>
-                        </div>
+                          <div class="alert alert-danger" *ngIf="roleData.communication.invalid && (roleData.communication.dirty||roleData.communication.touched)">
+                              <div *ngIf="roleData.communication.errors">
+                                  communication is required(atleast 1 communication should be selected)
+                              </div>
+                          </div>
 
-                    </div>
-                </div>
-            </div>
-
+                      </div>
+                  </div>
+              </div>
 
               <div class="form-group">
                   <div class="text-right">

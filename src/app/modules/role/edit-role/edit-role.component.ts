@@ -203,6 +203,32 @@ export class EditRoleComponent implements OnInit {
     this.roleService.getRoleById(data.id).subscribe(res => {
       this.updateid = data.id;
       this.updateRoleSpecificForm.patchValue(res);
+      const myassign = this.updateRoleSpecificForm.controls.assignFunction as FormArray;
+      const myreports = this.updateRoleSpecificForm.controls.reports as FormArray;
+      const mycommunication = this.updateRoleSpecificForm.controls.communication as FormArray;
+      // patching checkboxes according to their respective index numbers
+      // for assign functions
+      for (let i = 0; i < myassign.length; i++) {
+        myassign.at(i).patchValue(null);
+      }
+      res.assignFunction.forEach(x => {
+        myassign.at(this.assignFunctionDataarr.indexOf(x)).patchValue(x);
+      });
+      // for reports
+      for (let i = 0; i < myreports.length; i++) {
+        myreports.at(i).patchValue(null);
+      }
+      res.reports.forEach(x => {
+        myreports.at(this.reportsDataarr.indexOf(x)).patchValue(x);
+      });
+      // for communication
+      for (let i = 0; i < mycommunication.length; i++) {
+        mycommunication.at(i).patchValue(null);
+      }
+      res.communication.forEach(x => {
+        mycommunication.at(this.communicationDataarr.indexOf(x)).patchValue(x);
+      });
+      //  end patching
     });
   }
 
@@ -214,11 +240,17 @@ export class EditRoleComponent implements OnInit {
    */
   public checkboxMapping() {
     this.updateRoleSpecificForm.value.assignFunction = this.updateRoleSpecificForm.value.assignFunction
-    .map((v, i) => (v ? this.assignFunctionData[i] : null));
+    .map((v, i) => (v ? this.assignFunctionData[i] : null))
+    .filter(v => v != null);
+
     this.updateRoleSpecificForm.value.reports = this.updateRoleSpecificForm.value.reports
-    .map((v, i) => (v ? this.reportsData[i] : null));
+    .map((v, i) => (v ? this.reportsData[i] : null))
+    .filter(v => v != null);
+
     this.updateRoleSpecificForm.value.communication = this.updateRoleSpecificForm.value.communication
-    .map((v, i) => (v ? this.communicationData[i] : null));
+    .map((v, i) => (v ? this.communicationData[i] : null))
+    .filter(v => v != null);
+
   }
 
 

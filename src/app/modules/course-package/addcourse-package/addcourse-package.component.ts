@@ -105,15 +105,17 @@ export class AddcoursePackageComponent implements OnInit {
   public addCoursePackageSpecificForm: FormGroup;
   public taxValue: number;
   public totalPackage: number;
-  public branchesDataarr = [
-    { id: 'Ameerpet', name: 'Ameerpet' },
-    { id: 'Banjara Hills', name: 'Banjara Hills' },
-    { id: 'Dilsukh nagar', name: 'Dilsukh nagar' },
-    { id: 'Secunderabad', name: 'Secunderabad' },
-    { id: 'Test linux', name: 'Test linux' },
-    { id: 'Surat', name: 'Surat' },
-    { id: 'Vijayawada', name: 'Vijayawada' }
-  ];
+  public branchesDataarr = ['Ameerpet', 'Banjara Hills', 'Dilsukh nagar', 'Secunderabad', 'Test linux', 'Surat', 'Vijayawada'];
+
+  // public branchesDataarr = [
+  //   { id: 'Ameerpet', name: 'Ameerpet' },
+  //   { id: 'Banjara Hills', name: 'Banjara Hills' },
+  //   { id: 'Dilsukh nagar', name: 'Dilsukh nagar' },
+  //   { id: 'Secunderabad', name: 'Secunderabad' },
+  //   { id: 'Test linux', name: 'Test linux' },
+  //   { id: 'Surat', name: 'Surat' },
+  //   { id: 'Vijayawada', name: 'Vijayawada' }
+  // ];
   public branchesData = [];
   public coursesData = [];
   constructor(private fb: FormBuilder, private coursePackage: CoursePackageService, private toaster: ToasterService) {
@@ -197,9 +199,11 @@ export class AddcoursePackageComponent implements OnInit {
    */
   public checkboxMapping() {
     this.addCoursePackageSpecificForm.value.branch = this.addCoursePackageSpecificForm.value.branch
-    .map((v, i) => (v ? this.branchesData[i].id : null));
+    .map((v, i) => (v ? this.branchesData[i] : null))
+    .filter(v => v != null);
     this.addCoursePackageSpecificForm.value.courseName = this.addCoursePackageSpecificForm.value.courseName
-    .map((v, i) => (v ? this.coursesData[i] : null));
+    .map((v, i) => (v ? this.coursesData[i] : null))
+    .filter(v => v != null);
   }
 
   /**

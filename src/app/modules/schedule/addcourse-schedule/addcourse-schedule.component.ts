@@ -103,15 +103,16 @@ export class AddcourseScheduleComponent implements OnInit {
     'Ethical Hacking & Prevention -VJW',
     'Cybersecurity Professional -VJW'
   ];
-  public branchesDataarr = [
-    { id: 'Ameerpet', name: 'Ameerpet' },
-    { id: 'Banjara Hills', name: 'Banjara Hills' },
-    { id: 'Dilsukh nagar', name: 'Dilsukh nagar' },
-    { id: 'Secunderabad', name: 'Secunderabad' },
-    { id: 'Test linux', name: 'Test linux' },
-    { id: 'Surat', name: 'Surat' },
-    { id: 'Vijayawada', name: 'Vijayawada' }
-  ];
+  public branchesDataarr = ['Ameerpet', 'Banjara Hills', 'Dilsukh nagar', 'Secunderabad', 'Test linux', 'Surat', 'Vijayawada'];
+  // public branchesDataarr = [
+  //   { id: 'Ameerpet', name: 'Ameerpet' },
+  //   { id: 'Banjara Hills', name: 'Banjara Hills' },
+  //   { id: 'Dilsukh nagar', name: 'Dilsukh nagar' },
+  //   { id: 'Secunderabad', name: 'Secunderabad' },
+  //   { id: 'Test linux', name: 'Test linux' },
+  //   { id: 'Surat', name: 'Surat' },
+  //   { id: 'Vijayawada', name: 'Vijayawada' }
+  // ];
   public batchesDataarr = ['Morning', 'Afternoon', 'Evening'];
   public branchesData = [];
   public batchesData = [];
@@ -125,7 +126,7 @@ export class AddcourseScheduleComponent implements OnInit {
 
   public scheduleForm(): void {
     this.addScheduleSpecificForm = this.fb.group({
-      courseName: ['', [Validators.required]],
+      courseName: [null, [Validators.required]],
       branch: this.fb.array([]),
       startDate: [this.bsValue, [Validators.required]],
       endDate: ['', [Validators.required]],
@@ -181,9 +182,13 @@ export class AddcourseScheduleComponent implements OnInit {
    */
   public checkboxMapping() {
     this.addScheduleSpecificForm.value.branch = this.addScheduleSpecificForm.value.branch
-    .map((v, i) => (v ? this.branchesData[i].id : null));
+    .map((v, i) => (v ? this.branchesData[i] : null))
+    .filter(v => v != null);
+
     this.addScheduleSpecificForm.value.batch = this.addScheduleSpecificForm.value.batch
-    .map((v, i) => (v ? this.batchesData[i] : null));
+    .map((v, i) => (v ? this.batchesData[i] : null))
+    .filter(v => v != null);
+
   }
 
 

@@ -1,412 +1,88 @@
 {
   "branch": [
     {
-      "branchName": "kjhjhkjmnbj",
-      "branchCode": "jhghkjh",
-      "branchAddress": "jkhkjhkjh",
-      "branchContactNumber": "kjhkjhj",
-      "id": 9
+      "branchName": "Ameerpet",
+      "branchCode": "3523",
+      "branchAddress": "Ameerpet,Hyderabad",
+      "branchContactNumber": "9876542312",
+      "id": 1
     },
     {
-      "branchName": "kjhjhkjmnbjhghjg",
-      "branchCode": "hjghjgjhghj",
-      "branchAddress": "ghjgjhgjh",
-      "branchContactNumber": "hjghj",
-      "id": 10
+      "branchName": "Secunderabad",
+      "branchCode": "4521",
+      "branchAddress": "Hyderabad",
+      "branchContactNumber": "9874562145",
+      "id": 2
     },
     {
-      "branchName": [
-        "kjhjhkjmnbjhghjgnb"
-      ],
-      "branchCode": [
-        "hghjg"
-      ],
-      "branchAddress": [
-        "jhghj"
-      ],
-      "branchContactNumber": "ghjgjhg7",
-      "id": 11
+      "branchName": "Banjara Hills",
+      "branchCode": "8547",
+      "branchAddress": "Banjara Hills,Hyderabad",
+      "branchContactNumber": "8974562478",
+      "id": 3
     },
     {
-      "branchName": "kjhjhkjmnbjhgjhghjghjgnb",
-      "branchCode": "jhghjg",
-      "branchAddress": "hjghj",
-      "branchContactNumber": "ghjgjh",
-      "id": 12
+      "branchName": "Surat",
+      "branchCode": "4578",
+      "branchAddress": "Surat,Gujarat",
+      "branchContactNumber": "9878978854",
+      "id": 4
     },
     {
-      "branchName": "hjghjg",
-      "branchCode": "hgjhgjh",
-      "branchAddress": "ghjgjh",
-      "branchContactNumber": "gjhg",
-      "id": 13
+      "branchName": "Ameerpet",
+      "branchCode": "6587",
+      "branchAddress": "Ameerpet,Hyderabad",
+      "branchContactNumber": "9874568745",
+      "id": 5
     },
     {
-      "branchName": "hjghjgjhj",
-      "branchCode": "hgjghj",
-      "branchAddress": "gjh",
-      "branchContactNumber": "ghjg",
-      "id": 14
-    },
-    {
-      "branchName": "hjghjgjhj",
-      "branchCode": "hgjghj",
-      "branchAddress": "gjh",
-      "branchContactNumber": "ghjg",
-      "id": 15
-    },
-    {
-      "branchName": "hjghjgjhjkj",
-      "branchCode": "jgjh",
-      "branchAddress": "gjhg",
-      "branchContactNumber": "hjg",
-      "id": 16
-    },
-    {
-      "branchName": "hjghjgjhjkjjghj",
-      "branchCode": "ghjg",
-      "branchAddress": "jhg",
-      "branchContactNumber": "hjgjh",
-      "id": 17
-    },
-    {
-      "branchName": "hjghjgjhjkjjgghjghj",
-      "branchCode": "hjg",
-      "branchAddress": "hjghj",
-      "branchContactNumber": "gj",
-      "id": 18
-    },
-    {
-      "branchName": "kljjkj",
-      "branchCode": "jl",
-      "branchAddress": "jlkj",
-      "branchContactNumber": "lkjklj",
-      "id": 19
-    },
-    {
-      "branchName": "lkk",
-      "branchCode": " jhjkh",
-      "branchAddress": "kj jkhjkh",
-      "branchContactNumber": " jjkhkj",
-      "id": 20
-    },
-    {
-      "branchName": "branch",
-      "branchCode": "5654",
-      "branchAddress": "hyd",
-      "branchContactNumber": "9849789478",
-      "id": 21
-    },
-    {
-      "branchName": "ghjk",
-      "branchCode": " 464",
-      "branchAddress": "545",
-      "branchContactNumber": "454",
-      "id": 22
-    },
-    {
-      "branchName": "ghjk",
-      "branchCode": "5454",
-      "branchAddress": "hyd",
-      "branchContactNumber": "9849079511",
-      "id": 23
-    },
-    {
-      "branchName": "ghj",
-      "branchCode": "845",
-      "branchAddress": "hjk",
-      "branchContactNumber": "545",
-      "id": 24
-    },
-    {
-      "branchName": "fghjk",
-      "branchCode": "545",
-      "branchAddress": "454",
-      "branchContactNumber": "454",
-      "id": 25
+      "branchName": "Secunderabad",
+      "branchCode": "4521",
+      "branchAddress": "Hyderabad",
+      "branchContactNumber": "9874562145",
+      "id": 6
     }
   ],
   "course": [
     {
-      "coursename": "new course",
+      "coursename": "Linux",
       "branch": [
-        null,
         "Banjara Hills",
         "Dilsukh nagar",
         "Secunderabad",
-        "Test linux",
-        "Surat",
-        null
+        "Surat"
       ],
-      "fees": "45678",
-      "servicetax": 8222.04,
-      "totalfee": 53900.04,
-      "seats": "2",
-      "id": 2
-    },
-    {
-      "coursename": "azure",
-      "branch": [
-        null,
-        "Banjara Hills",
-        "Dilsukh nagar",
-        "Secunderabad",
-        null,
-        "Surat",
-        null
-      ],
-      "fees": "8888",
-      "servicetax": 1599.84,
-      "totalfee": 10487.84,
-      "seats": "4",
-      "id": 3
+      "fees": "45000",
+      "servicetax": 8100,
+      "totalfee": 53100,
+      "seats": "1",
+      "id": 1
     }
   ],
   "user": [
     {
-      "userEmail": "email@g.com",
-      "fullName": "email",
-      "role": "Counsellor Plus",
-      "branch": "Secunderabad",
-      "password": "passwor",
+      "userEmail": "john@gmail.com",
+      "fullName": "john",
+      "role": "Counsellor",
+      "branch": "Banjara Hills",
+      "password": "john",
       "id": 1
-    },
-    {
-      "userEmail": "new@gmail.com",
-      "fullName": "new user",
-      "role": "Counsellor",
-      "branch": "Secunderabad",
-      "password": "passwword",
-      "id": 2
-    },
-    {
-      "userEmail": "fghjk",
-      "fullName": "ghjkl",
-      "role": "Accountant",
-      "branch": "Surat",
-      "password": "fghjkl",
-      "id": 3
-    },
-    {
-      "userEmail": "cghjk",
-      "fullName": "ghjkl",
-      "role": "Finance",
-      "branch": "Secunderabad",
-      "password": "ghjkl;",
-      "id": 4
-    },
-    {
-      "userEmail": "fghjkl",
-      "fullName": "bhjkl",
-      "role": "Admin",
-      "branch": "Ameerpet",
-      "password": "fghjkl",
-      "id": 5
-    },
-    {
-      "userEmail": "ghjkl",
-      "fullName": "bhjkl",
-      "role": "Admin",
-      "branch": "Ameerpet",
-      "password": "ghjkl;",
-      "id": 6
-    },
-    {
-      "userEmail": "fghjk",
-      "fullName": "lghjkl",
-      "role": "Admin",
-      "branch": "Ameerpet",
-      "password": "hjkl;",
-      "id": 7
-    },
-    {
-      "userEmail": "fghjk",
-      "fullName": "ghjkl",
-      "role": "Counsellor",
-      "branch": "Ameerpet",
-      "password": "ghjkl",
-      "id": 8
-    },
-    {
-      "userEmail": "fghjkl",
-      "fullName": "ghjkl",
-      "role": "Admin",
-      "branch": "Ameerpet",
-      "password": "fghjk",
-      "id": 9
-    },
-    {
-      "userEmail": "fghjkl",
-      "fullName": "hjkl;",
-      "role": "Admin",
-      "branch": "Ameerpet",
-      "password": "ghjkl",
-      "id": 10
-    },
-    {
-      "userEmail": "gtyuio",
-      "fullName": "jkl",
-      "role": "Admin",
-      "branch": "Ameerpet",
-      "password": "ghjkl",
-      "id": 11
-    },
-    {
-      "userEmail": "fghjkl",
-      "fullName": "hjkl",
-      "role": "Admin",
-      "branch": "Ameerpet",
-      "password": "ghjkl",
-      "id": 12
-    },
-    {
-      "userEmail": "ghjkl",
-      "fullName": "hjkl",
-      "role": "Admin",
-      "branch": "Ameerpet",
-      "password": "hjkl;",
-      "id": 13
-    },
-    {
-      "userEmail": "ghjkl;",
-      "fullName": "hjkl;",
-      "role": "Admin",
-      "branch": "Ameerpet",
-      "password": "hjkl",
-      "id": 14
-    },
-    {
-      "userEmail": "dfghjkl;",
-      "fullName": "ghjkl;",
-      "role": "Counsellor Plus",
-      "branch": "Dilsukh nagar",
-      "password": "hjkl;",
-      "id": 15
-    },
-    {
-      "userEmail": "ghjkl",
-      "fullName": "hjkl",
-      "role": "Admin",
-      "branch": "Ameerpet",
-      "password": "hjkl;",
-      "id": 16
-    },
-    {
-      "userEmail": "dfghjkl",
-      "fullName": "fghjkl;",
-      "role": "Admin",
-      "branch": "Ameerpet",
-      "password": "hjkl;",
-      "id": 17
     }
   ],
   "course-package": [
     {
-      "packageName": "H/W and Networking Package Course",
+      "packageName": "Networking",
       "courseName": [
-        "CCNA",
-        "MCSE - Windows Server 2012",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
+        "LINUX Administration",
+        "EXCHANGE SERVER 2013"
       ],
       "branch": [
         "Ameerpet",
-        "Banjara Hills",
-        null,
-        null,
-        null,
-        null,
-        null
+        "Secunderabad"
       ],
-      "packageAmount": "789999",
-      "servicetax": 142199.82,
-      "totalPackage": 932198.8200000001,
+      "packageAmount": "45000",
+      "servicetax": 8100,
+      "totalPackage": 53100,
       "id": 1
     }
   ],
@@ -416,106 +92,31 @@
       "branch": [
         "Ameerpet",
         "Banjara Hills",
-        null,
-        null,
-        null,
-        null,
-        null
+        "Secunderabad"
       ],
-      "startDate": "2020-04-04T09:40:34.702Z",
-      "endDate": "2020-04-23T09:40:29.000Z",
+      "startDate": "2020-04-07T14:39:07.000Z",
+      "endDate": "2020-04-23T14:38:23.000Z",
       "batch": [
-        null,
-        "Afternoon",
-        "Evening"
+        "Morning",
+        "Afternoon"
       ],
-      "id": 2
-    },
-    {
-      "courseName": "CCNP",
-      "branch": [
-        null,
-        "Banjara Hills",
-        "Dilsukh nagar",
-        null,
-        null,
-        null,
-        null
-      ],
-      "startDate": "2020-04-21T10:11:48.000Z",
-      "endDate": "2020-04-14T10:11:40.000Z",
-      "batch": [
-        null,
-        "Afternoon",
-        "Evening"
-      ],
-      "id": 4
-    },
-    {
-      "courseName": "VMware (old)",
-      "branch": [
-        null,
-        "Banjara Hills",
-        null,
-        null,
-        "Test linux",
-        null,
-        null
-      ],
-      "startDate": "2020-04-04T10:13:16.655Z",
-      "endDate": "2020-04-22T10:13:13.000Z",
-      "batch": [
-        null,
-        "Afternoon",
-        "Evening"
-      ],
-      "id": 5
+      "id": 1
     }
   ],
   "role": [
     {
-      "roleName": "ghjkl;'",
+      "roleName": "Lorem ipsum",
       "assignFunction": [
-        null,
-        null,
-        "Add Course Fee",
+        "Add Course",
         "Add Course Package",
-        "Add Course Schedule",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
+        "Add Role"
       ],
       "reports": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "Print Fee Receipt",
-        "Receipt Status",
-        "Student Enrolled Report",
-        "Student Not Enrolled Report",
-        null
+        "Accountant Report",
+        "Cousellor Report"
       ],
       "communication": [
-        "SMS",
-        null
+        "Email"
       ],
       "id": 1
     }

@@ -13,15 +13,7 @@ export class AddCourseComponent implements OnInit {
   public addCourseSpecificForm: FormGroup;
   public taxValue: number;
   public totalCourseFee: number;
-  public branchesDataarr = [
-    { id: 'Ameerpet', name: 'Ameerpet' },
-    { id: 'Banjara Hills', name: 'Banjara Hills' },
-    { id: 'Dilsukh nagar', name: 'Dilsukh nagar' },
-    { id: 'Secunderabad', name: 'Secunderabad' },
-    { id: 'Test linux', name: 'Test linux' },
-    { id: 'Surat', name: 'Surat' },
-    { id: 'Vijayawada', name: 'Vijayawada' }
-  ];
+  public branchesDataarr = ['Ameerpet', 'Banjara Hills', 'Dilsukh nagar', 'Secunderabad', 'Test linux', 'Surat', 'Vijayawada'];
   public branchesData = [];
 
   constructor(private fb: FormBuilder, private courseService: CourseService, private toaster: ToasterService) {
@@ -89,7 +81,8 @@ export class AddCourseComponent implements OnInit {
 
   public submit(): void {
     this.addCourseSpecificForm.value.branch = this.addCourseSpecificForm.value.branch
-      .map((v, i) => (v ? this.branchesData[i].id : null));
+      .map((v, i) => (v ? this.branchesData[i] : null))
+      .filter(v => v != null);
     this.courseService.addCourse(this.addCourseSpecificForm.value).subscribe((res) => {
       this.toaster.recordAdded();
     });

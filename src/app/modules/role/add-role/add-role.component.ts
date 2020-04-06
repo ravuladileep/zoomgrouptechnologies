@@ -135,11 +135,17 @@ export class AddRoleComponent implements OnInit {
    */
   public checkboxMapping() {
     this.addRoleSpecificForm.value.assignFunction = this.addRoleSpecificForm.value.assignFunction
-    .map((v, i) => (v ? this.assignFunctionData[i] : null));
+    .map((v, i) => (v ? this.assignFunctionData[i] : null))
+    .filter(v => v != null);
+
     this.addRoleSpecificForm.value.reports = this.addRoleSpecificForm.value.reports
-    .map((v, i) => (v ? this.reportsData[i] : null));
+    .map((v, i) => (v ? this.reportsData[i] : null))
+    .filter(v => v != null);
+
     this.addRoleSpecificForm.value.communication = this.addRoleSpecificForm.value.communication
-    .map((v, i) => (v ? this.communicationData[i] : null));
+    .map((v, i) => (v ? this.communicationData[i] : null))
+    .filter(v => v != null);
+
   }
 
   /**

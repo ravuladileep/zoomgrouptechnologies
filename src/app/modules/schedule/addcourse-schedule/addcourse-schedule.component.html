@@ -15,8 +15,8 @@
                       </div>
                       <div class="col-md-8">
                           <select class="form-control" formControlName="courseName" placeholder="Course Name">
-                            <option value="null" selected readonly>Select Course</option>
-                            <option *ngFor="let data of coursesDataarr" [value]="data">{{data}}</option>
+                              <option value="null" selected readonly>Select Course</option>
+                              <option *ngFor="let data of coursesDataarr" [value]="data">{{data}}</option>
                           </select>
                           <div class="alert alert-danger" *ngIf="scheduleData.courseName.invalid && (scheduleData.courseName.dirty||scheduleData.courseName.touched)">
                               <div *ngIf="scheduleData.courseName.errors.required">
@@ -36,7 +36,7 @@
 
                           <div class="form-check-inline" formArrayName="branch" *ngFor="let branch of addScheduleSpecificForm['controls'].branch['controls']; let i = index">
                               <label class="checkbox-inline">
-                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{branchesData[i].name}}
+                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{branchesData[i]}}
                               </label>
                           </div>
 
@@ -57,16 +57,10 @@
                       </div>
                       <div class="col-md-8">
                           <div class="input-group mb-3">
-                            <input type="text" class="form-control"
-                            placeholder="Start Date"
-                            #dp1="bsDatepicker"
-                            bsDatepicker
-                            formControlName="startDate"
-                            [bsConfig]="{ adaptivePosition: true }"
-                            aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                              <span class="input-group-text"  (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen" id="basic-addon2">@</span>
-                            </div>
+                              <input type="text" class="form-control" placeholder="Start Date" #dp1="bsDatepicker" bsDatepicker formControlName="startDate" [bsConfig]="{ adaptivePosition: true }" aria-describedby="basic-addon2">
+                              <div class="input-group-append">
+                                  <span class="input-group-text" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen" id="basic-addon2"><i class="fas fa-calendar-alt"></i></span>
+                              </div>
                           </div>
                           <div class="alert alert-danger" *ngIf="scheduleData.startDate.invalid && (scheduleData.startDate.dirty||scheduleData.startDate.touched)">
                               <div *ngIf="scheduleData.startDate.errors.required">
@@ -78,57 +72,48 @@
               </div>
 
               <div class="form-group">
-                <div class="row">
-                    <div class="col-md-4 ">
-                        <label class="control-label">End Date</label>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="input-group mb-3">
-                        <input type="text" class="form-control"
-                        #dp2="bsDatepicker"
-                        bsDatepicker
-                        formControlName="startDate"
-                        [bsConfig]="{ adaptivePosition: true }"
-                         placeholder="End Date"
-                         formControlName="endDate"
-                         aria-describedby="enddate">
-                        <div class="input-group-append">
-                          <span class="input-group-text" (click)="dp2.toggle()" [attr.aria-expanded]="dp2.isOpen" id="enddate">@</span>
-                        </div>
+                  <div class="row">
+                      <div class="col-md-4 ">
+                          <label class="control-label">End Date</label>
                       </div>
-                        <div class="alert alert-danger" *ngIf="scheduleData.endDate.invalid && (scheduleData.endDate.dirty||scheduleData.endDate.touched)">
-                            <div *ngIf="scheduleData.endDate.errors.required">
-                                End date is required
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-              <div class="row">
-                  <div class="col-md-4 ">
-                      <label class="control-label">Batch</label>
-                  </div>
-                  <div class="col-md-8">
-
-                      <div class="form-check-inline" formArrayName="batch" *ngFor="let batch of addScheduleSpecificForm['controls'].batch['controls']; let i = index">
-                          <label class="checkbox-inline">
-                              <input type="checkbox" class="form-check-input" [formControlName]="i"> {{batchesData[i]}}
-                          </label>
-                      </div>
-
-                      <div class="alert alert-danger" *ngIf="scheduleData.batch.invalid && (scheduleData.batch.dirty||scheduleData.batch.touched)">
-                          <div *ngIf="scheduleData.batch.errors">
-                              Batch is required(atleast 1 batch should be selected)
+                      <div class="col-md-8">
+                          <div class="input-group mb-3">
+                              <input type="text" class="form-control" #dp2="bsDatepicker" bsDatepicker formControlName="startDate" [bsConfig]="{ adaptivePosition: true }" placeholder="End Date" formControlName="endDate" aria-describedby="enddate">
+                              <div class="input-group-append">
+                                  <span class="input-group-text" (click)="dp2.toggle()" [attr.aria-expanded]="dp2.isOpen" id="enddate"><i class="fas fa-calendar-alt"></i></span>
+                              </div>
+                          </div>
+                          <div class="alert alert-danger" *ngIf="scheduleData.endDate.invalid && (scheduleData.endDate.dirty||scheduleData.endDate.touched)">
+                              <div *ngIf="scheduleData.endDate.errors.required">
+                                  End date is required
+                              </div>
                           </div>
                       </div>
-
                   </div>
               </div>
-          </div>
 
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4 ">
+                          <label class="control-label">Batch</label>
+                      </div>
+                      <div class="col-md-8">
 
+                          <div class="form-check-inline" formArrayName="batch" *ngFor="let batch of addScheduleSpecificForm['controls'].batch['controls']; let i = index">
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{batchesData[i]}}
+                              </label>
+                          </div>
+
+                          <div class="alert alert-danger" *ngIf="scheduleData.batch.invalid && (scheduleData.batch.dirty||scheduleData.batch.touched)">
+                              <div *ngIf="scheduleData.batch.errors">
+                                  Batch is required(atleast 1 batch should be selected)
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
 
               <div class="form-group">
                   <div class="text-right">

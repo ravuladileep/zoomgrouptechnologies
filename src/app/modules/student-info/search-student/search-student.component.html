@@ -1,1 +1,100 @@
-<p>search-student works!</p>
+<div class="container-fluid">
+  <h3 class="text-center text-secondary my-2">Search Student</h3>
+    <div class="mx-lg-4 bg-white p-3">
+      <h5>Search Student</h5>
+      <hr>
+      <form [formGroup]="searchStudentForm"  (ngSubmit)="submit()">
+
+          <div class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="control-label">Search By:</label>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="name" formControlName="searchBy"  value="name" name="searchBy" class="custom-control-input">
+                        <label class="custom-control-label" for="name">Name</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="phone" formControlName="searchBy"  value="phone" name="searchBy" class="custom-control-input">
+                        <label class="custom-control-label" for="phone">Phone</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="email" formControlName="searchBy"  value="email" name="searchBy" class="custom-control-input">
+                      <label class="custom-control-label" for="email">Email</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="course" formControlName="searchBy"  value="course" name="searchBy" class="custom-control-input">
+                        <label class="custom-control-label" for="course">Course</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="studentId" formControlName="searchBy"  value="studentId" name="searchBy" class="custom-control-input">
+                      <label class="custom-control-label" for="studentId">Student Id</label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+              <div class="col-md-2">
+                    <label class="control-label">Details:</label>
+              </div>
+              <div class="col-md-4" *ngIf="searchData.searchBy.value === 'name'">
+                  <input class="form-control" formControlName="name" placeholder="Name">
+                  <!-- <div class="alert alert-danger" *ngIf="searchData.name.invalid && (searchData.name.dirty||searchData.name.touched)">
+                      <div *ngIf="searchData.name.errors.required">
+                           Name is required
+                      </div>
+                  </div> -->
+              </div>
+
+              <div class="col-md-4" *ngIf="searchData.searchBy.value === 'phone'">
+                <input class="form-control" formControlName="phone" placeholder="phone">
+                <!-- <div class="alert alert-danger" *ngIf="searchData.name.invalid && (searchData.name.dirty||searchData.name.touched)">
+                    <div *ngIf="searchData.name.errors.required">
+                         Name is required
+                    </div>
+                </div> -->
+              </div>
+
+              <div class="col-md-4" *ngIf="searchData.searchBy.value === 'email'">
+                <input class="form-control" formControlName="email" placeholder="Email">
+                <!-- <div class="alert alert-danger" *ngIf="searchData.name.invalid && (searchData.name.dirty||searchData.name.touched)">
+                    <div *ngIf="searchData.name.errors.required">
+                         Name is required
+                    </div>
+                </div> -->
+              </div>
+
+              <div class="col-md-4" *ngIf="searchData.searchBy.value === 'course'">
+                <input class="form-control" formControlName="course" placeholder="course">
+                <!-- <div class="alert alert-danger" *ngIf="searchData.name.invalid && (searchData.name.dirty||searchData.name.touched)">
+                    <div *ngIf="searchData.name.errors.required">
+                         Name is required
+                    </div>
+                </div> -->
+              </div>
+
+              <div class="col-md-4" *ngIf="searchData.searchBy.value === 'studentId'">
+                <input class="form-control" formControlName="studentId" placeholder="studentId">
+                <!-- <div class="alert alert-danger" *ngIf="searchData.name.invalid && (searchData.name.dirty||searchData.name.touched)">
+                    <div *ngIf="searchData.name.errors.required">
+                         Name is required
+                    </div>
+                </div> -->
+              </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-warning text-white" (click)="resetForm()">Reset</button>&nbsp;
+          <button class="btn btn-primary " type="submit">Submit</button>
+        </div>
+
+      </form>
+    </div>
+</div>

@@ -7,83 +7,87 @@
   <div class="bg-white py-5">
 
       <div class="col-md-8 m-2">
-        <form  (ngSubmit)="studentIdSubmit()">
+          <form (ngSubmit)="studentIdSubmit()">
 
-          <div class="form-group">
-              <div class="row">
-                  <div class="col-md-2">
-                      <label class="control-label">Student ID:</label>
-                  </div>
-                  <div class="col-md-6">
-                      <input class="form-control" placeholder="Student ID: ZTAM100">
-                      <!-- <div class="alert alert-danger" *ngIf="studentData.studentId.invalid && (studentData.studentId.dirty||studentData.studentId.touched)">
-                          <div *ngIf="studentData.studentId.errors.required">
-                              StudentId is required
-                          </div>
-                      </div> -->
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-2">
+                          <label class="control-label">Student ID:</label>
+                      </div>
+                      <div class="col-md-6">
+                          <input class="form-control" placeholder="Student ID: ZTAM100">
+                          <!-- <div class="alert alert-danger" *ngIf="studentData.studentId.invalid && (studentData.studentId.dirty||studentData.studentId.touched)">
+                        <div *ngIf="studentData.studentId.errors.required">
+                            StudentId is required
+                        </div>
+                    </div> -->
+                      </div>
                   </div>
               </div>
-          </div>
 
-          <div class="form-group">
-              <div class="">
-                  <button type="submit" class="btn btn-primary col-md-6 offset-md-2">Submit</button>
+              <div class="form-group">
+                  <div class="">
+                      <button type="submit" class="btn btn-primary col-md-6 offset-md-2">Submit</button>
+                  </div>
               </div>
-          </div>
 
-      </form>
+          </form>
       </div>
 
       <div class="col-md-10">
           <table class="table table-bordered  table-hover  table-responsive-sm">
-            <thead>
-                <tr class="table-primary">
-                  <th colspan="2"  class="text-center">
-                     Student Information
-                  </th>
-                </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Student Name</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Student ID</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Receipt No</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Payment Date</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Payment Time</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Payment By</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Course Amount</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Remaining Amount</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Paid Amount</td>
-                <td><input type="text" class="form-control"></td>
-              </tr>
-              <tr>
-                <td colspan="2"><button class="btn btn-success float-right">Update</button></td>
-              </tr>
-            </tbody>
+              <thead>
+                  <tr class="table-primary">
+                      <th colspan="2" class="text-center">
+                          Student Information
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>Student Name</td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>Student ID</td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>Receipt No</td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>Payment Date</td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>Payment Time</td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>Payment By</td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>Course Amount</td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>Remaining Amount</td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                      <td>Paid Amount</td>
+                      <td>
+                          <input type="text" class="form-control">
+                      </td>
+                  </tr>
+                  <tr>
+                      <td colspan="2">
+                          <button class="btn btn-success float-right">Update</button>
+                      </td>
+                  </tr>
+              </tbody>
 
           </table>
       </div>

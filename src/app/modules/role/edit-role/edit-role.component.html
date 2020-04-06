@@ -63,101 +63,100 @@
 
           <!-- Modal body -->
           <div class="modal-body">
-            <form [formGroup]="updateRoleSpecificForm" (ngSubmit)="updateRole()">
+              <form [formGroup]="updateRoleSpecificForm" (ngSubmit)="updateRole()">
 
-              <div class="form-group">
-                  <div class="row">
-                      <div class="col-md-4">
-                          <label class="control-label">Role Name</label>
-                      </div>
-                      <div class="col-md-8">
-                          <input class="form-control" formControlName="roleName" placeholder="Package Name">
-                          <div class="alert alert-danger" *ngIf="roleData.roleName.invalid && (roleData.roleName.dirty||roleData.roleName.touched)">
-                              <div *ngIf="roleData.roleName.errors.required">
-                                  Role Name Name is required
+                  <div class="form-group">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <label class="control-label">Role Name</label>
+                          </div>
+                          <div class="col-md-8">
+                              <input class="form-control" formControlName="roleName" placeholder="Package Name">
+                              <div class="alert alert-danger" *ngIf="roleData.roleName.invalid && (roleData.roleName.dirty||roleData.roleName.touched)">
+                                  <div *ngIf="roleData.roleName.errors.required">
+                                      Role Name Name is required
+                                  </div>
                               </div>
                           </div>
                       </div>
                   </div>
-              </div>
 
-              <div class="form-group">
-                  <div class="row">
-                      <div class="col-md-4 ">
-                          <label class="control-label">Assign Function</label>
-                      </div>
-                      <div class="col-md-8">
-
-                          <div class="form-check-inline" formArrayName="assignFunction" *ngFor="let assignFunction of updateRoleSpecificForm['controls'].assignFunction['controls']; let i = index">
-                              <label class="checkbox-inline">
-                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{assignFunctionData[i]}}
-                              </label>
+                  <div class="form-group">
+                      <div class="row">
+                          <div class="col-md-4 ">
+                              <label class="control-label">Assign Function</label>
                           </div>
+                          <div class="col-md-8">
 
-                          <div class="alert alert-danger" *ngIf="roleData.assignFunction.invalid && (roleData.assignFunction.dirty||roleData.assignFunction.touched)">
-                              <div *ngIf="roleData.assignFunction.errors">
-                                  assignFunction is required(atleast 1 assignFunction should be selected)
+                              <div class="form-check-inline" formArrayName="assignFunction" *ngFor="let assignFunction of updateRoleSpecificForm['controls'].assignFunction['controls']; let i = index">
+                                  <label class="checkbox-inline">
+                                      <input type="checkbox" class="form-check-input" [formControlName]="i"> {{assignFunctionData[i]}}
+                                  </label>
                               </div>
-                          </div>
 
-                      </div>
-                  </div>
-              </div>
-
-              <div class="form-group">
-                  <div class="row">
-                      <div class="col-md-4 ">
-                          <label class="control-label">Reports</label>
-                      </div>
-                      <div class="col-md-8">
-
-                          <div class="form-check-inline" formArrayName="reports" *ngFor="let reports of updateRoleSpecificForm['controls'].reports['controls']; let i = index">
-                              <label class="checkbox-inline">
-                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{reportsData[i]}}
-                              </label>
-                          </div>
-
-                          <div class="alert alert-danger" *ngIf="roleData.reports.invalid && (roleData.reports.dirty||roleData.reports.touched)">
-                              <div *ngIf="roleData.reports.errors">
-                                  reports is required(atleast 1 report should be selected)
+                              <div class="alert alert-danger" *ngIf="roleData.assignFunction.invalid && (roleData.assignFunction.dirty||roleData.assignFunction.touched)">
+                                  <div *ngIf="roleData.assignFunction.errors">
+                                      assignFunction is required(atleast 1 assignFunction should be selected)
+                                  </div>
                               </div>
-                          </div>
 
+                          </div>
                       </div>
                   </div>
-              </div>
 
-              <div class="form-group">
-                <div class="row">
-                    <div class="col-md-4 ">
-                        <label class="control-label">Communication</label>
-                    </div>
-                    <div class="col-md-8">
+                  <div class="form-group">
+                      <div class="row">
+                          <div class="col-md-4 ">
+                              <label class="control-label">Reports</label>
+                          </div>
+                          <div class="col-md-8">
 
-                        <div class="form-check-inline" formArrayName="communication" *ngFor="let communication of updateRoleSpecificForm['controls'].communication['controls']; let i = index">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" class="form-check-input" [formControlName]="i"> {{communicationData[i]}}
-                            </label>
-                        </div>
+                              <div class="form-check-inline" formArrayName="reports" *ngFor="let reports of updateRoleSpecificForm['controls'].reports['controls']; let i = index">
+                                  <label class="checkbox-inline">
+                                      <input type="checkbox" class="form-check-input" [formControlName]="i"> {{reportsData[i]}}
+                                  </label>
+                              </div>
 
-                        <div class="alert alert-danger" *ngIf="roleData.communication.invalid && (roleData.communication.dirty||roleData.communication.touched)">
-                            <div *ngIf="roleData.communication.errors">
-                              communication is required(atleast 1 communication should be selected)
-                            </div>
-                        </div>
+                              <div class="alert alert-danger" *ngIf="roleData.reports.invalid && (roleData.reports.dirty||roleData.reports.touched)">
+                                  <div *ngIf="roleData.reports.errors">
+                                      reports is required(atleast 1 report should be selected)
+                                  </div>
+                              </div>
 
-                    </div>
-                </div>
-            </div>
-
-
-              <div class="form-group">
-                  <div class="text-right">
-                      <button type="submit" class="btn btn-primary  col-md-8" [disabled]="!updateRoleSpecificForm.valid">Submit</button>
+                          </div>
+                      </div>
                   </div>
-              </div>
 
-          </form>
+                  <div class="form-group">
+                      <div class="row">
+                          <div class="col-md-4 ">
+                              <label class="control-label">Communication</label>
+                          </div>
+                          <div class="col-md-8">
+
+                              <div class="form-check-inline" formArrayName="communication" *ngFor="let communication of updateRoleSpecificForm['controls'].communication['controls']; let i = index">
+                                  <label class="checkbox-inline">
+                                      <input type="checkbox" class="form-check-input" [formControlName]="i"> {{communicationData[i]}}
+                                  </label>
+                              </div>
+
+                              <div class="alert alert-danger" *ngIf="roleData.communication.invalid && (roleData.communication.dirty||roleData.communication.touched)">
+                                  <div *ngIf="roleData.communication.errors">
+                                      communication is required(atleast 1 communication should be selected)
+                                  </div>
+                              </div>
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <div class="text-right">
+                          <button type="submit" class="btn btn-primary  col-md-8" [disabled]="!updateRoleSpecificForm.valid">Submit</button>
+                      </div>
+                  </div>
+
+              </form>
           </div>
           <!--// End Modal body -->
 

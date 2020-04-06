@@ -108,15 +108,16 @@ export class EditcourseScheduleComponent implements OnInit {
   public updateScheduleSpecificForm: FormGroup;
   public updateid: any;
   public sortedData: any;
-  public branchesDataarr = [
-    { id: 'Ameerpet', name: 'Ameerpet' },
-    { id: 'Banjara Hills', name: 'Banjara Hills' },
-    { id: 'Dilsukh nagar', name: 'Dilsukh nagar' },
-    { id: 'Secunderabad', name: 'Secunderabad' },
-    { id: 'Test linux', name: 'Test linux' },
-    { id: 'Surat', name: 'Surat' },
-    { id: 'Vijayawada', name: 'Vijayawada' }
-  ];
+  public branchesDataarr = ['Ameerpet', 'Banjara Hills', 'Dilsukh nagar', 'Secunderabad', 'Test linux', 'Surat', 'Vijayawada'];
+  // public branchesDataarr = [
+  //   { id: 'Ameerpet', name: 'Ameerpet' },
+  //   { id: 'Banjara Hills', name: 'Banjara Hills' },
+  //   { id: 'Dilsukh nagar', name: 'Dilsukh nagar' },
+  //   { id: 'Secunderabad', name: 'Secunderabad' },
+  //   { id: 'Test linux', name: 'Test linux' },
+  //   { id: 'Surat', name: 'Surat' },
+  //   { id: 'Vijayawada', name: 'Vijayawada' }
+  // ];
   public batchesDataarr = ['Morning', 'Afternoon', 'Evening'];
   public branchesData = [];
   public batchesData = [];
@@ -251,6 +252,24 @@ export class EditcourseScheduleComponent implements OnInit {
       this.updateScheduleSpecificForm.patchValue(res);
       this.updateScheduleSpecificForm.controls.startDate.patchValue(new Date(res.startDate));
       this.updateScheduleSpecificForm.controls.endDate.patchValue(new Date(res.endDate));
+      const mybr = this.updateScheduleSpecificForm.controls.branch as FormArray;
+      const mybt = this.updateScheduleSpecificForm.controls.batch as FormArray;
+      // patching checkboxes according to their respective index numbers
+      // for branches
+      for (let i = 0; i < mybr.length; i++) {
+        mybr.at(i).patchValue(null);
+      }
+      res.branch.forEach(x => {
+        mybr.at(this.branchesDataarr.indexOf(x)).patchValue(x);
+      });
+      // for batches
+      for (let i = 0; i < mybt.length; i++) {
+        mybt.at(i).patchValue(null);
+      }
+      res.batch.forEach(x => {
+        mybt.at(this.batchesDataarr.indexOf(x)).patchValue(x);
+      });
+      // end patching
     });
   }
 
@@ -262,9 +281,11 @@ export class EditcourseScheduleComponent implements OnInit {
    */
   public checkboxMapping() {
     this.updateScheduleSpecificForm.value.branch = this.updateScheduleSpecificForm.value.branch
-    .map((v, i) => (v ? this.branchesData[i].id : null));
+    .map((v, i) => (v ? this.branchesData[i] : null))
+    .filter(v => v != null);
     this.updateScheduleSpecificForm.value.batch = this.updateScheduleSpecificForm.value.batch
-    .map((v, i) => (v ? this.batchesData[i] : null));
+    .map((v, i) => (v ? this.batchesData[i] : null))
+    .filter(v => v != null);
   }
 
 

@@ -127,7 +127,7 @@
 
                           <div class="form-check-inline" formArrayName="branch" *ngFor="let branch of updateCoursePackageSpecificForm['controls'].branch['controls']; let i = index">
                               <label class="checkbox-inline">
-                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{branchesData[i].name}}
+                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{branchesData[i]}}
                               </label>
                           </div>
 

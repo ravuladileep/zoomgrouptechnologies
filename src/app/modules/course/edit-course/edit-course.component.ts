@@ -17,15 +17,17 @@ export class EditCourseComponent implements OnInit {
   public sortedData: any;
   public taxValue: number;
   public totalCourseFee: number;
-  branchesDataarr = [
-    { id: 'Ameerpet', name: 'Ameerpet' },
-    { id: 'Banjara Hills', name: 'Banjara Hills' },
-    { id: 'Dilsukh nagar', name: 'Dilsukh nagar' },
-    { id: 'Secunderabad', name: 'Secunderabad' },
-    { id: 'Test linux', name: 'Test linux' },
-    { id: 'Surat', name: 'Surat' },
-    { id: 'Vijayawada', name: 'Vijayawada' }
-  ];
+  public branchesDataarr = ['Ameerpet', 'Banjara Hills', 'Dilsukh nagar', 'Secunderabad', 'Test linux', 'Surat', 'Vijayawada'];
+
+  // branchesDataarr = [
+  //   { id: 'Ameerpet', name: 'Ameerpet' },
+  //   { id: 'Banjara Hills', name: 'Banjara Hills' },
+  //   { id: 'Dilsukh nagar', name: 'Dilsukh nagar' },
+  //   { id: 'Secunderabad', name: 'Secunderabad' },
+  //   { id: 'Test linux', name: 'Test linux' },
+  //   { id: 'Surat', name: 'Surat' },
+  //   { id: 'Vijayawada', name: 'Vijayawada' }
+  // ];
   public branchesData = [];
   public term: any;
 
@@ -154,6 +156,15 @@ export class EditCourseComponent implements OnInit {
     this.courseService.getCourseById(data.id).subscribe(res => {
       this.updateid = data.id;
       this.updateCourseSpecificData.patchValue(res);
+      const mybr = this.updateCourseSpecificData.controls.branch as FormArray;
+      // patching checkboxes according to their respective index numbers
+      for (let i = 0; i < mybr.length; i++) {
+        mybr.at(i).patchValue(null);
+      }
+      res.branch.forEach(x => {
+        mybr.at(this.branchesDataarr.indexOf(x)).patchValue(x);
+      });
+      //  end patching
     });
   }
 
@@ -168,7 +179,8 @@ export class EditCourseComponent implements OnInit {
 
   public updateCourse(): void {
     this.updateCourseSpecificData.value.branch = this.updateCourseSpecificData.value.branch
-    .map((v, i) => (v ? this.branchesData[i].id : null));
+    .map((v, i) => (v ? this.branchesData[i] : null))
+    .filter(v => v != null);
     this.courseService
       .updateCourseData(this.updateid, this.updateCourseSpecificData.value)
       .subscribe(res => {

@@ -109,15 +109,17 @@ export class EditcoursePackageComponent implements OnInit {
   public sortedData: any;
   public taxValue: number;
   public totalPackage: number;
-  branchesDataarr = [
-    { id: 'Ameerpet', name: 'Ameerpet' },
-    { id: 'Banjara Hills', name: 'Banjara Hills' },
-    { id: 'Dilsukh nagar', name: 'Dilsukh nagar' },
-    { id: 'Secunderabad', name: 'Secunderabad' },
-    { id: 'Test linux', name: 'Test linux' },
-    { id: 'Surat', name: 'Surat' },
-    { id: 'Vijayawada', name: 'Vijayawada' }
-  ];
+  public branchesDataarr = ['Ameerpet', 'Banjara Hills', 'Dilsukh nagar', 'Secunderabad', 'Test linux', 'Surat', 'Vijayawada'];
+
+  // branchesDataarr = [
+  //   { id: 'Ameerpet', name: 'Ameerpet' },
+  //   { id: 'Banjara Hills', name: 'Banjara Hills' },
+  //   { id: 'Dilsukh nagar', name: 'Dilsukh nagar' },
+  //   { id: 'Secunderabad', name: 'Secunderabad' },
+  //   { id: 'Test linux', name: 'Test linux' },
+  //   { id: 'Surat', name: 'Surat' },
+  //   { id: 'Vijayawada', name: 'Vijayawada' }
+  // ];
   public branchesData = [];
   public coursesData = [];
   public term: any;
@@ -262,6 +264,24 @@ export class EditcoursePackageComponent implements OnInit {
     this.coursePackage.getCoursePackageById(data.id).subscribe(res => {
       this.updateid = data.id;
       this.updateCoursePackageSpecificForm.patchValue(res);
+      const mybr = this.updateCoursePackageSpecificForm.controls.branch as FormArray;
+      const mycr = this.updateCoursePackageSpecificForm.controls.courseName as FormArray;
+      // patching checkboxes according to their respective index numbers
+      // for branches
+      for (let i = 0; i < mybr.length; i++) {
+        mybr.at(i).patchValue(null);
+      }
+      res.branch.forEach(x => {
+        mybr.at(this.branchesDataarr.indexOf(x)).patchValue(x);
+      });
+      // for courses
+      for (let i = 0; i < mycr.length; i++) {
+        mycr.at(i).patchValue(null);
+      }
+      res.courseName.forEach(x => {
+        mycr.at(this.coursesDataarr.indexOf(x)).patchValue(x);
+      });
+      //  end patching
     });
   }
 
@@ -274,9 +294,11 @@ export class EditcoursePackageComponent implements OnInit {
 
   public checkboxMapping() {
     this.updateCoursePackageSpecificForm.value.branch = this.updateCoursePackageSpecificForm.value.branch
-    .map((v, i) => (v ? this.branchesData[i].id : null));
+    .map((v, i) => (v ? this.branchesData[i] : null))
+    .filter(v => v != null);
     this.updateCoursePackageSpecificForm.value.courseName = this.updateCoursePackageSpecificForm.value.courseName
-    .map((v, i) => (v ? this.coursesData[i] : null));
+    .map((v, i) => (v ? this.coursesData[i] : null))
+    .filter(v => v != null);
   }
 
 
