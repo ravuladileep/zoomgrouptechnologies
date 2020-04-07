@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Iuser } from 'src/app/entities/user.model';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { Iuser } from '../../entities/user.model';
+
 @Injectable({
   providedIn: 'root'
 })

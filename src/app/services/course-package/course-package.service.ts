@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { ICoursePackage } from 'src/app/entities/course-package.model';
+import { ICoursePackage } from '../../entities/course-package.model';
 
 
 @Injectable({

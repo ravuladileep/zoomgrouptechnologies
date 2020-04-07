@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, ValidatorFn } from '@angular/forms';
-import { ToasterService } from 'src/app/shared/dialogs/alerts/toaster.service';
 import { of } from 'rxjs';
-import { RoleService } from 'src/app/services/role/role.service';
+import { RoleService } from '../../../services/role/role.service';
+import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
+import { CommonConstants } from '../../../config/constants';
 
 @Component({
   selector: 'app-add-role',
@@ -11,42 +12,8 @@ import { RoleService } from 'src/app/services/role/role.service';
 })
 export class AddRoleComponent implements OnInit {
   public addRoleSpecificForm: FormGroup;
-  public assignFunctionDataarr = ['Add Branch',
-  'Add Course',
-  'Add Course Fee',
-  'Add Course Package',
-  'Add Course Schedule',
-  'Add Employee',
-  'Add Role',
-  'Add Student',
-  'Edit Branch',
-  'Edit Course',
-  'Edit Course Fee',
-  'Edit Course Package',
-  'Edit Course Schedule',
-  'Edit Employee',
-  'Edit Role',
-  'Edit Student',
-  'Search Student',
-  'Student Image Upload'];
-  public reportsDataarr = [
-    'Accountant Report',
-    'Attandance Sheet',
-    'Cancel Receipt',
-    'Course Specific Report',
-    'Cousellor Report',
-    'Deleted Student',
-    'Details of students registered Report',
-    'Generate ID Card',
-    'Payment Report',
-    'Payment Status',
-    'Print Certificate',
-    'Print Fee Receipt',
-    'Receipt Status',
-    'Student Enrolled Report',
-    'Student Not Enrolled Report',
-    'Total Admission Report'
-    ];
+  public assignFunctionDataarr = [...CommonConstants.assignFunctionDataarr];
+  public reportsDataarr = [...CommonConstants.reportsDataarr];
   public communicationDataarr = ['SMS', 'Email'];
   public assignFunctionData = [];
   public reportsData = [];

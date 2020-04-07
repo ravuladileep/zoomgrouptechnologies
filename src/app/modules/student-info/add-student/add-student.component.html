@@ -232,7 +232,7 @@
                 <div class="col-md-6">
 
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="course"  formControlName="courseType" value="course" name="courseType" class="custom-control-input">
+                        <input type="radio" id="course"   formControlName="courseType" value="course" name="courseType" class="custom-control-input">
                         <label class="custom-control-label" for="course">Course</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
@@ -262,7 +262,7 @@
           <tbody>
               <tr *ngFor = "let data of coursesDataarr">
                 <td>
-                  <input formControlName="courseName" type="checkbox">
+                  <input formControlName="courseName"  type="checkbox">
                   {{data}}
                 </td>
                 <td>
@@ -295,7 +295,7 @@
         </table>
 
         <div class="form-group">
-          <button class="btn btn-primary " type="submit">Submit</button>
+          <button class="btn btn-primary" [disabled]="!addStudentForm.valid" type="submit">Submit</button>
         </div>
 
         </div>

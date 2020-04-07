@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { IBranch } from 'src/app/entities/branch.model';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { IBranch } from '../../entities/branch.model';
+
 
 @Injectable({
   providedIn: 'root'

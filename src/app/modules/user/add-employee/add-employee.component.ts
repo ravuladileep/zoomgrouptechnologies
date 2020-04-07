@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { ToasterService } from 'src/app/shared/dialogs/alerts/toaster.service';
-import { UserService } from 'src/app/services/user/user.service';
+import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
+import { UserService } from '../../../services/user/user.service';
+import { CommonConstants } from '../../../config/constants';
 
 @Component({
   selector: 'app-add-employee',
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class AddEmployeeComponent implements OnInit {
   public userSpecificData: FormGroup;
-  public branches = ['Ameerpet', 'Banjara Hills', 'Dilsukh nagar', 'Secunderabad', 'Test Linux', 'Surat', 'Vijayawada'];
+  public branches = [...CommonConstants.branchesDataarr];
   public roles = ['Admin', 'Counsellor', 'Accountant', 'Counsellor Plus', 'Finance', 'Audit', 'Telephonic'];
   constructor(private fb: FormBuilder, private userService: UserService, private toaster: ToasterService) {
     this.addUserForm();

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { ToasterService } from 'src/app/shared/dialogs/alerts/toaster.service';
+import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
+
 
 @Component({
   selector: 'app-search-student',

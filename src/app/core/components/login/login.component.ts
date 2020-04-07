@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CommonConstants } from 'src/app/config/constants';
 import { Router } from '@angular/router';
-import { ToasterService } from 'src/app/shared/dialogs/alerts/toaster.service';
+import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
+import { CommonConstants } from '../../../config/constants';
+
 
 @Component({
   selector: 'app-login',

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivateChild, Router } from '@angular/router';
-import { CommonConstants } from 'src/app/config/constants';
+import { CommonConstants } from '../../config/constants';
 
 @Injectable({
   providedIn: 'root'

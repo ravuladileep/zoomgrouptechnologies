@@ -1,1 +1,164 @@
-<p>student-image-upload works!</p>
+<div class="container-fluid">
+  <h5 class="text-center text-secondary my-3">Student Image Upload</h5>
+    <form >
+      <div class=" bg-white mx-lg-5 p-3">
+
+          <div class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="control-label">Student ID:</label>
+                </div>
+                <div class="col-md-4">
+                    <input class="form-control"  placeholder="Student ID: ZTAM100">
+                    <!-- <div class="alert alert-danger" *ngIf="studentData.studentId.invalid && (studentData.studentId.dirty||studentData.studentId.touched)">
+                        <div *ngIf="studentData.studentId.errors.required">
+                            StudentId is required
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+              <div class="col-md-2">
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-primary col-md-12" type="submit">Submit</button>
+              </div>
+          </div>
+      </div>
+      </div>
+    </form>
+
+    <div class=" bg-white mx-lg-5 p-3">
+        <div class="row justify-content-center">
+            <div class="col-md-2 upload-card">
+                <img src="../../../../assets/images/user.png" data-toggle="modal" data-target="#studentphoto" alt="user" class="p-2 mx-auto d-block user-img img-fluid">
+                <h6 class="text-center">Student Photo</h6>
+                <!-- modal start -->
+                <div class="modal" id="studentphoto" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Browse Image</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="file"  name="studentphoto" id="studentphoto">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- modal end -->
+            </div>
+
+            <div class="col-md-2 upload-card">
+              <img src="../../../../assets/images/photo.jpg" data-toggle="modal" data-target="#relativePhoto" alt="user" class="p-2 mx-auto d-block user-img img-fluid">
+              <h6 class="text-center">Relative Photo</h6>
+              <!-- modal start -->
+              <div class="modal" id="relativePhoto" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title">Browse Image</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body">
+                              <input type="file"  name="studentphoto" id="studentphoto">
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Save changes</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- modal end -->
+            </div>
+
+            <div class="col-md-2 upload-card">
+              <img src="../../../../assets/images/photo.jpg" data-toggle="modal" data-target="#studentIdproof" alt="user" class="p-2 mx-auto d-block user-img img-fluid">
+              <h6 class="text-center">Student Id Proof Photo</h6>
+              <!-- modal start -->
+              <div class="modal" id="studentIdproof" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title">Browse Image</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body">
+                              <input type="file"  name="studentphoto" id="studentphoto">
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Save changes</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- modal end -->
+            </div>
+
+            <div class="col-md-2 upload-card ">
+                <button class="btn btn-secondary my-2 mx-auto d-block" (click)="print()">Print</button>
+            </div>
+
+        </div>
+        <table class="table table-bordered  table-responsive-sm">
+            <tr>
+              <td>StudentId</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Student Name</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Student Status</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Mobile no.</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Date Of Registration</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Branch</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Course name</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Package name</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Total Amount</td>
+              <td></td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>

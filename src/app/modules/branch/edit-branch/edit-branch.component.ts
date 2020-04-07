@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
-import { BranchService } from 'src/app/services/branch/branch.service';
-import { IBranch } from 'src/app/entities/branch.model';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { ToasterService } from 'src/app/shared/dialogs/alerts/toaster.service';
+import { IBranch } from '../../../entities/branch.model';
+import { BranchService } from '../../../services/branch/branch.service';
+import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 
 declare var $: any;
 

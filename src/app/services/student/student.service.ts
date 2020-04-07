@@ -2,43 +2,43 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { ISchedule } from '../../entities/schedule.model';
+import { IStudent } from '../../entities/student.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ScheduleService {
-  public ScheduleUrl = 'http://localhost:3000/schedule/';
+export class StudentService {
+  public studentUrl = 'http://localhost:3000/student/';
 
   constructor(private http: HttpClient) {}
 
-  public addSchedule(data): Observable<ISchedule> {
+  public addStudent(data): Observable<IStudent> {
     return this.http
-      .post<ISchedule>(this.ScheduleUrl, data)
+      .post<IStudent>(this.studentUrl, data)
       .pipe(retry(1), catchError(this.errorHandler));
   }
 
-  public getScheduleData(): Observable<ISchedule[]> {
+  public getStudentData(): Observable<IStudent[]> {
     return this.http
-      .get<ISchedule[]>(this.ScheduleUrl)
+      .get<IStudent[]>(this.studentUrl)
       .pipe(retry(1), catchError(this.errorHandler));
   }
 
-  public updateScheduleData(id, data): Observable<ISchedule> {
+  public updateStudentData(id, data): Observable<IStudent> {
     return this.http
-      .patch<ISchedule>(this.ScheduleUrl + id, data)
+      .patch<IStudent>(this.studentUrl + id, data)
       .pipe(retry(1), catchError(this.errorHandler));
   }
 
-  public deleteSchedule(id): Observable<ISchedule> {
+  public deleteStudent(id): Observable<IStudent> {
     return this.http
-      .delete<ISchedule>(this.ScheduleUrl + id)
+      .delete<IStudent>(this.studentUrl + id)
       .pipe(retry(1), catchError(this.errorHandler));
   }
 
-  public getScheduleById(id): Observable<ISchedule> {
+  public getStudentById(id): Observable<IStudent> {
     return this.http
-      .get<ISchedule>(this.ScheduleUrl + id)
+      .get<IStudent>(this.studentUrl + id)
       .pipe(retry(1), catchError(this.errorHandler));
   }
 

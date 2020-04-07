@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonConstants } from 'src/app/config/constants';
 import { Router } from '@angular/router';
 import { ToasterService } from '../../dialogs/alerts/toaster.service';
+import { CommonConstants } from '../../../config/constants';
+
 
 @Component({
   selector: 'app-header',

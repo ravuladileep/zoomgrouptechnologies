@@ -51,7 +51,7 @@
                   <td>{{data.courseName}}</td>
                   <td>{{data.startDate | date}}</td>
                   <td>{{data.endDate | date}}</td>
-                  <td> <span *ngFor="let dat of data.batch;let isLast=last;let isFirst = first">{{dat}} {{isLast|| isFirst ? '' : ', '}}</span></td>
+                  <td> <span *ngFor="let dat of data.batch;let isLast=last;let isFirst = first">{{dat}} {{isLast|| isFirst ? '' : ','}}</span></td>
                   <td>
                       <button class="btn btn-success" (click)="editSchedule(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
                       <button class="btn btn-danger" (click)="deleteSchedule(data)">Delete</button>

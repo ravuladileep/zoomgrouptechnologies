@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { BranchService } from 'src/app/services/branch/branch.service';
-import { ToasterService } from 'src/app/shared/dialogs/alerts/toaster.service';
+import { BranchService } from '../../../services/branch/branch.service';
+import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 
 @Component({
   selector: 'app-add-branch',

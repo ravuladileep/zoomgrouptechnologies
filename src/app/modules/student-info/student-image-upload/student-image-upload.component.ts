@@ -12,4 +12,8 @@ export class StudentImageUploadComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public print(): void{
+    window.print();
+  }
+
 }

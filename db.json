@@ -2,7 +2,7 @@
   "branch": [
     {
       "branchName": "Ameerpet",
-      "branchCode": "3523",
+      "branchCode": "3522",
       "branchAddress": "Ameerpet,Hyderabad",
       "branchContactNumber": "9876542312",
       "id": 1
@@ -57,6 +57,18 @@
       "totalfee": 53100,
       "seats": "1",
       "id": 1
+    },
+    {
+      "coursename": "Angular",
+      "branch": [
+        "Banjara Hills",
+        "Secunderabad"
+      ],
+      "fees": "8500",
+      "servicetax": 1530,
+      "totalfee": 10030,
+      "seats": "1",
+      "id": 2
     }
   ],
   "user": [
@@ -98,7 +110,7 @@
       "endDate": "2020-04-23T14:38:23.000Z",
       "batch": [
         "Morning",
-        "Afternoon"
+        "Evening"
       ],
       "id": 1
     }
@@ -118,6 +130,25 @@
       "communication": [
         "Email"
       ],
+      "id": 1
+    }
+  ],
+  "student": [
+    {
+      "firstName": "john",
+      "lastName": "doe ",
+      "gender": "male",
+      "mobileNumber": "9849078987",
+      "email": "john@gmail.com",
+      "address": "F/120 street road",
+      "nationality": "foreigner",
+      "qualification": "mba",
+      "companyName": "abc",
+      "branch": "Banjara Hills",
+      "joiningDate": "2020-04-07T05:50:03.983Z",
+      "courseType": "course",
+      "courseName": "",
+      "startingDate": "2020-04-07T05:50:03.983Z",
       "id": 1
     }
   ]

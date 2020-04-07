@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { CourseService } from 'src/app/services/course/course.service';
 import { FormBuilder, Validators, FormGroup, ValidatorFn, FormArray, FormControl } from '@angular/forms';
 import { of } from 'rxjs';
-import { ToasterService } from 'src/app/shared/dialogs/alerts/toaster.service';
+import { CourseService } from '../../../services/course/course.service';
+import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
+import { CommonConstants } from '../../../config/constants';
 declare var $: any;
 @Component({
   selector: 'app-edit-course',
@@ -17,17 +18,7 @@ export class EditCourseComponent implements OnInit {
   public sortedData: any;
   public taxValue: number;
   public totalCourseFee: number;
-  public branchesDataarr = ['Ameerpet', 'Banjara Hills', 'Dilsukh nagar', 'Secunderabad', 'Test linux', 'Surat', 'Vijayawada'];
-
-  // branchesDataarr = [
-  //   { id: 'Ameerpet', name: 'Ameerpet' },
-  //   { id: 'Banjara Hills', name: 'Banjara Hills' },
-  //   { id: 'Dilsukh nagar', name: 'Dilsukh nagar' },
-  //   { id: 'Secunderabad', name: 'Secunderabad' },
-  //   { id: 'Test linux', name: 'Test linux' },
-  //   { id: 'Surat', name: 'Surat' },
-  //   { id: 'Vijayawada', name: 'Vijayawada' }
-  // ];
+  public branchesDataarr = [...CommonConstants.branchesDataarr];
   public branchesData = [];
   public term: any;
 

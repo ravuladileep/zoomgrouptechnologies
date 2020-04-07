@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { UserService } from 'src/app/services/user/user.service';
-import { Iuser } from 'src/app/entities/user.model';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { ToasterService } from 'src/app/shared/dialogs/alerts/toaster.service';
+import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
+import { UserService } from '../../../services/user/user.service';
+import {Iuser} from '../../../entities/user.model';
+import { CommonConstants } from '../../../config/constants';
+
 
 declare var $: any;
 
@@ -13,7 +15,7 @@ declare var $: any;
 })
 export class EditEmployeeComponent implements OnInit {
   @ViewChild('modal') modal: ElementRef;
-  public branches = ['Ameerpet', 'Banjara Hills', 'Dilsukh nagar', 'Secunderabad', 'Test Linux', 'Surat', 'Vijayawada'];
+  public branches = [...CommonConstants.branchesDataarr];
   public roles = ['Admin', 'Counsellor', 'Accountant', 'Counsellor Plus', 'Finance', 'Audit', 'Telephonic'];
   public userDatalist: Iuser[] = [];
   public updateuserSpecificData: FormGroup;

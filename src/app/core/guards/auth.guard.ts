@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CommonConstants } from 'src/app/config/constants';
+import { CommonConstants } from '../../config/constants';
 
 @Injectable({
   providedIn: 'root'
