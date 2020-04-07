@@ -1,13 +1,6 @@
 {
   "branch": [
     {
-      "branchName": "Ameerpet",
-      "branchCode": "3522",
-      "branchAddress": "Ameerpet,Hyderabad",
-      "branchContactNumber": "9876542312",
-      "id": 1
-    },
-    {
       "branchName": "Secunderabad",
       "branchCode": "4521",
       "branchAddress": "Hyderabad",
@@ -34,13 +27,6 @@
       "branchAddress": "Ameerpet,Hyderabad",
       "branchContactNumber": "9874568745",
       "id": 5
-    },
-    {
-      "branchName": "Secunderabad",
-      "branchCode": "4521",
-      "branchAddress": "Hyderabad",
-      "branchContactNumber": "9874562145",
-      "id": 6
     }
   ],
   "course": [
