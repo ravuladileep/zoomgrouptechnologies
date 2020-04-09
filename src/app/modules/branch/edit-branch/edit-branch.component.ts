@@ -3,6 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IBranch } from '../../../entities/branch.model';
 import { BranchService } from '../../../services/branch/branch.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
+import { CommonConstants } from '../../../config/constants';
 
 declare var $: any;
 
@@ -16,11 +17,12 @@ export class EditBranchComponent implements OnInit {
   public branchDatalist: IBranch[] = [];
   public updatebranchSpecificData: FormGroup;
   public updateid: any;
-  public sortedData: any;
   public term: any;
+  public showEntries;
+  public p = 1;
 
   //  orderBy data
-  public records = this.sortedData;
+  public records = this.branchDatalist;
   public isDesc = false;
   public column;
   public direction: number;
@@ -42,7 +44,10 @@ export class EditBranchComponent implements OnInit {
       branchName: ['', [Validators.required]],
       branchCode: ['', [Validators.required]],
       branchAddress: ['', [Validators.required]],
-      branchContactNumber: ['', [Validators.required]]
+      branchContactNumber: ['', [Validators.required,
+                                Validators.pattern(CommonConstants.AllowOnlyNumberRegex),
+                                Validators.maxLength(10),
+                                Validators.minLength(10)]]
     });
   }
 
@@ -60,27 +65,10 @@ export class EditBranchComponent implements OnInit {
   public loadBranchdata(): void {
     this.branchService.getBranchData().subscribe(res => {
       this.branchDatalist = res;
-      this.sortedData = [...this.branchDatalist];
     });
   }
 
-  /**
-   * @ function : sortData
-   * @ Purpose  : sorting the branchdata
-   * @ version  : 1.0.1
-   * @ author   : dileep_ravula
-   */
 
-  public sortData(event) {
-    this.sortedData = [...this.branchDatalist];
-    if (event.target.value === 'all') {
-      this.sortedData = [...this.branchDatalist];
-    }
-    if (this.sortedData.length >= event.target.value) {
-      return (this.sortedData.length = event.target.value);
-    }
-    return (this.sortedData = [...this.branchDatalist]);
-  }
 
   /**
    * @ function : order

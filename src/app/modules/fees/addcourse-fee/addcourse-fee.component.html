@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-fluid">
   <!-- webcam -->
-
+<!--
   <div class="row">
       <div class="col-md-4">
           <app-camera (pictureTaken)="handleImage($event)"></app-camera>
@@ -8,7 +8,7 @@
       <div class="snapshot col-md-4" *ngIf="webcamImage">
           <img [src]="webcamImage.imageAsDataUrl" style="width:250px;height: auto;" />
       </div>
-  </div>
+  </div> -->
 
   <!-- webcam end -->
 
@@ -49,13 +49,13 @@
   <!-- payment -->
   <div class="bg-white py-5" *ngIf="paymentPage">
       <div class="p-5">
-          <form [formGroup]="paymentSpecificData" (ngSubmit)="submitPayment()">
+          <form [formGroup]="paymentSpecificData" enctype="multipart/form-data" (ngSubmit)="submitPayment()">
 
               <button class="btn btn-secondary text-white">Take a Picture</button>
               <div class="row justify-content-center mt-4">
                   <div class="col-md-3 upload-card">
 
-                      <img src="../../../../assets/images/user.png" data-toggle="modal" data-target="#studentphoto" alt="user" class="p-2 mx-auto d-block user-img img-fluid">
+                      <img [src]="studentPhotoUrl != null ? studentPhotoUrl : '../../../../assets/images/user.png'" data-toggle="modal" data-target="#studentphoto" alt="user" class="p-2 mx-auto d-block user-img img-fluid">
                       <h6 class="text-center">Student Photo</h6>
                       <!-- modal start -->
                       <div class="modal" id="studentphoto" tabindex="-1" role="dialog">
@@ -68,7 +68,7 @@
                                       </button>
                                   </div>
                                   <div class="modal-body">
-                                      <input type="file" (change)="studentImg($event)" formControlName="studentPhoto" name="studentphoto" id="studentphoto">
+                                      <input type="file" #stdfile (change)="studentImg($event)" formControlName="studentPhoto" name="studentphoto" id="studentphoto">
                                   </div>
                                   <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

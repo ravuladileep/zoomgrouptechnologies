@@ -16,16 +16,16 @@ export class EditcoursePackageComponent implements OnInit {
   public coursePackageDatalist = [];
   public updateCoursePackageSpecificForm: FormGroup;
   public updateid: any;
-  public sortedData: any;
   public taxValue: number;
   public totalPackage: number;
   public branchesDataarr = [...CommonConstants.branchesDataarr];
   public branchesData = [];
   public coursesData = [];
   public term: any;
+  public p = 1;
 
   //  orderBy data
-  public records = this.sortedData;
+  public records = this.coursePackageDatalist;
   public isDesc = false;
   public column;
   public direction: number;
@@ -118,27 +118,9 @@ export class EditcoursePackageComponent implements OnInit {
   public loadCoursePackageData(): void {
     this.coursePackage.getCourseDataPackage().subscribe(res => {
       this.coursePackageDatalist = res;
-      this.sortedData = [...this.coursePackageDatalist];
     });
   }
 
-  /**
-   * @ function : sortData
-   * @ Purpose  : sorting the branchdata
-   * @ version  : 1.0.1
-   * @ author   : dileep_ravula
-   */
-
-  public sortData(event) {
-    this.sortedData = [...this.coursePackageDatalist];
-    if (event.target.value === 'all') {
-      this.sortedData = [...this.coursePackageDatalist];
-    }
-    if (this.sortedData.length >= event.target.value) {
-      return (this.sortedData.length = event.target.value);
-    }
-    return (this.sortedData = [...this.coursePackageDatalist]);
-  }
 
   /**
    * @ function : order

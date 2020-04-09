@@ -2,7 +2,7 @@
 <h5 class="text-center text-secondary my-3">Student Details</h5>
 
   <form [formGroup]="addStudentForm" (ngSubmit)="Submit()">
-    <div class="row bg-white mx-lg-5 p-3">
+    <div class="row bg-white mx-lg-2 p-3">
 
         <div class="col-12 col-lg-6">
           <h6>Personal Details</h6>
@@ -76,7 +76,13 @@
                     <input class="form-control" formControlName="mobileNumber"  placeholder="Mobile Number">
                     <div class="alert alert-danger" *ngIf="studentData.mobileNumber.invalid && (studentData.mobileNumber.dirty||studentData.mobileNumber.touched)">
                         <div *ngIf="studentData.mobileNumber.errors.required">
-                            mobileNumber is required
+                            Mobile Number is required
+                        </div>
+                        <div *ngIf="studentData.mobileNumber.errors?.pattern">
+                          Mobile Number should be digits only
+                        </div>
+                        <div *ngIf="!studentData.mobileNumber.errors?.pattern &&(studentData.mobileNumber.errors?.maxlength || studentData.mobileNumber.errors?.minlength)">
+                          Mobile Number should be 10 digits
                         </div>
                     </div>
                 </div>
@@ -92,8 +98,11 @@
               <div class="col-md-8">
                   <input class="form-control" formControlName="email" placeholder="Email">
                   <div class="alert alert-danger" *ngIf="studentData.email.invalid && (studentData.email.dirty||studentData.email.touched)">
-                      <div *ngIf="studentData.email.errors.required">
-                          email is required
+                      <div *ngIf="studentData.email.errors?.required">
+                          Email is required
+                      </div>
+                      <div *ngIf="studentData.email.errors?.pattern">
+                          Invalid Email Id
                       </div>
                   </div>
               </div>
@@ -111,7 +120,7 @@
                   </textarea>
                   <div class="alert alert-danger" *ngIf="studentData.address.invalid && (studentData.address.dirty||studentData.address.touched)">
                       <div *ngIf="studentData.address.errors.required">
-                          address is required
+                          Address is required
                       </div>
                   </div>
               </div>
@@ -137,7 +146,7 @@
 
                   <div class="alert alert-danger" *ngIf="studentData.nationality.invalid && (studentData.nationality.dirty||studentData.nationality.touched)">
                       <div *ngIf="studentData.nationality.errors.required">
-                          nationality is required
+                          Nationality is required
                       </div>
                   </div>
               </div>
@@ -153,7 +162,7 @@
                       <input class="form-control" formControlName="qualification" placeholder="Qualification">
                       <div class="alert alert-danger" *ngIf="studentData.qualification.invalid && (studentData.qualification.dirty||studentData.qualification.touched)">
                           <div *ngIf="studentData.qualification.errors.required">
-                              qualification is required
+                              Qualification is required
                           </div>
                       </div>
                   </div>

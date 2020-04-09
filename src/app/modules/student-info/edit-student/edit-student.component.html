@@ -1,68 +1,66 @@
-<div class="container">
+<div class="container-fluid">
   <div class="bg-white mt-5 p-2">
       <h5>List of All Branch</h5>
       <hr>
-      <div class="row">
+      <div class="row p-1">
           <div class="col-md-6  p-3">
-              Show
+              <!-- Show
               <select (change)="sortData($event)">
                   <option value="all">All</option>
                   <option value="5">5</option>
                   <option value="10">10</option>
                   <option value="15">15</option>
-              </select> entries
+              </select> entries -->
           </div>
           <div class="col-md-3 ml-auto">
               <input type="text" placeholder="search" class="form-control" [(ngModel)]="term">
           </div>
       </div>
-  </div>
-</div>
-
-<!--Start table Branch data -->
-
-<div class="container">
-  <div class="bg-white">
       <table class="table table-bordered table-striped table-hover text-center table-responsive-sm">
-          <thead>
-              <tr>
-                  <th>S.no</th>
-                  <th (click)="order('firstName')">
-                      Student Name
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'firstName', 'fa-sort-asc': (column == 'firstName' && isDesc), 'fa-sort-desc': (column == 'firstName' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('lastName')">
-                      Contact Number
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'lastName', 'fa-sort-asc': (column == 'lastName' && isDesc), 'fa-sort-desc': (column == 'lastName' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('gender')">
-                      Email
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'gender', 'fa-sort-asc': (column == 'gender' && isDesc), 'fa-sort-desc': (column == 'gender' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('qualification')">
-                      Qualification
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'qualification', 'fa-sort-asc': (column == 'qualification' && isDesc), 'fa-sort-desc': (column == 'qualification' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th>Action</th>
+        <thead>
+            <tr>
+                <th>S.no</th>
+                <th (click)="order('firstName')">
+                    Student Name
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'firstName', 'fa-sort-asc': (column == 'firstName' && isDesc), 'fa-sort-desc': (column == 'firstName' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('lastName')">
+                    Contact Number
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'lastName', 'fa-sort-asc': (column == 'lastName' && isDesc), 'fa-sort-desc': (column == 'lastName' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('gender')">
+                    Email
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'gender', 'fa-sort-asc': (column == 'gender' && isDesc), 'fa-sort-desc': (column == 'gender' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('qualification')">
+                    Qualification
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'qualification', 'fa-sort-asc': (column == 'qualification' && isDesc), 'fa-sort-desc': (column == 'qualification' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th>Action</th>
 
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let data of sortedData|filter:term|orderBy: {property: column, direction: direction};let i= index;">
-                  <td>{{i+1}}</td>
-                  <td>{{data.firstName + data.lastName}}</td>
-                  <td>{{data.mobileNumber}}</td>
-                  <td>{{data.email}}</td>
-                  <td>{{data.qualification}}</td>
-                  <td>
-                      <button class="btn btn-success" (click)="editStudentdata(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
-                      <button class="btn btn-danger" (click)="deleteStudentdata(data)">Delete</button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of StudentDatalist|paginate: { itemsPerPage: '2', currentPage: p, totalItems: StudentDatalist.length }|filter:term|orderBy: {property: column, direction: direction};let i= index;">
+                <td>{{i+1}}</td>
+                <td>{{data.firstName + data.lastName}}</td>
+                <td>{{data.mobileNumber}}</td>
+                <td>{{data.email}}</td>
+                <td>{{data.qualification}}</td>
+                <td>
+                    <button class="btn btn-success" (click)="editStudentdata(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
+                    <button class="btn btn-danger" (click)="deleteStudentdata(data)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+        <div class="pb-1 text-right">
+          <pagination-controls maxSize="4" (pageChange)="p = $event"></pagination-controls>
+        </div>
   </div>
 </div>
+
+
 
 <!-- End table branch data -->
 

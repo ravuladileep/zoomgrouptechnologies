@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
 
   <div class="add-page-tittle">
       <h3 class="add-section-heading my-3 text-secondary">Add New Schedule</h3>
@@ -42,7 +42,7 @@
 
                           <div class="alert alert-danger" *ngIf="scheduleData.branch.invalid && (scheduleData.branch.dirty||scheduleData.branch.touched)">
                               <div *ngIf="scheduleData.branch.errors">
-                                  Branch Code is required(atleast 1 branch should be selected)
+                                  Branch is required(atleast 1 branch should be selected)
                               </div>
                           </div>
 
@@ -66,6 +66,9 @@
                               <div *ngIf="scheduleData.startDate.errors.required">
                                   Start date is required
                               </div>
+                              <div *ngIf="!scheduleData.startDate.errors.required && scheduleData.startDate.invalid">
+                                  Start date is invalid
+                              </div>
                           </div>
                       </div>
                   </div>
@@ -87,6 +90,9 @@
                               <div *ngIf="scheduleData.endDate.errors.required">
                                   End date is required
                               </div>
+                              <div *ngIf="!scheduleData.endDate.errors.required && scheduleData.endDate.invalid">
+                                End date is invalid
+                             </div>
                           </div>
                       </div>
                   </div>

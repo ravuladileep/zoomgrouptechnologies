@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { BranchService } from '../../../services/branch/branch.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
+import { CommonConstants } from '../../../config/constants';
 
 @Component({
   selector: 'app-add-branch',
@@ -22,7 +23,10 @@ export class AddBranchComponent implements OnInit {
       branchName: ['', [Validators.required]],
       branchCode: ['', [Validators.required]],
       branchAddress: ['', [Validators.required]],
-      branchContactNumber: ['', [Validators.required]]
+      branchContactNumber: ['', [Validators.required,
+                                Validators.pattern(CommonConstants.AllowOnlyNumberRegex),
+                                Validators.maxLength(10),
+                                Validators.minLength(10)]]
     });
   }
 

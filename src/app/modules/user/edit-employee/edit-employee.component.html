@@ -1,20 +1,61 @@
-<div class="container">
+<div class="container-fluid">
   <div class="bg-white mt-5 p-2">
       <h5>List of All User</h5>
       <hr>
-      <div class="row">
+      <div class="row p-1">
           <div class="col-md-6  p-3">
-              Show
+              <!-- Show
               <select (change)="sortData($event)">
                   <option value="all">All</option>
                   <option value="5">5</option>
                   <option value="10">10</option>
                   <option value="15">15</option>
-              </select> entries
+              </select> entries -->
           </div>
           <div class="col-md-3 ml-auto">
               <input type="text" placeholder="search" class="form-control" [(ngModel)]="term">
           </div>
+      </div>
+      <table class="table table-bordered table-striped table-hover text-center table-responsive-sm">
+        <thead>
+            <tr>
+                <th>S.no</th>
+                <th (click)="order('userEmail')">
+                    User Name
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'userEmail', 'fa-sort-asc': (column == 'userEmail' && isDesc), 'fa-sort-desc': (column == 'userEmail' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('fullName')">
+                    User Email
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'fullName', 'fa-sort-asc': (column == 'fullName' && isDesc), 'fa-sort-desc': (column == 'fullName' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('role')">
+                    Role Assigned
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'role', 'fa-sort-asc': (column == 'role' && isDesc), 'fa-sort-desc': (column == 'role' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('branch')">
+                    Branch
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'branch', 'fa-sort-asc': (column == 'branch' && isDesc), 'fa-sort-desc': (column == 'branch' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of userDatalist|paginate: { itemsPerPage: '2', currentPage: p, totalItems: userDatalist.length }|filter:term|orderBy: {property: column, direction: direction};let i= index;">
+                <td>{{i+1}}</td>
+                <td>{{data.userEmail}}</td>
+                <td>{{data.fullName}}</td>
+                <td>{{data.role}}</td>
+                <td>{{data.branch}}</td>
+                <td>
+                    <button class="btn btn-success" (click)="editUserData(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
+                    <button class="btn btn-danger" (click)="deleteUserData(data)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+      <div class="pb-1 text-right">
+        <pagination-controls maxSize="4" (pageChange)="p = $event"></pagination-controls>
       </div>
   </div>
 </div>
@@ -23,44 +64,7 @@
 
 <div class="container">
   <div class="bg-white">
-      <table class="table table-bordered table-striped table-hover text-center table-responsive-sm">
-          <thead>
-              <tr>
-                  <th>S.no</th>
-                  <th (click)="order('userEmail')">
-                      User Name
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'userEmail', 'fa-sort-asc': (column == 'userEmail' && isDesc), 'fa-sort-desc': (column == 'userEmail' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('fullName')">
-                      User Email
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'fullName', 'fa-sort-asc': (column == 'fullName' && isDesc), 'fa-sort-desc': (column == 'fullName' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('role')">
-                      Role Assigned
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'role', 'fa-sort-asc': (column == 'role' && isDesc), 'fa-sort-desc': (column == 'role' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('branch')">
-                      Branch
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'branch', 'fa-sort-asc': (column == 'branch' && isDesc), 'fa-sort-desc': (column == 'branch' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th>Action</th>
 
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let data of sortedData|filter:term|orderBy: {property: column, direction: direction};let i= index;">
-                  <td>{{i+1}}</td>
-                  <td>{{data.userEmail}}</td>
-                  <td>{{data.fullName}}</td>
-                  <td>{{data.role}}</td>
-                  <td>{{data.branch}}</td>
-                  <td>
-                      <button class="btn btn-success" (click)="editUserData(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
-                      <button class="btn btn-danger" (click)="deleteUserData(data)">Delete</button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
   </div>
 </div>
 
@@ -89,8 +93,11 @@
                           <div class="col-md-8">
                               <input class="form-control" formControlName="userEmail" placeholder="User Email">
                               <div class="alert alert-danger" *ngIf="userData.userEmail.invalid && (userData.userEmail.dirty||userData.userEmail.touched)">
-                                  <div *ngIf="userData.userEmail.errors.required">
+                                  <div *ngIf="userData.userEmail.errors?.required">
                                       User Email is required
+                                  </div>
+                                  <div *ngIf="userData.userEmail.errors?.pattern">
+                                      Invalid Email Id
                                   </div>
                               </div>
                           </div>

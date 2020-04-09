@@ -19,13 +19,14 @@ export class EditcourseScheduleComponent implements OnInit {
   public coursePackageDatalist = [];
   public updateScheduleSpecificForm: FormGroup;
   public updateid: any;
-  public sortedData: any;
   public branchesData = [];
   public batchesData = [];
   public term: any;
+  public p = 1;
+
 
   //  orderBy data
-  public records = this.sortedData;
+  public records = this.coursePackageDatalist;
   public isDesc = false;
   public column;
   public direction: number;
@@ -105,27 +106,10 @@ export class EditcourseScheduleComponent implements OnInit {
   public loadScheduleData(): void {
     this.scheduleService.getScheduleData().subscribe(res => {
       this.coursePackageDatalist = res;
-      this.sortedData = [...this.coursePackageDatalist];
     });
   }
 
-  /**
-   * @ function : sortData
-   * @ Purpose  : sorting the branchdata
-   * @ version  : 1.0.1
-   * @ author   : dileep_ravula
-   */
 
-  public sortData(event) {
-    this.sortedData = [...this.coursePackageDatalist];
-    if (event.target.value === 'all') {
-      this.sortedData = [...this.coursePackageDatalist];
-    }
-    if (this.sortedData.length >= event.target.value) {
-      return (this.sortedData.length = event.target.value);
-    }
-    return (this.sortedData = [...this.coursePackageDatalist]);
-  }
 
   /**
    * @ function : order

@@ -28,7 +28,7 @@ export class AddcourseScheduleComponent implements OnInit {
   public scheduleForm(): void {
     this.addScheduleSpecificForm = this.fb.group({
       courseName: [null, [Validators.required]],
-      branch: this.fb.array([]),
+      branch: this.fb.array([], minSelectedCheckboxes(1)),
       startDate: [this.bsValue, [Validators.required]],
       endDate: ['', [Validators.required]],
       batch: this.fb.array([], minSelectedCheckboxes(1))

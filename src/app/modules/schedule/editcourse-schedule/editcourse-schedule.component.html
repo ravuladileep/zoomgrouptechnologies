@@ -1,66 +1,66 @@
-<div class="container">
+<div class="container-fluid">
   <div class="bg-white mt-5 p-2">
       <h5>List of All Schedule</h5>
       <hr>
-      <div class="row">
+      <div class="row p-1">
           <div class="col-md-6  p-3">
-              Show
+              <!-- Show
               <select (change)="sortData($event)">
                   <option value="all">All</option>
                   <option value="5">5</option>
                   <option value="10">10</option>
                   <option value="15">15</option>
-              </select> entries
+              </select> entries -->
           </div>
           <div class="col-md-3 ml-auto">
               <input type="text" placeholder="search" class="form-control" [(ngModel)]="term">
           </div>
       </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="bg-white">
       <table class="table table-bordered table-striped table-hover text-center table-responsive-sm">
-          <thead>
-              <tr>
-                  <th>S.no</th>
-                  <th (click)="order('courseName')">
-                      Course Name
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'courseName', 'fa-sort-asc': (column == 'courseName' && isDesc), 'fa-sort-desc': (column == 'courseName' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('startDate')">
-                      Start Date
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'startDate', 'fa-sort-asc': (column == 'startDate' && isDesc), 'fa-sort-desc': (column == 'startDate' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('endDate')">
-                      End Date
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'endDate', 'fa-sort-asc': (column == 'endDate' && isDesc), 'fa-sort-desc': (column == 'endDate' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('batch')">
-                      Batch
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'batch', 'fa-sort-asc': (column == 'batch' && isDesc), 'fa-sort-desc': (column == 'batch' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th>Action</th>
+        <thead>
+            <tr>
+                <th>S.no</th>
+                <th (click)="order('courseName')">
+                    Course Name
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'courseName', 'fa-sort-asc': (column == 'courseName' && isDesc), 'fa-sort-desc': (column == 'courseName' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('startDate')">
+                    Start Date
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'startDate', 'fa-sort-asc': (column == 'startDate' && isDesc), 'fa-sort-desc': (column == 'startDate' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('endDate')">
+                    End Date
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'endDate', 'fa-sort-asc': (column == 'endDate' && isDesc), 'fa-sort-desc': (column == 'endDate' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('batch')">
+                    Batch
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'batch', 'fa-sort-asc': (column == 'batch' && isDesc), 'fa-sort-desc': (column == 'batch' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th>Action</th>
 
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let data of sortedData|filter:term|orderBy: {property: column, direction: direction};let i= index;">
-                  <td>{{i+1}}</td>
-                  <td>{{data.courseName}}</td>
-                  <td>{{data.startDate | date}}</td>
-                  <td>{{data.endDate | date}}</td>
-                  <td> <span *ngFor="let dat of data.batch;let isLast=last;let isFirst = first">{{dat}} {{isLast|| isFirst ? '' : ','}}</span></td>
-                  <td>
-                      <button class="btn btn-success" (click)="editSchedule(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
-                      <button class="btn btn-danger" (click)="deleteSchedule(data)">Delete</button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of coursePackageDatalist|paginate: { itemsPerPage: '2', currentPage: p, totalItems: coursePackageDatalist.length }|filter:term|orderBy: {property: column, direction: direction};let i= index;">
+                <td>{{i+1}}</td>
+                <td>{{data.courseName}}</td>
+                <td>{{data.startDate | date}}</td>
+                <td>{{data.endDate | date}}</td>
+                <td> <span *ngFor="let dat of data.batch;let isLast=last;let isFirst = first">{{dat}} {{isLast|| isFirst ? '' : ','}}</span></td>
+                <td>
+                    <button class="btn btn-success" (click)="editSchedule(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
+                    <button class="btn btn-danger" (click)="deleteSchedule(data)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+      <div class="pb-1 text-right">
+        <pagination-controls maxSize="4" (pageChange)="p = $event"></pagination-controls>
+      </div>
   </div>
 </div>
+
+
 
 <!-- End table -->
 
@@ -137,6 +137,9 @@
                                   <div *ngIf="scheduleData.startDate.errors.required">
                                       Start date is required
                                   </div>
+                                  <div *ngIf="!scheduleData.startDate.errors.required && scheduleData.startDate.invalid">
+                                    Start date is invalid
+                                  </div>
                               </div>
                           </div>
                       </div>
@@ -157,6 +160,9 @@
                               <div class="alert alert-danger" *ngIf="scheduleData.endDate.invalid && (scheduleData.endDate.dirty||scheduleData.endDate.touched)">
                                   <div *ngIf="scheduleData.endDate.errors.required">
                                       End date is required
+                                  </div>
+                                  <div *ngIf="!scheduleData.endDate.errors.required && scheduleData.endDate.invalid">
+                                      End date is invalid
                                   </div>
                               </div>
                           </div>

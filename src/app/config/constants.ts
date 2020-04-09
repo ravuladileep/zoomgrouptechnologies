@@ -10,6 +10,10 @@ export namespace CommonConstants {
   export const COMMON_ERR_MSG_1 = 'Permission Denied';
   export const REMOVE_APP = 'We\'ve cleared your application.';
   export const API_TIME_DURATION = 10000; // in millisecond
+  export const RegexPostalCode = '^[1-9][0-9]{4}[0-9]*$';
+  export const regexMobileNumber = '^[0-9]{3}-?[0-9]{3}-?[0-9]{4}$';
+  export const EmailRegex: any = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$';
+  export const AllowOnlyNumberRegex: any = '^[0-9]+$';
   export const branchesDataarr = ['Ameerpet', 'Banjara Hills', 'Dilsukh nagar', 'Secunderabad', 'Test linux', 'Surat', 'Vijayawada'];
   export const coursesDataarr = [
     'CCNA',

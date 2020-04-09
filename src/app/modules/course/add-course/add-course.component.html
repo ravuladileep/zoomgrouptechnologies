@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
 
   <div class="add-page-tittle">
       <h3 class="add-section-heading my-3 text-secondary">Add New Course</h3>
@@ -39,7 +39,7 @@
 
                           <div class="alert alert-danger" *ngIf="courseData.branch.invalid && (courseData.branch.dirty||courseData.branch.touched)">
                               <div *ngIf="courseData.branch.errors">
-                                  Branch Code is required(atleast 1 branch should be selected)
+                                  Branch  is required(atleast 1 branch should be selected)
                               </div>
                           </div>
 
@@ -53,10 +53,10 @@
                           <label class="control-label">Fees</label>
                       </div>
                       <div class="col-md-8">
-                          <input class="form-control" formControlName="fees" placeholder="Fee" (keyup)="calculateTax()">
+                          <input type="number" class="form-control" formControlName="fees" placeholder="Fee" (keyup)="calculateTax()">
                           <div class="alert alert-danger" *ngIf="courseData.fees.invalid && (courseData.fees.dirty||courseData.fees.touched)">
                               <div *ngIf="courseData.fees.errors.required">
-                                  Branch Address is required
+                                  Fee is required
                               </div>
                           </div>
                       </div>
@@ -101,7 +101,7 @@
                           <label class="control-label">Seats</label>
                       </div>
                       <div class="col-md-8">
-                          <input class="form-control" formControlName="seats" placeholder="seats">
+                          <input type="number" class="form-control" formControlName="seats" placeholder="seats">
                           <div class="alert alert-danger" *ngIf="courseData.seats.invalid && (courseData.seats.dirty||courseData.seats.touched)">
                               <div *ngIf="courseData.seats.errors.required">
                                   seats is required

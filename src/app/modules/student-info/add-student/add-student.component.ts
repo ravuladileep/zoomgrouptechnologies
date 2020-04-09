@@ -7,15 +7,18 @@ import { CommonConstants } from '../../../config/constants';
 @Component({
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
-  styleUrls: ['./add-student.component.css']
+  styleUrls: ['./add-student.component.css'],
 })
 export class AddStudentComponent implements OnInit {
   public addStudentForm: FormGroup;
   public branch = [...CommonConstants.branchesDataarr];
   public coursesDataarr = [...CommonConstants.coursesDataarr];
 
-
-  constructor(private fb: FormBuilder, private studentService: StudentService, private toaster: ToasterService) {
+  constructor(
+    private fb: FormBuilder,
+    private studentService: StudentService,
+    private toaster: ToasterService
+  ) {
     this.studentForm();
   }
   ngOnInit(): void {}
@@ -25,8 +28,16 @@ export class AddStudentComponent implements OnInit {
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       gender: ['', [Validators.required]],
-      mobileNumber: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      mobileNumber: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(CommonConstants.AllowOnlyNumberRegex),
+          Validators.maxLength(10),
+          Validators.minLength(10),
+        ],
+      ],
+      email: ['', [Validators.required, Validators.pattern(CommonConstants.EmailRegex)]],
       address: ['', [Validators.required]],
       nationality: ['', [Validators.required]],
       qualification: ['', [Validators.required]],
@@ -53,7 +64,7 @@ export class AddStudentComponent implements OnInit {
   public Submit(): void {
     this.studentService
       .addStudent(this.addStudentForm.value)
-      .subscribe(res => {
+      .subscribe((res) => {
         this.toaster.recordAdded();
       });
     console.log(this.addStudentForm.value);

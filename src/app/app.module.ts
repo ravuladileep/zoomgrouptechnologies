@@ -46,6 +46,8 @@ import { CameraComponent } from './shared/modules/camera/camera.component';
 import { CoursePackageService } from './services/course-package/course-package.service';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ScheduleService } from './services/schedule/schedule.service';
+import {NgxPaginationModule} from 'ngx-pagination';
+// import { PaginationModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,9 @@ import { ScheduleService } from './services/schedule/schedule.service';
       timeOut: 3500
     }),
     WebcamModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    NgxPaginationModule
+    // PaginationModule.forRoot()
   ],
   providers: [
     BranchService,

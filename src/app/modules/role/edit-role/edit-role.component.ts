@@ -16,7 +16,6 @@ export class EditRoleComponent implements OnInit {
   public roleDatalist = [];
   public updateRoleSpecificForm: FormGroup;
   public updateid: any;
-  public sortedData: any;
   public assignFunctionDataarr = [...CommonConstants.assignFunctionDataarr];
   public reportsDataarr = [...CommonConstants.reportsDataarr];
   public communicationDataarr = ['SMS', 'Email'];
@@ -24,9 +23,11 @@ export class EditRoleComponent implements OnInit {
   public reportsData = [];
   public communicationData = [];
   public term: any;
+  public p = 1;
+
 
   //  orderBy data
-  public records = this.sortedData;
+  public records = this.roleDatalist;
   public isDesc = false;
   public column;
   public direction: number;
@@ -124,27 +125,9 @@ export class EditRoleComponent implements OnInit {
   public loadRoleData(): void {
     this.roleService.getRoleData().subscribe(res => {
       this.roleDatalist = res;
-      this.sortedData = [...this.roleDatalist];
     });
   }
 
-  /**
-   * @ function : sortData
-   * @ Purpose  : sorting the branchdata
-   * @ version  : 1.0.1
-   * @ author   : dileep_ravula
-   */
-
-  public sortData(event) {
-    this.sortedData = [...this.roleDatalist];
-    if (event.target.value === 'all') {
-      this.sortedData = [...this.roleDatalist];
-    }
-    if (this.sortedData.length >= event.target.value) {
-      return (this.sortedData.length = event.target.value);
-    }
-    return (this.sortedData = [...this.roleDatalist]);
-  }
 
   /**
    * @ function : order

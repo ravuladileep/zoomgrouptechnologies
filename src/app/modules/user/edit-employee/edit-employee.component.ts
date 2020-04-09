@@ -20,11 +20,11 @@ export class EditEmployeeComponent implements OnInit {
   public userDatalist: Iuser[] = [];
   public updateuserSpecificData: FormGroup;
   public updateid: any;
-  public sortedData: any;
   public term: any;
+  public p = 1;
 
   //  orderBy data
-  public records = this.sortedData;
+  public records = this.userDatalist;
   public isDesc = false;
   public column;
   public direction: number;
@@ -43,7 +43,7 @@ export class EditEmployeeComponent implements OnInit {
 
   public userForm(): void {
     this.updateuserSpecificData = this.fb.group({
-      userEmail: ['', [Validators.required]],
+      userEmail: ['', [Validators.required, Validators.pattern(CommonConstants.EmailRegex)]],
       fullName: ['', [Validators.required]],
       role: [null, [Validators.required]],
       branch: [null, [Validators.required]],
@@ -65,27 +65,10 @@ export class EditEmployeeComponent implements OnInit {
   public loadUserData(): void {
     this.userService.getuserData().subscribe(res => {
       this.userDatalist = res;
-      this.sortedData = [...this.userDatalist];
     });
   }
 
-  /**
-   * @ function : sortData
-   * @ Purpose  : sorting the userdata
-   * @ version  : 1.0.1
-   * @ author   : dileep_ravula
-   */
 
-  public sortData(event) {
-    this.sortedData = [...this.userDatalist];
-    if (event.target.value === 'all') {
-      this.sortedData = [...this.userDatalist];
-    }
-    if (this.sortedData.length >= event.target.value) {
-      return (this.sortedData.length = event.target.value);
-    }
-    return (this.sortedData = [...this.userDatalist]);
-  }
 
   /**
    * @ function : order

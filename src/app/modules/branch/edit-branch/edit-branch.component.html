@@ -1,68 +1,69 @@
-<div class="container">
-  <div class="bg-white mt-5 p-2">
+<div class="container-fluid">
+  <div class="bg-white  mt-5 p-2">
       <h5>List of All Branch</h5>
       <hr>
-      <div class="row">
+      <div class="row p-1">
           <div class="col-md-6  p-3">
+            <!-- <form>
               Show
-              <select (change)="sortData($event)">
-                  <option value="all">All</option>
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-              </select> entries
+              <select [(ngModel)]="showEntries"  name="showEntries">
+                  <option [value]="totalItems">All</option>
+                  <option [value]="2">2</option>
+                  <option [value]="10">10</option>
+                  <option [value]="15">15</option>
+              </select>{{showEntries}} entries
+              </form> -->
           </div>
           <div class="col-md-3 ml-auto">
               <input type="text" placeholder="search" class="form-control" [(ngModel)]="term">
           </div>
       </div>
-  </div>
-</div>
 
-<!--Start table Branch data -->
-
-<div class="container">
-  <div class="bg-white">
       <table class="table table-bordered table-striped table-hover text-center table-responsive-sm">
-          <thead>
-              <tr>
-                  <th>S.no</th>
-                  <th (click)="order('branchName')">
-                      Branch Name
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'branchName', 'fa-sort-asc': (column == 'branchName' && isDesc), 'fa-sort-desc': (column == 'branchName' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('branchCode')">
-                      Branch Code
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'branchCode', 'fa-sort-asc': (column == 'branchCode' && isDesc), 'fa-sort-desc': (column == 'branchCode' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('branchAddress')">
-                      Branch Address
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'branchAddress', 'fa-sort-asc': (column == 'branchAddress' && isDesc), 'fa-sort-desc': (column == 'branchAddress' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('branchContactNumber')">
-                      Contact Number
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'branchContactNumber', 'fa-sort-asc': (column == 'branchContactNumber' && isDesc), 'fa-sort-desc': (column == 'branchContactNumber' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th>Action</th>
+        <thead>
+            <tr>
+                <th>S.no</th>
+                <th (click)="order('branchName')">
+                    Branch Name
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'branchName', 'fa-sort-asc': (column == 'branchName' && isDesc), 'fa-sort-desc': (column == 'branchName' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('branchCode')">
+                    Branch Code
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'branchCode', 'fa-sort-asc': (column == 'branchCode' && isDesc), 'fa-sort-desc': (column == 'branchCode' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('branchAddress')">
+                    Branch Address
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'branchAddress', 'fa-sort-asc': (column == 'branchAddress' && isDesc), 'fa-sort-desc': (column == 'branchAddress' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('branchContactNumber')">
+                    Contact Number
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'branchContactNumber', 'fa-sort-asc': (column == 'branchContactNumber' && isDesc), 'fa-sort-desc': (column == 'branchContactNumber' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th>Action</th>
 
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let data of sortedData|filter:term|orderBy: {property: column, direction: direction};let i= index;">
-                  <td>{{i+1}}</td>
-                  <td>{{data.branchName}}</td>
-                  <td>{{data.branchCode}}</td>
-                  <td>{{data.branchAddress}}</td>
-                  <td>{{data.branchContactNumber}}</td>
-                  <td>
-                      <button class="btn btn-success" (click)="editBranchdata(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
-                      <button class="btn btn-danger" (click)="deleteBranchdata(data)">Delete</button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of branchDatalist| paginate: { itemsPerPage: '2', currentPage: p, totalItems: branchDatalist.length }|filter:term|orderBy: {property: column, direction: direction};let i= index;">
+                <td>{{i+1}}</td>
+                <td>{{data.branchName}}</td>
+                <td>{{data.branchCode}}</td>
+                <td>{{data.branchAddress}}</td>
+                <td>{{data.branchContactNumber}}</td>
+                <td>
+                    <button class="btn btn-success" (click)="editBranchdata(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
+                    <button class="btn btn-danger" (click)="deleteBranchdata(data)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="pb-1 text-right">
+      <pagination-controls maxSize="4" (pageChange)="p = $event"></pagination-controls>
+    </div>
+
   </div>
 </div>
+
 
 <!-- End table branch data -->
 
@@ -131,10 +132,16 @@
                               <label class="control-label">Contact Number</label>
                           </div>
                           <div class="col-md-8">
-                              <input class="form-control" formControlName="branchContactNumber" placeholder="Branch Contact Number">
+                              <input type ="text" class="form-control" formControlName="branchContactNumber" placeholder="Branch Contact Number">
                               <div class="alert alert-danger" *ngIf="branchData.branchContactNumber.invalid && (branchData.branchContactNumber.dirty||branchData.branchContactNumber.touched)">
-                                  <div *ngIf="branchData.branchContactNumber.errors.required">
+                                  <div *ngIf="branchData.branchContactNumber.errors?.required">
                                       Branch Contact Number is required
+                                  </div>
+                                  <div *ngIf="branchData.branchContactNumber.errors?.pattern">
+                                    Branch Contact Number should be digits only
+                                  </div>
+                                  <div *ngIf="!branchData.branchContactNumber.errors?.pattern &&(branchData.branchContactNumber.errors?.maxlength || branchData.branchContactNumber.errors?.minlength)">
+                                    Branch Contact Number should be 10 digits
                                   </div>
                               </div>
                           </div>

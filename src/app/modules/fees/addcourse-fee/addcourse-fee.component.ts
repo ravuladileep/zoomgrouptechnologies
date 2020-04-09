@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WebcamImage } from 'ngx-webcam';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
+import { FeeService } from '../../../services/fee/fee.service';
 
 @Component({
   selector: 'app-addcourse-fee',
@@ -9,15 +10,16 @@ import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
   styleUrls: ['./addcourse-fee.component.css']
 })
 export class AddcourseFeeComponent implements OnInit {
-
   public studentIdData: FormGroup;
   public paymentSpecificData: FormGroup;
   public paymentPage = false;
   public mode = ['Cash', 'Credit/Debit Card', 'Cheque'];
   public webcamImage: WebcamImage = null;
+  public studentPhotoUrl;
+  public formdatafile: File;
+  filename: any;
 
-
-  constructor(private fb: FormBuilder, private toaster: ToasterService) {
+  constructor(private fb: FormBuilder, private feeService: FeeService, private toaster: ToasterService, private cd: ChangeDetectorRef) {
     this.studentIdForm();
     this.paymentForm();
   }
@@ -76,25 +78,21 @@ export class AddcourseFeeComponent implements OnInit {
 
   public studentImg(event) {
     const file = event.target.files[0];
-
     const reader = new FileReader();
     reader.onload = () => {
-      console.log(reader.result as string);
+      this.studentPhotoUrl = reader.result as string;
     };
     reader.readAsDataURL(file);
-    this.paymentSpecificData.patchValue({
-      studentPhoto : [reader.result as string]
-    });
-    this.paymentSpecificData.get('studentPhoto').updateValueAndValidity();
-
+    this.formdatafile = (event.target as HTMLInputElement).files[0];
+    this.filename = (event.target as HTMLInputElement).files[0].name;
   }
 
   public submitPayment() {
-    // const reader = new FileReader();
-    // reader.readAsDataURL(this.paymentData.studentPhoto.value);
-    // reader.onload = () => {
-    //   console.log(this.paymentSpecificData.controls.studentPhoto.value);
-    // };
-    console.log(this.paymentSpecificData.value);
+    const formdata: FormData = new FormData();
+    formdata.append('studentPhoto', this.formdatafile, this.filename);
+    console.log(formdata);
+    this.feeService.addFee(this.paymentSpecificData.value).subscribe((res) => {
+      console.log(res);
+    });
   }
 }

@@ -4,6 +4,8 @@ import { of } from 'rxjs';
 import { CourseService } from '../../../services/course/course.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { CommonConstants } from '../../../config/constants';
+import { CustomValidators } from 'src/app/shared/directives/checkboxmin.validator';
+
 declare var $: any;
 @Component({
   selector: 'app-edit-course',
@@ -15,15 +17,15 @@ export class EditCourseComponent implements OnInit {
   public courseDatalist = [];
   public updateCourseSpecificData: FormGroup;
   public updateid: any;
-  public sortedData: any;
   public taxValue: number;
   public totalCourseFee: number;
   public branchesDataarr = [...CommonConstants.branchesDataarr];
   public branchesData = [];
   public term: any;
+  public p = 1;
 
   //  orderBy data
-  public records = this.sortedData;
+  public records = this.courseDatalist;
   public isDesc = false;
   public column;
   public direction: number;
@@ -43,7 +45,7 @@ export class EditCourseComponent implements OnInit {
   public courseForm(): void {
     this.updateCourseSpecificData = this.fb.group({
       coursename: ['', [Validators.required]],
-      branch: this.fb.array([]),
+      branch: this.fb.array([], CustomValidators.multipleCheckboxRequireOne),
       fees: ['', [Validators.required]],
       servicetax: [''],
       totalfee: [''],
@@ -101,27 +103,10 @@ export class EditCourseComponent implements OnInit {
   public loadCourseData(): void {
     this.courseService.getCourseData().subscribe(res => {
       this.courseDatalist = res;
-      this.sortedData = [...this.courseDatalist];
     });
   }
 
-  /**
-   * @ function : sortData
-   * @ Purpose  : sorting the branchdata
-   * @ version  : 1.0.1
-   * @ author   : dileep_ravula
-   */
 
-  public sortData(event) {
-    this.sortedData = [...this.courseDatalist];
-    if (event.target.value === 'all') {
-      this.sortedData = [...this.courseDatalist];
-    }
-    if (this.sortedData.length >= event.target.value) {
-      return (this.sortedData.length = event.target.value);
-    }
-    return (this.sortedData = [...this.courseDatalist]);
-  }
 
   /**
    * @ function : order

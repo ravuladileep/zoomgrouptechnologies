@@ -1,71 +1,70 @@
-<div class="container">
+<div class="container-fluid">
   <div class="bg-white mt-5 p-2">
       <h5>List of All Course</h5>
       <hr>
-      <div class="row">
+      <div class="row p-1">
           <div class="col-md-6  p-3">
-              Show
+              <!-- Show
               <select (change)="sortData($event)">
                   <option value="all">All</option>
                   <option value="5">5</option>
                   <option value="10">10</option>
                   <option value="15">15</option>
-              </select> entries
+              </select> entries -->
           </div>
           <div class="col-md-3 ml-auto">
               <input type="text" placeholder="search" class="form-control" [(ngModel)]="term">
           </div>
       </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="bg-white">
       <table class="table table-bordered table-striped table-hover text-center table-responsive-sm">
-          <thead>
-              <tr>
-                  <th>S.no</th>
-                  <th (click)="order('coursename')">
-                      Course Name
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'coursename', 'fa-sort-asc': (column == 'coursename' && isDesc), 'fa-sort-desc': (column == 'coursename' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('fees')">
-                      Fee
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'fees', 'fa-sort-asc': (column == 'fees' && isDesc), 'fa-sort-desc': (column == 'fees' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('servicetax')">
-                      servicetax
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'servicetax', 'fa-sort-asc': (column == 'servicetax' && isDesc), 'fa-sort-desc': (column == 'servicetax' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('totalfee')">
-                      totalfee
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'totalfee', 'fa-sort-asc': (column == 'totalfee' && isDesc), 'fa-sort-desc': (column == 'totalfee' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th (click)="order('seats')">
-                      seats
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'seats', 'fa-sort-asc': (column == 'seats' && isDesc), 'fa-sort-desc': (column == 'seats' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
-                  <th>Action</th>
+        <thead>
+            <tr>
+                <th>S.no</th>
+                <th (click)="order('coursename')">
+                    Course Name
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'coursename', 'fa-sort-asc': (column == 'coursename' && isDesc), 'fa-sort-desc': (column == 'coursename' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('fees')">
+                    Fee
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'fees', 'fa-sort-asc': (column == 'fees' && isDesc), 'fa-sort-desc': (column == 'fees' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('servicetax')">
+                    servicetax
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'servicetax', 'fa-sort-asc': (column == 'servicetax' && isDesc), 'fa-sort-desc': (column == 'servicetax' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('totalfee')">
+                    totalfee
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'totalfee', 'fa-sort-asc': (column == 'totalfee' && isDesc), 'fa-sort-desc': (column == 'totalfee' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th (click)="order('seats')">
+                    seats
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'seats', 'fa-sort-asc': (column == 'seats' && isDesc), 'fa-sort-desc': (column == 'seats' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+                <th>Action</th>
 
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let data of sortedData|filter:term|orderBy: {property: column, direction: direction};let i= index;">
-                  <td>{{i+1}}</td>
-                  <td>{{data.coursename}}</td>
-                  <td>{{data.fees}}</td>
-                  <td>{{data.servicetax}}</td>
-                  <td>{{data.totalfee}}</td>
-                  <td>{{data.seats}}</td>
-                  <td>
-                      <button class="btn btn-success" (click)="editCoursedata(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
-                      <button class="btn btn-danger" (click)="deleteCoursedata(data)">Delete</button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of courseDatalist|paginate: { itemsPerPage: '2', currentPage: p, totalItems: courseDatalist.length }|filter:term|orderBy: {property: column, direction: direction};let i= index;">
+                <td>{{i+1}}</td>
+                <td>{{data.coursename}}</td>
+                <td>{{data.fees}}</td>
+                <td>{{data.servicetax}}</td>
+                <td>{{data.totalfee}}</td>
+                <td>{{data.seats}}</td>
+                <td>
+                    <button class="btn btn-success" (click)="editCoursedata(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
+                    <button class="btn btn-danger" (click)="deleteCoursedata(data)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+      <div class="pb-1 text-right">
+        <pagination-controls maxSize="4" (pageChange)="p = $event"></pagination-controls>
+      </div>
   </div>
 </div>
+
 
 <!-- End table -->
 
@@ -114,8 +113,8 @@
                               </div>
 
                               <div class="alert alert-danger" *ngIf="courseData.branch.invalid && (courseData.branch.dirty||courseData.branch.touched)">
-                                  <div *ngIf="courseData.branch.errors">
-                                      Branch Code is required(atleast 1 branch should be selected)
+                                  <div *ngIf="courseData.branch.errors?.multipleCheckboxRequireOne">
+                                      Branch is required(atleast 1 branch should be selected)
                                   </div>
                               </div>
 
@@ -129,10 +128,10 @@
                               <label class="control-label">Fees</label>
                           </div>
                           <div class="col-md-8">
-                              <input class="form-control" formControlName="fees" placeholder="Fee" (keyup)="calculateTax()">
+                              <input type="number" class="form-control" formControlName="fees" placeholder="Fee" (keyup)="calculateTax()">
                               <div class="alert alert-danger" *ngIf="courseData.fees.invalid && (courseData.fees.dirty||courseData.fees.touched)">
                                   <div *ngIf="courseData.fees.errors.required">
-                                      Branch Address is required
+                                      Fee is required
                                   </div>
                               </div>
                           </div>
@@ -177,7 +176,7 @@
                               <label class="control-label">Seats</label>
                           </div>
                           <div class="col-md-8">
-                              <input class="form-control" formControlName="seats" placeholder="seats">
+                              <input type="number" class="form-control" formControlName="seats" placeholder="seats">
                               <div class="alert alert-danger" *ngIf="courseData.seats.invalid && (courseData.seats.dirty||courseData.seats.touched)">
                                   <div *ngIf="courseData.seats.errors.required">
                                       seats is required

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
 
   <div class="add-page-tittle">
       <h3 class="add-section-heading my-3 text-secondary">Add New Course Package</h3>
@@ -76,7 +76,7 @@
                           <label class="control-label">Package Amount</label>
                       </div>
                       <div class="col-md-8">
-                          <input class="form-control" formControlName="packageAmount" placeholder="Fee" (keyup)="calculateTax()">
+                          <input type="number" class="form-control" formControlName="packageAmount" placeholder="Fee" (keyup)="calculateTax()">
                           <div class="alert alert-danger" *ngIf="packageData.packageAmount.invalid && (packageData.packageAmount.dirty||packageData.packageAmount.touched)">
                               <div *ngIf="packageData.packageAmount.errors.required">
                                   packageAmount is required

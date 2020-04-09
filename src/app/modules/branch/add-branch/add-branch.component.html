@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
 
   <div class="add-page-tittle">
       <h3 class="add-section-heading my-3 text-secondary">Add New Branch</h3>
@@ -62,10 +62,16 @@
                           <label class="control-label">Contact Number</label>
                       </div>
                       <div class="col-md-8">
-                          <input class="form-control" formControlName="branchContactNumber" placeholder="Branch Contact Number">
+                          <input type="text" class="form-control" formControlName="branchContactNumber" placeholder="Branch Contact Number">
                           <div class="alert alert-danger" *ngIf="branchData.branchContactNumber.invalid && (branchData.branchContactNumber.dirty||branchData.branchContactNumber.touched)">
-                              <div *ngIf="branchData.branchContactNumber.errors.required">
+                              <div *ngIf="branchData.branchContactNumber.errors?.required">
                                   Branch Contact Number is required
+                              </div>
+                              <div *ngIf="branchData.branchContactNumber.errors?.pattern">
+                                Branch Contact Number should be digits only
+                              </div>
+                              <div *ngIf="!branchData.branchContactNumber.errors?.pattern &&(branchData.branchContactNumber.errors?.maxlength || branchData.branchContactNumber.errors?.minlength)">
+                                Branch Contact Number should be 10 digits
                               </div>
                           </div>
                       </div>

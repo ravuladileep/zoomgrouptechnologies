@@ -1,50 +1,54 @@
-<div class="container">
+<div class="container-fluid">
   <div class="bg-white mt-5 p-2">
       <h5>List of All Role</h5>
       <hr>
-      <div class="row">
+      <div class="row p-1">
           <div class="col-md-6  p-3">
-              Show
+              <!-- Show
               <select (change)="sortData($event)">
                   <option value="all">All</option>
                   <option value="5">5</option>
                   <option value="10">10</option>
                   <option value="15">15</option>
-              </select> entries
+              </select> entries -->
           </div>
           <div class="col-md-3 ml-auto">
               <input type="text" placeholder="search" class="form-control" [(ngModel)]="term">
           </div>
+      </div>
+      <table class="table table-bordered table-striped table-hover text-center table-responsive-sm">
+        <thead>
+            <tr>
+                <th>S.no</th>
+                <th (click)="order('roleName')">
+                    Role Name
+                    <i class="fa" [ngClass]="{'fa-sort': column != 'roleName', 'fa-sort-asc': (column == 'roleName' && isDesc), 'fa-sort-desc': (column == 'roleName' && !isDesc) }" aria-hidden="true"> </i>
+                </th>
+
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of roleDatalist|paginate: { itemsPerPage: '2', currentPage: p, totalItems: roleDatalist.length }|filter:term|orderBy: {property: column, direction: direction};let i= index;">
+                <td>{{i+1}}</td>
+                <td>{{data.roleName}}</td>
+                <td>
+                    <button class="btn btn-success" (click)="editRole(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
+                    <button class="btn btn-danger" (click)="deleteRole(data)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+      <div class="pb-1 text-right">
+        <pagination-controls maxSize="4" (pageChange)="p = $event"></pagination-controls>
       </div>
   </div>
 </div>
 
 <div class="container">
   <div class="bg-white">
-      <table class="table table-bordered table-striped table-hover text-center table-responsive-sm">
-          <thead>
-              <tr>
-                  <th>S.no</th>
-                  <th (click)="order('roleName')">
-                      Role Name
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'roleName', 'fa-sort-asc': (column == 'roleName' && isDesc), 'fa-sort-desc': (column == 'roleName' && !isDesc) }" aria-hidden="true"> </i>
-                  </th>
 
-                  <th>Action</th>
-
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let data of sortedData|filter:term|orderBy: {property: column, direction: direction};let i= index;">
-                  <td>{{i+1}}</td>
-                  <td>{{data.roleName}}</td>
-                  <td>
-                      <button class="btn btn-success" (click)="editRole(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
-                      <button class="btn btn-danger" (click)="deleteRole(data)">Delete</button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
   </div>
 </div>
 

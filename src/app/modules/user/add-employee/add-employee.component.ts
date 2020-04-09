@@ -21,11 +21,11 @@ export class AddEmployeeComponent implements OnInit {
 
   public addUserForm() {
     this.userSpecificData = this.fb.group({
-      userEmail: ['', [Validators.required]],
+      userEmail: ['', [Validators.required, Validators.pattern(CommonConstants.EmailRegex)]],
       fullName: ['', [Validators.required]],
       role: [null, [Validators.required]],
       branch: [null, [Validators.required]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 

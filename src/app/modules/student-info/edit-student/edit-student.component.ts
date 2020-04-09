@@ -15,11 +15,12 @@ export class EditStudentComponent implements OnInit {
   public StudentDatalist: IStudent[] = [];
   public updateStudentForm: FormGroup;
   public updateid: any;
-  public sortedData: any;
   public term: any;
+  public p = 1;
+
 
   //  orderBy data
-  public records = this.sortedData;
+  public records = this.StudentDatalist;
   public isDesc = false;
   public column;
   public direction: number;
@@ -69,27 +70,10 @@ export class EditStudentComponent implements OnInit {
   public loadStudentdata(): void {
     this.studentService.getStudentData().subscribe(res => {
       this.StudentDatalist = res;
-      this.sortedData = [...this.StudentDatalist];
     });
   }
 
-  /**
-   * @ function : sortData
-   * @ Purpose  : sorting the Studentdata
-   * @ version  : 1.0.1
-   * @ author   : dileep_ravula
-   */
 
-  public sortData(event) {
-    this.sortedData = [...this.StudentDatalist];
-    if (event.target.value === 'all') {
-      this.sortedData = [...this.StudentDatalist];
-    }
-    if (this.sortedData.length >= event.target.value) {
-      return (this.sortedData.length = event.target.value);
-    }
-    return (this.sortedData = [...this.StudentDatalist]);
-  }
 
   /**
    * @ function : order

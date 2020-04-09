@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
 
   <div class="add-page-tittle">
       <h3 class="add-section-heading my-3 text-secondary">Add New User</h3>
@@ -16,8 +16,11 @@
                       <div class="col-md-8">
                           <input class="form-control" formControlName="userEmail" placeholder="User Email">
                           <div class="alert alert-danger" *ngIf="userData.userEmail.invalid && (userData.userEmail.dirty||userData.userEmail.touched)">
-                              <div *ngIf="userData.userEmail.errors.required">
+                              <div *ngIf="userData.userEmail.errors?.required">
                                   User Email is required
+                              </div>
+                              <div *ngIf="userData.userEmail.errors?.pattern">
+                                  Invalid Email id
                               </div>
                           </div>
                       </div>
@@ -84,10 +87,13 @@
                           <label class="control-label">Password</label>
                       </div>
                       <div class="col-md-8">
-                          <input class="form-control" formControlName="password" placeholder="password">
+                          <input type="password" class="form-control" formControlName="password" placeholder="password">
                           <div class="alert alert-danger" *ngIf="userData.password.invalid && (userData.password.dirty||userData.password.touched)">
-                              <div *ngIf="userData.password.errors.required">
+                              <div *ngIf="userData.password.errors?.required">
                                   Password is required
+                              </div>
+                              <div *ngIf="userData.password.errors?.minlength">
+                                  Password length should be minimum 6 characters
                               </div>
                           </div>
                       </div>
