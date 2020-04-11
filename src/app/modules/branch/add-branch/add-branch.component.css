@@ -8,3 +8,9 @@
   font-family: lato;
   font-weight: 300;
 }
+
+.no-gutters {
+  margin: 0;
+  padding: 0;
+  }
+

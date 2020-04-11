@@ -20,6 +20,7 @@ export class EditBranchComponent implements OnInit {
   public term: any;
   public showEntries;
   public p = 1;
+  public totalItems = [...this.branchDatalist];
 
   //  orderBy data
   public records = this.branchDatalist;
@@ -65,9 +66,14 @@ export class EditBranchComponent implements OnInit {
   public loadBranchdata(): void {
     this.branchService.getBranchData().subscribe(res => {
       this.branchDatalist = res;
+      this.showEntries = this.branchDatalist.length;
     });
   }
 
+
+  public changeCount(event): void {
+    this.showEntries = event.target.value;
+  }
 
 
   /**

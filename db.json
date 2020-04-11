@@ -8,9 +8,9 @@
       "id": 2
     },
     {
-      "branchName": "Banjara Hills",
+      "branchName": "Ameerpet",
       "branchCode": "8547",
-      "branchAddress": "Banjara Hills,Hyderabad",
+      "branchAddress": "Ameerpet,Hyderabad",
       "branchContactNumber": "8974562478",
       "id": 3
     },
@@ -27,6 +27,34 @@
       "branchAddress": "Ameerpet,Hyderabad",
       "branchContactNumber": "9874568745",
       "id": 5
+    },
+    {
+      "branchName": "Secunderabad",
+      "branchCode": "4521",
+      "branchAddress": "Hyderabad",
+      "branchContactNumber": "9874562145",
+      "id": 6
+    },
+    {
+      "branchName": "Ameerpet",
+      "branchCode": "8547",
+      "branchAddress": "Ameerpet,Hyderabad",
+      "branchContactNumber": "8974562478",
+      "id": 7
+    },
+    {
+      "branchName": "Surat",
+      "branchCode": "4578",
+      "branchAddress": "Surat,Gujarat",
+      "branchContactNumber": "9878978854",
+      "id": 8
+    },
+    {
+      "branchName": "Ameerpet",
+      "branchCode": "6587",
+      "branchAddress": "Ameerpet,Hyderabad",
+      "branchContactNumber": "9874568745",
+      "id": 9
     }
   ],
   "course": [
@@ -55,6 +83,17 @@
       "totalfee": 10030,
       "seats": "1",
       "id": 2
+    },
+    {
+      "coursename": "CCNA",
+      "branch": [
+        "Secunderabad"
+      ],
+      "fees": 52000,
+      "servicetax": 9360,
+      "totalfee": 61360,
+      "seats": 1,
+      "id": 3
     }
   ],
   "user": [
@@ -82,6 +121,19 @@
       "servicetax": 8100,
       "totalPackage": 53100,
       "id": 1
+    },
+    {
+      "packageName": "H/W Networking",
+      "courseName": [
+        "CCNA"
+      ],
+      "branch": [
+        "Dilsukh nagar"
+      ],
+      "packageAmount": 85000,
+      "servicetax": 15300,
+      "totalPackage": 100300,
+      "id": 2
     }
   ],
   "schedule": [
@@ -99,6 +151,32 @@
         "Evening"
       ],
       "id": 1
+    },
+    {
+      "courseName": "CISCO ASA Firewall + CISCO IPS",
+      "branch": [
+        "Banjara Hills",
+        "Dilsukh nagar"
+      ],
+      "startDate": "2020-04-16T06:27:50.000Z",
+      "endDate": "2020-04-29T05:22:44.000Z",
+      "batch": [
+        "Afternoon",
+        "Evening"
+      ],
+      "id": 2
+    },
+    {
+      "courseName": "CCNA",
+      "branch": [
+        "Dilsukh nagar"
+      ],
+      "startDate": "2020-04-10T06:35:32.433Z",
+      "endDate": "2020-04-22T06:35:32.000Z",
+      "batch": [
+        "Afternoon"
+      ],
+      "id": 3
     }
   ],
   "role": [

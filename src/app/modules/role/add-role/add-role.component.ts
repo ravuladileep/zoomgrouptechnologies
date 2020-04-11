@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { RoleService } from '../../../services/role/role.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { CommonConstants } from '../../../config/constants';
+import { CustomValidators } from '../../../shared/directives/checkboxmin.validator';
 
 @Component({
   selector: 'app-add-role',
@@ -28,9 +29,9 @@ export class AddRoleComponent implements OnInit {
   public roleForm(): void {
     this.addRoleSpecificForm = this.fb.group({
       roleName: ['', [Validators.required]],
-      assignFunction: this.fb.array([], minSelectedCheckboxes(1)),
-      reports: this.fb.array([], minSelectedCheckboxes(1)),
-      communication: this.fb.array([], minSelectedCheckboxes(1))
+      assignFunction: this.fb.array([], CustomValidators.multipleCheckboxRequireOne),
+      reports: this.fb.array([], CustomValidators.multipleCheckboxRequireOne),
+      communication: this.fb.array([], CustomValidators.multipleCheckboxRequireOne)
     });
 
     // async orders
@@ -132,22 +133,3 @@ export class AddRoleComponent implements OnInit {
 
 }
 
-  /**
-   * @ function : minSelectedCheckboxes
-   * @ Purpose  : validatorFn for minselected checkboxes
-   * @ version  : 1.0.1
-   * @ author   : dileep_ravula
-   */
-
-
-function minSelectedCheckboxes(min = 1) {
-  const validator: ValidatorFn = (formArray: FormArray) => {
-    const totalSelected = formArray.controls
-      .map(control => control.value)
-      .reduce((prev, next) => (next ? prev + next : prev), 0);
-
-    return totalSelected >= min ? null : { required: true };
-  };
-
-  return validator;
-}

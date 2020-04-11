@@ -108,7 +108,7 @@
                           </div>
 
                           <div class="alert alert-danger" *ngIf="packageData.courseName.invalid && (packageData.courseName.dirty||packageData.courseName.touched)">
-                              <div *ngIf="packageData.courseName.errors">
+                              <div *ngIf="packageData.courseName.errors?.multipleCheckboxRequireOne">
                                   courseName is required(atleast 1 courseName should be selected)
                               </div>
                           </div>
@@ -131,7 +131,7 @@
                           </div>
 
                           <div class="alert alert-danger" *ngIf="packageData.branch.invalid && (packageData.branch.dirty||packageData.branch.touched)">
-                              <div *ngIf="packageData.branch.errors">
+                              <div *ngIf="packageData.branch.errors?.multipleCheckboxRequireOne">
                                   Branch is required(atleast 1 branch should be selected)
                               </div>
                           </div>

@@ -16,7 +16,7 @@
                       <div class="col-md-8">
                           <input class="form-control" formControlName="packageName" placeholder="Package Name">
                           <div class="alert alert-danger" *ngIf="packageData.packageName.invalid && (packageData.packageName.dirty||packageData.packageName.touched)">
-                              <div *ngIf="packageData.packageName.errors.required">
+                              <div *ngIf="packageData.packageName.errors?.required">
                                   Course Package Name is required
                               </div>
                           </div>
@@ -38,7 +38,7 @@
                           </div>
 
                           <div class="alert alert-danger" *ngIf="packageData.courseName.invalid && (packageData.courseName.dirty||packageData.courseName.touched)">
-                              <div *ngIf="packageData.courseName.errors">
+                              <div *ngIf="packageData.courseName.errors?.multipleCheckboxRequireOne">
                                   courseName is required(atleast 1 courseName should be selected)
                               </div>
                           </div>
@@ -61,7 +61,7 @@
                           </div>
 
                           <div class="alert alert-danger" *ngIf="packageData.branch.invalid && (packageData.branch.dirty||packageData.branch.touched)">
-                              <div *ngIf="packageData.branch.errors">
+                              <div *ngIf="packageData.branch.errors?.multipleCheckboxRequireOne">
                                   Branch is required(atleast 1 branch should be selected)
                               </div>
                           </div>
@@ -78,7 +78,7 @@
                       <div class="col-md-8">
                           <input type="number" class="form-control" formControlName="packageAmount" placeholder="Fee" (keyup)="calculateTax()">
                           <div class="alert alert-danger" *ngIf="packageData.packageAmount.invalid && (packageData.packageAmount.dirty||packageData.packageAmount.touched)">
-                              <div *ngIf="packageData.packageAmount.errors.required">
+                              <div *ngIf="packageData.packageAmount.errors?.required">
                                   packageAmount is required
                               </div>
                           </div>
@@ -94,7 +94,7 @@
                       <div class="col-md-8">
                           <input class="form-control" [value]="taxValue" readonly="true" formControlName="servicetax" placeholder="Service Tax">
                           <div class="alert alert-danger" *ngIf="packageData.servicetax.invalid && (packageData.servicetax.dirty||packageData.servicetax.touched)">
-                              <div *ngIf="packageData.servicetax.errors.required">
+                              <div *ngIf="packageData.servicetax.errors?.required">
                                   servicetax is required
                               </div>
                           </div>
@@ -110,7 +110,7 @@
                       <div class="col-md-8">
                           <input class="form-control" readonly="true" [value]="totalPackage" formControlName="totalPackage" placeholder="Total Fee">
                           <div class="alert alert-danger" *ngIf="packageData.totalPackage.invalid && (packageData.totalPackage.dirty||packageData.totalPackage.touched)">
-                              <div *ngIf="packageData.totalPackage.errors.required">
+                              <div *ngIf="packageData.totalPackage.errors?.required">
                                   totalPackage is required
                               </div>
                           </div>

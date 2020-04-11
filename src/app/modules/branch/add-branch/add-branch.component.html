@@ -1,10 +1,10 @@
-<div class="container-fluid">
+<div class="container-fluid no-gutters">
 
   <div class="add-page-tittle">
-      <h3 class="add-section-heading my-3 text-secondary">Add New Branch</h3>
+      <h5 class="add-section-heading my-3 mx-3 text-secondary">Add New Branch</h5>
   </div>
 
-  <div class="bg-white py-5">
+  <div class="bg-white mx-lg-3 py-5">
       <div class="col-md-8 ">
           <form [formGroup]="branchSpecificData" (ngSubmit)="Submit()">
 
@@ -46,7 +46,8 @@
                           <label class="control-label">Branch Address</label>
                       </div>
                       <div class="col-md-8">
-                          <input class="form-control" formControlName="branchAddress" placeholder="Branch Address">
+                          <textarea class="form-control" rows="2" formControlName="branchAddress" placeholder="Branch Address">
+                          </textarea>
                           <div class="alert alert-danger" *ngIf="branchData.branchAddress.invalid && (branchData.branchAddress.dirty||branchData.branchAddress.touched)">
                               <div *ngIf="branchData.branchAddress.errors.required">
                                   Branch Address is required
@@ -62,7 +63,7 @@
                           <label class="control-label">Contact Number</label>
                       </div>
                       <div class="col-md-8">
-                          <input type="text" class="form-control" formControlName="branchContactNumber" placeholder="Branch Contact Number">
+                          <input type="text" maxlength="10" minlength="10" class="form-control" formControlName="branchContactNumber" placeholder="Branch Contact Number">
                           <div class="alert alert-danger" *ngIf="branchData.branchContactNumber.invalid && (branchData.branchContactNumber.dirty||branchData.branchContactNumber.touched)">
                               <div *ngIf="branchData.branchContactNumber.errors?.required">
                                   Branch Contact Number is required
@@ -88,3 +89,4 @@
       </div>
   </div>
 </div>
+

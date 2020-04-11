@@ -184,7 +184,7 @@
                                   <label class="control-label">Card Number :</label>
                               </div>
                               <div class="col-md-6">
-                                  <input type="text" class="form-control" placeholder="Card Number" formControlName="cardNumber">
+                                  <input type="number" class="form-control" placeholder="Card Number" formControlName="cardNumber">
                                   <div class="alert alert-danger" *ngIf="paymentData.cardNumber.invalid && (paymentData.cardNumber.dirty||paymentData.cardNumber.touched)">
                                       <div *ngIf="paymentData.cardNumber.errors.required">
                                           cardNumber is required
@@ -329,7 +329,9 @@
                               </div>
                               <div class="col-md-6">
                                   <select class="form-control" formControlName="provideDiscount">
-                                      <option value="">Select Amount</option>
+                                      <option value="" selected >Select Amount</option>
+                                      <option value="100">100</option>
+                                      <option value="500">500</option>
                                   </select>
                                   <div class="alert alert-danger" *ngIf="paymentData.provideDiscount.invalid && (paymentData.provideDiscount.dirty||paymentData.provideDiscount.touched)">
                                       <div *ngIf="paymentData.provideDiscount.errors.required">
@@ -345,7 +347,7 @@
                               <div class="col-md-6">
                               </div>
                               <div class="col-md-6">
-                                  <button type="submit" class="btn btn-success ">Submit</button>
+                                  <button type="submit" class="btn btn-success" [disabled]="paymentSpecificData.invalid" >Submit</button>
                               </div>
                           </div>
                       </div>

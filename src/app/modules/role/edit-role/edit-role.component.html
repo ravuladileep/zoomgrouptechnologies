@@ -75,7 +75,7 @@
                               <label class="control-label">Role Name</label>
                           </div>
                           <div class="col-md-8">
-                              <input class="form-control" formControlName="roleName" placeholder="Package Name">
+                              <input class="form-control" formControlName="roleName" placeholder="Role Name">
                               <div class="alert alert-danger" *ngIf="roleData.roleName.invalid && (roleData.roleName.dirty||roleData.roleName.touched)">
                                   <div *ngIf="roleData.roleName.errors.required">
                                       Role Name Name is required
@@ -99,7 +99,7 @@
                               </div>
 
                               <div class="alert alert-danger" *ngIf="roleData.assignFunction.invalid && (roleData.assignFunction.dirty||roleData.assignFunction.touched)">
-                                  <div *ngIf="roleData.assignFunction.errors">
+                                  <div *ngIf="roleData.assignFunction.errors?.multipleCheckboxRequireOne">
                                       assignFunction is required(atleast 1 assignFunction should be selected)
                                   </div>
                               </div>
@@ -122,7 +122,7 @@
                               </div>
 
                               <div class="alert alert-danger" *ngIf="roleData.reports.invalid && (roleData.reports.dirty||roleData.reports.touched)">
-                                  <div *ngIf="roleData.reports.errors">
+                                  <div *ngIf="roleData.reports.errors?.multipleCheckboxRequireOne">
                                       reports is required(atleast 1 report should be selected)
                                   </div>
                               </div>
@@ -145,7 +145,7 @@
                               </div>
 
                               <div class="alert alert-danger" *ngIf="roleData.communication.invalid && (roleData.communication.dirty||roleData.communication.touched)">
-                                  <div *ngIf="roleData.communication.errors">
+                                  <div *ngIf="roleData.communication.errors?.multipleCheckboxRequireOne">
                                       communication is required(atleast 1 communication should be selected)
                                   </div>
                               </div>

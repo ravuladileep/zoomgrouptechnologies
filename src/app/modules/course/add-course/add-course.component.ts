@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { CourseService } from '../../../services/course/course.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { CommonConstants } from '../../../config/constants';
+import { CustomValidators } from '../../../shared/directives/checkboxmin.validator';
 
 @Component({
   selector: 'app-add-course',
@@ -26,7 +27,7 @@ export class AddCourseComponent implements OnInit {
   public addCourseForm(): void {
     this.addCourseSpecificForm = this.fb.group({
       coursename: ['', [Validators.required]],
-      branch: this.fb.array([], minSelectedCheckboxes(1)),
+      branch: this.fb.array([], CustomValidators.multipleCheckboxRequireOne),
       fees: ['', [Validators.required]],
       servicetax: [''],
       totalfee: [''],
@@ -92,23 +93,4 @@ export class AddCourseComponent implements OnInit {
 
 }
 
-  /**
-   * @ function : minSelectedCheckboxes
-   * @ Purpose  : validatorFn for minselected checkboxes
-   * @ version  : 1.0.1
-   * @ author   : dileep_ravula
-   */
-
-
-function minSelectedCheckboxes(min = 1) {
-  const validator: ValidatorFn = (formArray: FormArray) => {
-    const totalSelected = formArray.controls
-      .map(control => control.value)
-      .reduce((prev, next) => (next ? prev + next : prev), 0);
-
-    return totalSelected >= min ? null : { required: true };
-  };
-
-  return validator;
-}
 

@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { ScheduleService } from '../../../services/schedule/schedule.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { CommonConstants } from '../../../config/constants';
+import { CustomValidators } from '../../../shared/directives/checkboxmin.validator';
 declare var $: any;
 
 @Component({
@@ -46,10 +47,10 @@ export class EditcourseScheduleComponent implements OnInit {
   public scheduleForm(): void {
     this.updateScheduleSpecificForm = this.fb.group({
       courseName: ['', [Validators.required]],
-      branch: this.fb.array([]),
+      branch: this.fb.array([], CustomValidators.multipleCheckboxRequireOne),
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
-      batch: this.fb.array([])
+      batch: this.fb.array([], CustomValidators.multipleCheckboxRequireOne)
     });
 
         // async orders
@@ -212,21 +213,3 @@ export class EditcourseScheduleComponent implements OnInit {
 }
 
 
-  /**
-   * @ function : minSelectedCheckboxes
-   * @ Purpose  : validatorFn for minselected checkboxes
-   * @ version  : 1.0.1
-   * @ author   : dileep_ravula
-   */
-
-function minSelectedCheckboxes(min = 1) {
-      const validator: ValidatorFn = (formArray: FormArray) => {
-        const totalSelected = formArray.controls
-          .map(control => control.value)
-          .reduce((prev, next) => next ? prev + next : prev, 0);
-
-        return totalSelected >= min ? null : { required: true };
-      };
-
-      return validator;
-}

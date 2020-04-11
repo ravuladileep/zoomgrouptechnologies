@@ -15,7 +15,7 @@
                       </div>
                       <div class="col-md-8">
                           <select class="form-control" formControlName="courseName" placeholder="Course Name">
-                              <option value="null" selected readonly>Select Course</option>
+                              <option value="null" selected disabled>Select Course</option>
                               <option *ngFor="let data of coursesDataarr" [value]="data">{{data}}</option>
                           </select>
                           <div class="alert alert-danger" *ngIf="scheduleData.courseName.invalid && (scheduleData.courseName.dirty||scheduleData.courseName.touched)">
@@ -41,7 +41,7 @@
                           </div>
 
                           <div class="alert alert-danger" *ngIf="scheduleData.branch.invalid && (scheduleData.branch.dirty||scheduleData.branch.touched)">
-                              <div *ngIf="scheduleData.branch.errors">
+                              <div *ngIf="scheduleData.branch.errors?.multipleCheckboxRequireOne">
                                   Branch is required(atleast 1 branch should be selected)
                               </div>
                           </div>
@@ -112,7 +112,7 @@
                           </div>
 
                           <div class="alert alert-danger" *ngIf="scheduleData.batch.invalid && (scheduleData.batch.dirty||scheduleData.batch.touched)">
-                              <div *ngIf="scheduleData.batch.errors">
+                              <div *ngIf="scheduleData.batch.errors?.multipleCheckboxRequireOne">
                                   Batch is required(atleast 1 batch should be selected)
                               </div>
                           </div>

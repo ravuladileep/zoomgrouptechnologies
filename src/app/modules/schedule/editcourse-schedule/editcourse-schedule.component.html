@@ -112,7 +112,7 @@
                               </div>
 
                               <div class="alert alert-danger" *ngIf="scheduleData.branch.invalid && (scheduleData.branch.dirty||scheduleData.branch.touched)">
-                                  <div *ngIf="scheduleData.branch.errors">
+                                  <div *ngIf="scheduleData.branch.errors?.multipleCheckboxRequireOne">
                                       Branch Code is required(atleast 1 branch should be selected)
                                   </div>
                               </div>
@@ -183,7 +183,7 @@
                               </div>
 
                               <div class="alert alert-danger" *ngIf="scheduleData.batch.invalid && (scheduleData.batch.dirty||scheduleData.batch.touched)">
-                                  <div *ngIf="scheduleData.batch.errors">
+                                  <div *ngIf="scheduleData.batch.errors?.multipleCheckboxRequireOne">
                                       Batch is required(atleast 1 batch should be selected)
                                   </div>
                               </div>

@@ -1,18 +1,20 @@
 <div class="container-fluid">
+
+
+
   <div class="bg-white  mt-5 p-2">
       <h5>List of All Branch</h5>
       <hr>
-      <div class="row p-1">
+      <div class="row ">
           <div class="col-md-6  p-3">
-            <!-- <form>
               Show
-              <select [(ngModel)]="showEntries"  name="showEntries">
-                  <option [value]="totalItems">All</option>
-                  <option [value]="2">2</option>
-                  <option [value]="10">10</option>
-                  <option [value]="15">15</option>
-              </select>{{showEntries}} entries
-              </form> -->
+              <select (change)="changeCount($event)" name="show">
+                  <option selected="selected" [value] ="branchDatalist.length">All</option>
+                  <option value="2">2</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+              </select> entries
+
           </div>
           <div class="col-md-3 ml-auto">
               <input type="text" placeholder="search" class="form-control" [(ngModel)]="term">
@@ -44,7 +46,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let data of branchDatalist| paginate: { itemsPerPage: '2', currentPage: p, totalItems: branchDatalist.length }|filter:term|orderBy: {property: column, direction: direction};let i= index;">
+            <tr *ngFor="let data of branchDatalist| paginate: { itemsPerPage: showEntries, currentPage: p, totalItems: branchDatalist.length }|filter:term|orderBy: {property: column, direction: direction};let i= index;">
                 <td>{{i+1}}</td>
                 <td>{{data.branchName}}</td>
                 <td>{{data.branchCode}}</td>
@@ -58,7 +60,7 @@
         </tbody>
     </table>
     <div class="pb-1 text-right">
-      <pagination-controls maxSize="4" (pageChange)="p = $event"></pagination-controls>
+      <pagination-controls  (pageChange)="p = $event"></pagination-controls>
     </div>
 
   </div>
@@ -117,7 +119,8 @@
                               <label class="control-label">Branch Address</label>
                           </div>
                           <div class="col-md-8">
-                              <input class="form-control" formControlName="branchAddress" placeholder="Branch Address">
+                              <textarea class="form-control" rows="2" formControlName="branchAddress" placeholder="Branch Address">
+                              </textarea>
                               <div class="alert alert-danger" *ngIf="branchData.branchAddress.invalid && (branchData.branchAddress.dirty||branchData.branchAddress.touched)">
                                   <div *ngIf="branchData.branchAddress.errors.required">
                                       Branch Address is required
@@ -132,7 +135,7 @@
                               <label class="control-label">Contact Number</label>
                           </div>
                           <div class="col-md-8">
-                              <input type ="text" class="form-control" formControlName="branchContactNumber" placeholder="Branch Contact Number">
+                              <input type="text" maxlength="10" minlength="10" class="form-control" formControlName="branchContactNumber" placeholder="Branch Contact Number">
                               <div class="alert alert-danger" *ngIf="branchData.branchContactNumber.invalid && (branchData.branchContactNumber.dirty||branchData.branchContactNumber.touched)">
                                   <div *ngIf="branchData.branchContactNumber.errors?.required">
                                       Branch Contact Number is required
