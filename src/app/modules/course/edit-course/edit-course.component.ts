@@ -22,6 +22,7 @@ export class EditCourseComponent implements OnInit {
   public branchesDataarr = [...CommonConstants.branchesDataarr];
   public branchesData = [];
   public term: any;
+  public showEntries;
   public p = 1;
 
   //  orderBy data
@@ -103,9 +104,22 @@ export class EditCourseComponent implements OnInit {
   public loadCourseData(): void {
     this.courseService.getCourseData().subscribe(res => {
       this.courseDatalist = res;
+      this.showEntries = this.courseDatalist.length;
     });
   }
 
+
+  /**
+   * @ function : changeCount
+   * @ Purpose  : items per page
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
+
+  public changeCount(event): void {
+    this.p = 1;
+    this.showEntries = event.target.value;
+  }
 
 
   /**

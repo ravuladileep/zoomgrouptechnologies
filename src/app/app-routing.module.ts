@@ -23,6 +23,19 @@ import { AddStudentComponent } from './modules/student-info/add-student/add-stud
 import { EditStudentComponent } from './modules/student-info/edit-student/edit-student.component';
 import { SearchStudentComponent } from './modules/student-info/search-student/search-student.component';
 import { StudentImageUploadComponent } from './modules/student-info/student-image-upload/student-image-upload.component';
+import { CounsellorReportComponent } from './modules/reports/counsellor-report/counsellor-report.component';
+import { TotalAdmissionReportComponent } from './modules/reports/total-admission-report/total-admission-report.component';
+import { PaymentReportComponent } from './modules/reports/payment-report/payment-report.component';
+import { PaymentStatusComponent } from './modules/reports/payment-status/payment-status.component';
+import { StudentNotEnrolledReportComponent } from './modules/reports/student-not-enrolled-report/student-not-enrolled-report.component';
+import { StudentEnrolledReportComponent } from './modules/reports/student-enrolled-report/student-enrolled-report.component';
+import { AccountantReportComponent } from './modules/reports/accountant-report/accountant-report.component';
+import { ReceiptStatusComponent } from './modules/reports/receipt-status/receipt-status.component';
+import { CancelReceiptComponent } from './modules/reports/cancel-receipt/cancel-receipt.component';
+import { PrintCertificateComponent } from './modules/print/print-certificate/print-certificate.component';
+import { PrintReceiptComponent } from './modules/print/print-receipt/print-receipt.component';
+import { GenerateIdcardComponent } from './modules/print/generate-idcard/generate-idcard.component';
+import { AttendanceSheetComponent } from './modules/print/attendance-sheet/attendance-sheet.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -50,8 +63,20 @@ const routes: Routes = [
       { path: 'add_student_details', component: AddStudentComponent},
       { path: 'edit_student_details', component: EditStudentComponent},
       { path: 'search_student', component: SearchStudentComponent},
-      { path: 'image_upload', component: StudentImageUploadComponent}
-
+      { path: 'image_upload', component: StudentImageUploadComponent},
+      { path: 'counsellor_report', component: CounsellorReportComponent},
+      { path: 'total_admission_report', component: TotalAdmissionReportComponent},
+      { path: 'payment_report', component: PaymentReportComponent},
+      { path: 'payment_status', component: PaymentStatusComponent},
+      { path: 'student_not_enrolled_report', component: StudentNotEnrolledReportComponent},
+      { path: 'accountant_report', component: AccountantReportComponent},
+      { path: 'receipt_status', component: ReceiptStatusComponent},
+      { path: 'student_enrolled_report', component: StudentEnrolledReportComponent},
+      { path: 'cancel_receipt', component: CancelReceiptComponent},
+      { path: 'print_certificate', component: PrintCertificateComponent},
+      { path: 'print_receipt', component: PrintReceiptComponent},
+      { path: 'generate_idcard', component: GenerateIdcardComponent},
+      { path: 'attendance_sheet', component: AttendanceSheetComponent}
     ]
   },
   {path: '**', component: NotFoundComponent}

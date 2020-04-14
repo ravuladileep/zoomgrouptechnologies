@@ -4,13 +4,13 @@
       <hr>
       <div class="row p-1">
           <div class="col-md-6  p-3">
-              <!-- Show
-              <select (change)="sortData($event)">
-                  <option value="all">All</option>
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-              </select> entries -->
+            Show
+            <select (change)="changeCount($event)" name="show">
+                <option selected="selected" [value] ="userDatalist.length">All</option>
+                <option [ngValue]="5">5</option>
+                <option [ngValue]="10">10</option>
+                <option [ngValue]="15">15</option>
+            </select> entries
           </div>
           <div class="col-md-3 ml-auto">
               <input type="text" placeholder="search" class="form-control" [(ngModel)]="term">
@@ -41,7 +41,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let data of userDatalist|paginate: { itemsPerPage: '2', currentPage: p, totalItems: userDatalist.length }|filter:term|orderBy: {property: column, direction: direction};let i= index;">
+            <tr *ngFor="let data of userDatalist|paginate: { itemsPerPage: showEntries, currentPage: p, totalItems: userDatalist.length }|filter:term|orderBy: {property: column, direction: direction};let i= index;">
                 <td>{{i+1}}</td>
                 <td>{{data.userEmail}}</td>
                 <td>{{data.fullName}}</td>

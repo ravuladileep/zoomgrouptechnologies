@@ -1,0 +1,73 @@
+<div class="container-fluid">
+
+  <div class="add-page-tittle">
+      <h5 class="add-section-heading my-3 text-center text-secondary">Not Enrolled Student Report</h5>
+  </div>
+
+  <div class="bg-white py-5">
+      <div class="col-md-8 ">
+          <form [formGroup]="studentNotenroll" (ngSubmit)="submit()">
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Start Date</label>
+                      </div>
+                      <div class="col-md-5">
+                          <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Start Date" #dp1="bsDatepicker" bsDatepicker formControlName="startDate" [bsConfig]="{ adaptivePosition: true }" aria-describedby="basic-addon2">
+                              <div class="input-group-append">
+                                  <span class="input-group-text" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen" id="basic-addon2"><i class="fas fa-calendar-alt"></i></span>
+                              </div>
+                          </div>
+                          <div class="alert alert-danger" *ngIf="notEnrollData.startDate.invalid && (notEnrollData.startDate.dirty||notEnrollData.startDate.touched)">
+                              <div *ngIf="notEnrollData.startDate.errors.required">
+                                  Start date is required
+                              </div>
+                              <div *ngIf="!notEnrollData.startDate.errors.required && notEnrollData.startDate.invalid">
+                                  Start date is invalid
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">End Date</label>
+                      </div>
+                      <div class="col-md-5">
+                          <div class="input-group mb-3">
+                              <input type="text" class="form-control" #dp2="bsDatepicker" bsDatepicker formControlName="startDate" [bsConfig]="{ adaptivePosition: true }" placeholder="End Date" formControlName="endDate" aria-describedby="enddate">
+                              <div class="input-group-append">
+                                  <span class="input-group-text" (click)="dp2.toggle()" [attr.aria-expanded]="dp2.isOpen" id="enddate"><i class="fas fa-calendar-alt"></i></span>
+                              </div>
+                          </div>
+                          <div class="alert alert-danger" *ngIf="notEnrollData.endDate.invalid && (notEnrollData.endDate.dirty||notEnrollData.endDate.touched)">
+                              <div *ngIf="notEnrollData.endDate.errors.required">
+                                  End date is required
+                              </div>
+                              <div *ngIf="!notEnrollData.endDate.errors.required && notEnrollData.endDate.invalid">
+                                End date is invalid
+                             </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+
+                  </div>
+                  <div class="col-md-5">
+                    <button type="submit" class="btn btn-primary col-md-12" [disabled]="!studentNotenroll.valid ">Submit</button>
+                  </div>
+                </div>
+              </div>
+
+          </form>
+      </div>
+  </div>
+</div>

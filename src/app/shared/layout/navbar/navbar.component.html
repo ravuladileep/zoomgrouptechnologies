@@ -111,9 +111,19 @@
                   <br> Reports
               </a>
               <div class="dropdown-menu">
-                  <a class="dropdown-item" href = "javascript:void(0)">Add</a>
-                  <a class="dropdown-item" href = "javascript:void(0)">Edit</a>
-              </div>
+                  <a class="dropdown-item" href = "javascript:void(0)">Details of students registered Report</a>
+                  <a class="dropdown-item" [routerLink]="['counsellor_report']" routerLinkActive="router-link-active" >Counsellor Report</a>
+                  <a class="dropdown-item" [routerLink]="['total_admission_report']" routerLinkActive="router-link-active" >Total Admission Report</a>
+                  <a class="dropdown-item" [routerLink]="['payment_report']" routerLinkActive="router-link-active" >Payment Report</a>
+                  <a class="dropdown-item" [routerLink]="['payment_status']" routerLinkActive="router-link-active" >Payment Status</a>
+                  <a class="dropdown-item" [routerLink]="['student_not_enrolled_report']" routerLinkActive="router-link-active" >Student Not Enrolled Report</a>
+                  <a class="dropdown-item" [routerLink]="['accountant_report']" routerLinkActive="router-link-active" >Accountant Report</a>
+                  <a class="dropdown-item" [routerLink]="['/dashboard']" routerLinkActive="router-link-active" >Course Specific Report</a>
+                  <a class="dropdown-item" [routerLink]="['receipt_status']" routerLinkActive="router-link-active" >Receipt Status</a>
+                  <a class="dropdown-item" href = "javascript:void(0)">Deleted Student</a>
+                  <a class="dropdown-item" [routerLink]="['student_enrolled_report']" routerLinkActive="router-link-active" >Student Enrolled Report</a>
+                  <a class="dropdown-item" [routerLink]="['cancel_receipt']" routerLinkActive="router-link-active" >Cancel Receipt</a>
+                </div>
           </li>
 
           <li class="nav-item dropdown text-center">
@@ -122,8 +132,10 @@
                   <br> Print
               </a>
               <div class="dropdown-menu">
-                  <a class="dropdown-item" href = "javascript:void(0)">Add</a>
-                  <a class="dropdown-item" href = "javascript:void(0)">Edit</a>
+                  <a class="dropdown-item" [routerLink]="['print_certificate']" routerLinkActive="router-link-active" >Print Certificate</a>
+                  <a class="dropdown-item" [routerLink]="['print_receipt']" routerLinkActive="router-link-active" >Print Fee Receipt</a>
+                  <a class="dropdown-item" [routerLink]="['generate_idcard']" routerLinkActive="router-link-active" >Generate ID Card</a>
+                  <a class="dropdown-item" [routerLink]="['attendance_sheet']" routerLinkActive="router-link-active" >Attendance Sheet</a>
               </div>
           </li>
       </ul>

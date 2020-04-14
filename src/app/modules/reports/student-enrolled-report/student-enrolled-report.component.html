@@ -1,0 +1,173 @@
+<div class="container-fluid">
+
+  <div class="add-page-tittle">
+    <h5 class="add-section-heading my-3 text-center text-secondary">Student Enrolled Report</h5>
+  </div>
+
+  <div class="bg-white py-5">
+    <div class="col-md-8 ">
+      <form [formGroup]="studentEnrolled" (ngSubmit)="submit()">
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="control-label">Start Date</label>
+            </div>
+            <div class="col-md-5">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Start Date" #dp1="bsDatepicker" bsDatepicker
+                  formControlName="startDate" [bsConfig]="{ adaptivePosition: true }" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <span class="input-group-text" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen"
+                    id="basic-addon2"><i class="fas fa-calendar-alt"></i></span>
+                </div>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="enrolledData.startDate.invalid && (enrolledData.startDate.dirty||enrolledData.startDate.touched)">
+                <div *ngIf="enrolledData.startDate.errors.required">
+                  Start date is required
+                </div>
+                <div *ngIf="!enrolledData.startDate.errors.required && enrolledData.startDate.invalid">
+                  Start date is invalid
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="control-label">End Date</label>
+            </div>
+            <div class="col-md-5">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" #dp2="bsDatepicker" bsDatepicker formControlName="startDate"
+                  [bsConfig]="{ adaptivePosition: true }" placeholder="End Date" formControlName="endDate"
+                  aria-describedby="enddate">
+                <div class="input-group-append">
+                  <span class="input-group-text" (click)="dp2.toggle()" [attr.aria-expanded]="dp2.isOpen"
+                    id="enddate"><i class="fas fa-calendar-alt"></i></span>
+                </div>
+              </div>
+              <div class="alert alert-danger"
+                *ngIf="enrolledData.endDate.invalid && (enrolledData.endDate.dirty||enrolledData.endDate.touched)">
+                <div *ngIf="enrolledData.endDate.errors.required">
+                  End date is required
+                </div>
+                <div *ngIf="!enrolledData.endDate.errors.required && enrolledData.endDate.invalid">
+                  End date is invalid
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="control-label">Select Branch</label>
+            </div>
+            <div class="col-md-5">
+              <select type="text" class="form-control" formControlName="startDate">
+                <option value="">Select Branch</option>
+              </select>
+              <!-- <div class="alert alert-danger"
+                *ngIf="enrolledData.startDate.invalid && (enrolledData.startDate.dirty||enrolledData.startDate.touched)">
+                <div *ngIf="enrolledData.startDate.errors.required">
+                  Start date is required
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="control-label">Select Course</label>
+            </div>
+            <div class="col-md-5">
+              <select type="text" class="form-control" formControlName="startDate">
+                <option value="">Select Branch</option>
+              </select>
+              <!-- <div class="alert alert-danger"
+                *ngIf="enrolledData.startDate.invalid && (enrolledData.startDate.dirty||enrolledData.startDate.touched)">
+                <div *ngIf="enrolledData.startDate.errors.required">
+                  Start date is required
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="control-label">Select Package</label>
+            </div>
+            <div class="col-md-5">
+              <select type="text" class="form-control" formControlName="startDate">
+                <option value="">Select Branch</option>
+              </select>
+              <!-- <div class="alert alert-danger"
+                *ngIf="enrolledData.startDate.invalid && (enrolledData.startDate.dirty||enrolledData.startDate.touched)">
+                <div *ngIf="enrolledData.startDate.errors.required">
+                  Start date is required
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="control-label">Payment</label>
+            </div>
+            <div class="col-md-5">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline1" formControlName="paymentOptions" value="part" name="paymentOptions" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline1">Part Paid</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" formControlName="paymentOptions" value="full" name="paymentOptions" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline2">Full Paid</label>
+            </div>
+              <!-- <div class="alert alert-danger"
+                *ngIf="enrolledData.startDate.invalid && (enrolledData.startDate.dirty||enrolledData.startDate.touched)">
+                <div *ngIf="enrolledData.startDate.errors.required">
+                  Start date is required
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-5">
+              <button type="submit" class="btn btn-primary col-md-12" [disabled]="!studentEnrolled.valid ">Submit</button>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <!-- <table class="table col-md-10 mx-auto table-bordered table-striped table-hover text-center table-responsive-sm">
+          <thead>
+            <tr>
+              <th>Branch Name</th>
+              <th>Counsellor Name</th>
+              <th>Date</th>
+              <th>Walkin</th>
+              <th>Joined</th>
+              <th>Not Joined</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+      </table> -->
+  </div>
+</div>

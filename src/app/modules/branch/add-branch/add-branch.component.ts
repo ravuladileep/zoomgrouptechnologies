@@ -4,19 +4,22 @@ import { Validators } from '@angular/forms';
 import { BranchService } from '../../../services/branch/branch.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { CommonConstants } from '../../../config/constants';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-branch',
   templateUrl: './add-branch.component.html',
-  styleUrls: ['./add-branch.component.css']
+  styleUrls: ['./add-branch.component.css'],
 })
 export class AddBranchComponent implements OnInit {
   public branchSpecificData: FormGroup;
 
-  constructor(private fb: FormBuilder, private branchService: BranchService, private toaster: ToasterService) {
+  constructor(private fb: FormBuilder, private branchService: BranchService, private toaster: ToasterService, private http: HttpClient) {
     this.addbranchform();
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   public addbranchform() {
     this.branchSpecificData = this.fb.group({
@@ -33,6 +36,7 @@ export class AddBranchComponent implements OnInit {
   get branchData() {
     return this.branchSpecificData.controls;
   }
+
 
   /**
    * @ function : Submit()

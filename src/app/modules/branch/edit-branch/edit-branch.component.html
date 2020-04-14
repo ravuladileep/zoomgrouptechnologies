@@ -10,14 +10,14 @@
               Show
               <select (change)="changeCount($event)" name="show">
                   <option selected="selected" [value] ="branchDatalist.length">All</option>
-                  <option value="2">2</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
+                  <option [ngValue]="5">5</option>
+                  <option [ngValue]="10">10</option>
+                  <option [ngValue]="15">15</option>
               </select> entries
 
           </div>
           <div class="col-md-3 ml-auto">
-              <input type="text" placeholder="search" class="form-control" [(ngModel)]="term">
+              <input type="search" placeholder="search" class="form-control" [(ngModel)]="term">
           </div>
       </div>
 

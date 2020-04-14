@@ -45,10 +45,15 @@ export class EditBranchComponent implements OnInit {
       branchName: ['', [Validators.required]],
       branchCode: ['', [Validators.required]],
       branchAddress: ['', [Validators.required]],
-      branchContactNumber: ['', [Validators.required,
-                                Validators.pattern(CommonConstants.AllowOnlyNumberRegex),
-                                Validators.maxLength(10),
-                                Validators.minLength(10)]]
+      branchContactNumber: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(CommonConstants.AllowOnlyNumberRegex),
+          Validators.maxLength(10),
+          Validators.minLength(10),
+        ],
+      ],
     });
   }
 
@@ -70,8 +75,15 @@ export class EditBranchComponent implements OnInit {
     });
   }
 
+  /**
+   * @ function : changeCount
+   * @ Purpose  : items per page
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
 
   public changeCount(event): void {
+    this.p = 1;
     this.showEntries = event.target.value;
   }
 

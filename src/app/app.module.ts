@@ -47,6 +47,19 @@ import { CoursePackageService } from './services/course-package/course-package.s
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ScheduleService } from './services/schedule/schedule.service';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { CounsellorReportComponent } from './modules/reports/counsellor-report/counsellor-report.component';
+import { TotalAdmissionReportComponent } from './modules/reports/total-admission-report/total-admission-report.component';
+import { PaymentReportComponent } from './modules/reports/payment-report/payment-report.component';
+import { PaymentStatusComponent } from './modules/reports/payment-status/payment-status.component';
+import { StudentNotEnrolledReportComponent } from './modules/reports/student-not-enrolled-report/student-not-enrolled-report.component';
+import { StudentEnrolledReportComponent } from './modules/reports/student-enrolled-report/student-enrolled-report.component';
+import { AccountantReportComponent } from './modules/reports/accountant-report/accountant-report.component';
+import { ReceiptStatusComponent } from './modules/reports/receipt-status/receipt-status.component';
+import { CancelReceiptComponent } from './modules/reports/cancel-receipt/cancel-receipt.component';
+import { PrintCertificateComponent } from './modules/print/print-certificate/print-certificate.component';
+import { PrintReceiptComponent } from './modules/print/print-receipt/print-receipt.component';
+import { GenerateIdcardComponent } from './modules/print/generate-idcard/generate-idcard.component';
+import { AttendanceSheetComponent } from './modules/print/attendance-sheet/attendance-sheet.component';
 // import { PaginationModule } from 'ngx-bootstrap';
 
 @NgModule({
@@ -77,7 +90,20 @@ import {NgxPaginationModule} from 'ngx-pagination';
     SearchStudentComponent,
     StudentImageUploadComponent,
     OrderByPipe,
-    CameraComponent
+    CameraComponent,
+    CounsellorReportComponent,
+    TotalAdmissionReportComponent,
+    PaymentReportComponent,
+    PaymentStatusComponent,
+    StudentNotEnrolledReportComponent,
+    StudentEnrolledReportComponent,
+    AccountantReportComponent,
+    ReceiptStatusComponent,
+    CancelReceiptComponent,
+    PrintCertificateComponent,
+    PrintReceiptComponent,
+    GenerateIdcardComponent,
+    AttendanceSheetComponent
   ],
   imports: [
     BrowserModule,

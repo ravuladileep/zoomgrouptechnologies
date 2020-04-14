@@ -21,6 +21,7 @@ export class EditEmployeeComponent implements OnInit {
   public updateuserSpecificData: FormGroup;
   public updateid: any;
   public term: any;
+  public showEntries;
   public p = 1;
 
   //  orderBy data
@@ -65,8 +66,23 @@ export class EditEmployeeComponent implements OnInit {
   public loadUserData(): void {
     this.userService.getuserData().subscribe(res => {
       this.userDatalist = res;
+      this.showEntries = this.userDatalist.length;
     });
   }
+
+
+  /**
+   * @ function : changeCount
+   * @ Purpose  : items per page
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
+
+  public changeCount(event): void {
+    this.p = 1;
+    this.showEntries = event.target.value;
+  }
+
 
 
 

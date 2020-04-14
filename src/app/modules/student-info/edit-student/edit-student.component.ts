@@ -16,6 +16,7 @@ export class EditStudentComponent implements OnInit {
   public updateStudentForm: FormGroup;
   public updateid: any;
   public term: any;
+  public showEntries;
   public p = 1;
 
 
@@ -70,8 +71,22 @@ export class EditStudentComponent implements OnInit {
   public loadStudentdata(): void {
     this.studentService.getStudentData().subscribe(res => {
       this.StudentDatalist = res;
+      this.showEntries = this.StudentDatalist.length;
     });
   }
+
+  /**
+   * @ function : changeCount
+   * @ Purpose  : items per page
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
+
+  public changeCount(event): void {
+    this.p = 1;
+    this.showEntries = event.target.value;
+  }
+
 
 
 

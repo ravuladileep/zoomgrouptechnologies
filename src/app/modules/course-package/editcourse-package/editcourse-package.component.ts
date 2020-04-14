@@ -23,6 +23,7 @@ export class EditcoursePackageComponent implements OnInit {
   public branchesData = [];
   public coursesData = [];
   public term: any;
+  public showEntries;
   public p = 1;
 
   //  orderBy data
@@ -119,7 +120,20 @@ export class EditcoursePackageComponent implements OnInit {
   public loadCoursePackageData(): void {
     this.coursePackage.getCourseDataPackage().subscribe(res => {
       this.coursePackageDatalist = res;
+      this.showEntries = this.coursePackageDatalist.length;
     });
+  }
+
+  /**
+   * @ function : changeCount
+   * @ Purpose  : items per page
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
+
+  public changeCount(event): void {
+    this.p = 1;
+    this.showEntries = event.target.value;
   }
 
 

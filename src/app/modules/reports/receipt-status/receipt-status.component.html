@@ -1,0 +1,39 @@
+<div class="container-fluid">
+
+  <div class="add-page-tittle">
+      <h5 class="add-section-heading my-3 text-center text-secondary">Receipt Number</h5>
+  </div>
+
+  <div class="bg-white py-5" >
+      <div class="col-md-8">
+          <form [formGroup]="receiptStatus" (ngSubmit)="Submit()">
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-2">
+                          <label class="control-label">Receipt No:</label>
+                      </div>
+                      <div class="col-md-6">
+                          <input class="form-control" formControlName="studentId" placeholder="Receipt No : AM-101">
+                          <div class="alert alert-danger" *ngIf="receiptData.studentId.invalid && (receiptData.studentId.dirty||receiptData.studentId.touched)">
+                              <div *ngIf="receiptData.studentId.errors.required">
+                                  StudentId is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary col-md-12" [disabled]="!receiptStatus.valid ">Submit</button>
+                  </div>
+                </div>
+              </div>
+
+          </form>
+      </div>
+  </div>
+</div>

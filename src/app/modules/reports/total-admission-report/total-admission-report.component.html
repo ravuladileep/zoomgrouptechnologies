@@ -1,0 +1,104 @@
+<div class="container-fluid">
+  <h5 class="text-center text-center text-secondary my-2">Admission Report</h5>
+    <div class=" bg-white p-3">
+      <h5>Search Student</h5>
+      <hr>
+      <form [formGroup]="admissionReport"  (ngSubmit)="submit()">
+
+          <div class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="control-label">Report:</label>
+                </div>
+                <div class="col-md-8">
+
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="name" formControlName="report"  value="mixCombination" name="report" class="custom-control-input">
+                        <label class="custom-control-label" for="name">Mix Combination</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="phone" formControlName="report"  value="dayWise" name="report" class="custom-control-input">
+                        <label class="custom-control-label" for="phone">Day wise</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="email" formControlName="report"  value="monthWise" name="report" class="custom-control-input">
+                      <label class="custom-control-label" for="email">Month wise</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="course" formControlName="report"  value="branch" name="report" class="custom-control-input">
+                        <label class="custom-control-label" for="course">Branch</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="studentId" formControlName="report"  value="course" name="report" class="custom-control-input">
+                      <label class="custom-control-label" for="studentId">Course</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="studentId" formControlName="report"  value="coursePackage" name="report" class="custom-control-input">
+                      <label class="custom-control-label" for="studentId">Course Package</label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+              <div class="col-md-2">
+                    <label class="control-label">Details:</label>
+              </div>
+              <div class="col-md-4" *ngIf="admissionData.report.value === 'name'">
+                  <input class="form-control" formControlName="name" placeholder="Name">
+                  <!-- <div class="alert alert-danger" *ngIf="admissionData.name.invalid && (admissionData.name.dirty||admissionData.name.touched)">
+                      <div *ngIf="admissionData.name.errors.required">
+                           Name is required
+                      </div>
+                  </div> -->
+              </div>
+
+              <div class="col-md-4" *ngIf="admissionData.report.value === 'phone'">
+                <input class="form-control" formControlName="phone" placeholder="phone">
+                <!-- <div class="alert alert-danger" *ngIf="admissionData.name.invalid && (admissionData.name.dirty||admissionData.name.touched)">
+                    <div *ngIf="admissionData.name.errors.required">
+                         Name is required
+                    </div>
+                </div> -->
+              </div>
+
+              <div class="col-md-4" *ngIf="admissionData.report.value === 'email'">
+                <input class="form-control" formControlName="email" placeholder="Email">
+                <!-- <div class="alert alert-danger" *ngIf="admissionData.name.invalid && (admissionData.name.dirty||admissionData.name.touched)">
+                    <div *ngIf="admissionData.name.errors.required">
+                         Name is required
+                    </div>
+                </div> -->
+              </div>
+
+              <div class="col-md-4" *ngIf="admissionData.report.value === 'course'">
+                <input class="form-control" formControlName="course" placeholder="course">
+                <!-- <div class="alert alert-danger" *ngIf="admissionData.name.invalid && (admissionData.name.dirty||admissionData.name.touched)">
+                    <div *ngIf="admissionData.name.errors.required">
+                         Name is required
+                    </div>
+                </div> -->
+              </div>
+
+              <div class="col-md-4" *ngIf="admissionData.report.value === 'studentId'">
+                <input class="form-control" formControlName="studentId" placeholder="studentId">
+                <!-- <div class="alert alert-danger" *ngIf="admissionData.name.invalid && (admissionData.name.dirty||admissionData.name.touched)">
+                    <div *ngIf="admissionData.name.errors.required">
+                         Name is required
+                    </div>
+                </div> -->
+              </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-warning text-white" (click)="resetForm()">Reset</button>&nbsp;
+          <button class="btn btn-primary " type="submit">Submit</button>
+        </div>
+
+      </form>
+    </div>
+</div>

@@ -23,6 +23,7 @@ export class EditcourseScheduleComponent implements OnInit {
   public branchesData = [];
   public batchesData = [];
   public term: any;
+  public showEntries;
   public p = 1;
 
 
@@ -107,8 +108,22 @@ export class EditcourseScheduleComponent implements OnInit {
   public loadScheduleData(): void {
     this.scheduleService.getScheduleData().subscribe(res => {
       this.coursePackageDatalist = res;
+      this.showEntries = this.coursePackageDatalist.length;
     });
   }
+
+  /**
+   * @ function : changeCount
+   * @ Purpose  : items per page
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
+
+  public changeCount(event): void {
+    this.p = 1;
+    this.showEntries = event.target.value;
+  }
+
 
 
 

@@ -24,6 +24,7 @@ export class EditRoleComponent implements OnInit {
   public reportsData = [];
   public communicationData = [];
   public term: any;
+  public showEntries;
   public p = 1;
 
 
@@ -126,8 +127,23 @@ export class EditRoleComponent implements OnInit {
   public loadRoleData(): void {
     this.roleService.getRoleData().subscribe(res => {
       this.roleDatalist = res;
+      this.showEntries = this.roleDatalist.length;
     });
   }
+
+  /**
+   * @ function : changeCount
+   * @ Purpose  : items per page
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
+
+  public changeCount(event): void {
+    this.p = 1;
+    this.showEntries = event.target.value;
+  }
+
+
 
 
   /**
