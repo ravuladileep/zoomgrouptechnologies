@@ -5,7 +5,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { IRole } from '../../entities/role.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RoleService {
   public roleUrl = 'http://localhost:3000/role/';

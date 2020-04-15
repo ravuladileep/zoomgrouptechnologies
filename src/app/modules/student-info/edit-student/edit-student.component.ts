@@ -8,7 +8,7 @@ declare var $: any;
 @Component({
   selector: 'app-edit-student',
   templateUrl: './edit-student.component.html',
-  styleUrls: ['./edit-student.component.css']
+  styleUrls: ['./edit-student.component.css'],
 })
 export class EditStudentComponent implements OnInit {
   @ViewChild('modal') modal: ElementRef;
@@ -18,7 +18,6 @@ export class EditStudentComponent implements OnInit {
   public term: any;
   public showEntries;
   public p = 1;
-
 
   //  orderBy data
   public records = this.StudentDatalist;
@@ -69,7 +68,7 @@ export class EditStudentComponent implements OnInit {
    */
 
   public loadStudentdata(): void {
-    this.studentService.getStudentData().subscribe(res => {
+    this.studentService.getStudentData().subscribe((res) => {
       this.StudentDatalist = res;
       this.showEntries = this.StudentDatalist.length;
     });
@@ -86,9 +85,6 @@ export class EditStudentComponent implements OnInit {
     this.p = 1;
     this.showEntries = event.target.value;
   }
-
-
-
 
   /**
    * @ function : order
@@ -111,7 +107,7 @@ export class EditStudentComponent implements OnInit {
    */
 
   public editStudentdata(data): void {
-    this.studentService.getStudentById(data.id).subscribe(res => {
+    this.studentService.getStudentById(data.id).subscribe((res) => {
       this.updateid = data.id;
       this.updateStudentForm.patchValue(res);
     });
@@ -127,7 +123,7 @@ export class EditStudentComponent implements OnInit {
   public updateStudent(): void {
     this.studentService
       .updateStudentData(this.updateid, this.updateStudentForm.value)
-      .subscribe(res => {
+      .subscribe((res) => {
         this.loadStudentdata();
         this.toaster.recordUpdated();
       });
@@ -143,7 +139,7 @@ export class EditStudentComponent implements OnInit {
 
   public deleteStudentdata(data): void {
     if (confirm('This Student deleted permanently')) {
-      this.studentService.deleteStudent(data.id).subscribe(res => {
+      this.studentService.deleteStudent(data.id).subscribe((res) => {
         this.loadStudentdata();
         this.toaster.recordDeleted();
       });

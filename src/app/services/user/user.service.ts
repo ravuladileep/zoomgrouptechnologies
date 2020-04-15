@@ -5,7 +5,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { Iuser } from '../../entities/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   public userUrl = 'http://localhost:3000/user/';

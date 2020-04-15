@@ -37,7 +37,10 @@ export class AddStudentComponent implements OnInit {
           Validators.minLength(10),
         ],
       ],
-      email: ['', [Validators.required, Validators.pattern(CommonConstants.EmailRegex)]],
+      email: [
+        '',
+        [Validators.required, Validators.pattern(CommonConstants.EmailRegex)],
+      ],
       address: ['', [Validators.required]],
       nationality: ['', [Validators.required]],
       qualification: ['', [Validators.required]],

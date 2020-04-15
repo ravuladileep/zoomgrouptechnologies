@@ -1,0 +1,69 @@
+.certificatediv{
+  width:1024px;
+  /* height: 643px; */
+  height: auto;
+  border: 36px solid #EE202A;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.certificatediv input{
+  text-align: center;
+}
+.zoom1{
+  width: 430px;
+  height: 153px;
+  margin-top: 10px;
+}
+.avatar{
+  margin-top: 85px;
+  margin-left: 40px;
+}
+.content{
+  margin: 0px 90px 0px;
+
+}
+.certificate-content {
+  font-family: Comic Sans Ms;
+  color: grey;
+  /* margin-left: 90px; */
+  /* width: 700px; */
+}
+.certificate-name {
+  border: none;
+  border-bottom: 1px solid #000;
+  margin-left:8px;
+}
+
+.course-name {
+  border: none;
+  border-bottom: 1px solid #000;
+}
+.course-date {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 305px;
+}
+.last-input {
+  border: none;
+  border-bottom: 1px solid #000;
+  width:150px;
+}
+.certificate-content p{
+  margin-top:27px;
+}
+.sign{
+  width: 115px;
+  height: 84px;
+}
+.certificate-footer{
+  font-family: Comic Sans Ms;
+  color: grey;
+}
+.footer-last{
+  font-family: "Lato", sans-serif !important;
+  /* font-style: none!important; */
+  font-weight: bold;
+  color: #666666;
+  font-size: 14px;
+}

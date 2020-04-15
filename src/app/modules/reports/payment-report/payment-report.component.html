@@ -1,168 +1,161 @@
 <div class="container-fluid">
 
   <div class="add-page-tittle">
-    <h5 class="add-section-heading my-3 text-center text-secondary">Payment Report</h5>
+      <h5 class="add-section-heading my-3 text-center text-secondary">Payment Report</h5>
   </div>
 
   <div class="bg-white py-5">
-    <div class="col-md-8 ">
-      <form [formGroup]="paymentReport" (ngSubmit)="submit()">
+      <div class="col-md-8 ">
+          <form [formGroup]="paymentReport" (ngSubmit)="submit()">
 
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4">
-              <label class="control-label">Start Date</label>
-            </div>
-            <div class="col-md-5">
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Start Date" #dp1="bsDatepicker" bsDatepicker
-                  formControlName="startDate" [bsConfig]="{ adaptivePosition: true }" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <span class="input-group-text" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen"
-                    id="basic-addon2"><i class="fas fa-calendar-alt"></i></span>
-                </div>
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Start Date</label>
+                      </div>
+                      <div class="col-md-5">
+                          <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Start Date" #dp1="bsDatepicker" bsDatepicker formControlName="startDate" [bsConfig]="{ adaptivePosition: true }" aria-describedby="basic-addon2">
+                              <div class="input-group-append">
+                                  <span class="input-group-text" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen" id="basic-addon2"><i class="fas fa-calendar-alt"></i></span>
+                              </div>
+                          </div>
+                          <div class="alert alert-danger" *ngIf="paymentData.startDate.invalid && (paymentData.startDate.dirty||paymentData.startDate.touched)">
+                              <div *ngIf="paymentData.startDate.errors.required">
+                                  Start date is required
+                              </div>
+                              <div *ngIf="!paymentData.startDate.errors.required && paymentData.startDate.invalid">
+                                  Start date is invalid
+                              </div>
+                          </div>
+                      </div>
+                  </div>
               </div>
-              <div class="alert alert-danger"
-                *ngIf="paymentData.startDate.invalid && (paymentData.startDate.dirty||paymentData.startDate.touched)">
-                <div *ngIf="paymentData.startDate.errors.required">
-                  Start date is required
-                </div>
-                <div *ngIf="!paymentData.startDate.errors.required && paymentData.startDate.invalid">
-                  Start date is invalid
-                </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">End Date</label>
+                      </div>
+                      <div class="col-md-5">
+                          <div class="input-group mb-3">
+                              <input type="text" class="form-control" #dp2="bsDatepicker" bsDatepicker formControlName="startDate" [bsConfig]="{ adaptivePosition: true }" placeholder="End Date" formControlName="endDate" aria-describedby="enddate">
+                              <div class="input-group-append">
+                                  <span class="input-group-text" (click)="dp2.toggle()" [attr.aria-expanded]="dp2.isOpen" id="enddate"><i class="fas fa-calendar-alt"></i></span>
+                              </div>
+                          </div>
+                          <div class="alert alert-danger" *ngIf="paymentData.endDate.invalid && (paymentData.endDate.dirty||paymentData.endDate.touched)">
+                              <div *ngIf="paymentData.endDate.errors.required">
+                                  End date is required
+                              </div>
+                              <div *ngIf="!paymentData.endDate.errors.required && paymentData.endDate.invalid">
+                                  End date is invalid
+                              </div>
+                          </div>
+                      </div>
+                  </div>
               </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4">
-              <label class="control-label">End Date</label>
-            </div>
-            <div class="col-md-5">
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" #dp2="bsDatepicker" bsDatepicker formControlName="startDate"
-                  [bsConfig]="{ adaptivePosition: true }" placeholder="End Date" formControlName="endDate"
-                  aria-describedby="enddate">
-                <div class="input-group-append">
-                  <span class="input-group-text" (click)="dp2.toggle()" [attr.aria-expanded]="dp2.isOpen"
-                    id="enddate"><i class="fas fa-calendar-alt"></i></span>
-                </div>
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Select Branch</label>
+                      </div>
+                      <div class="col-md-5">
+                          <select type="text" class="form-control" formControlName="startDate">
+                              <option value="">Select Branch</option>
+                          </select>
+                          <!-- <div class="alert alert-danger"
+              *ngIf="paymentData.startDate.invalid && (paymentData.startDate.dirty||paymentData.startDate.touched)">
+              <div *ngIf="paymentData.startDate.errors.required">
+                Start date is required
               </div>
-              <div class="alert alert-danger"
-                *ngIf="paymentData.endDate.invalid && (paymentData.endDate.dirty||paymentData.endDate.touched)">
-                <div *ngIf="paymentData.endDate.errors.required">
-                  End date is required
-                </div>
-                <div *ngIf="!paymentData.endDate.errors.required && paymentData.endDate.invalid">
-                  End date is invalid
-                </div>
+            </div> -->
+                      </div>
+                  </div>
               </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4">
-              <label class="control-label">Select Branch</label>
-            </div>
-            <div class="col-md-5">
-              <select type="text" class="form-control" formControlName="startDate">
-                <option value="">Select Branch</option>
-              </select>
-              <!-- <div class="alert alert-danger"
-                *ngIf="paymentData.startDate.invalid && (paymentData.startDate.dirty||paymentData.startDate.touched)">
-                <div *ngIf="paymentData.startDate.errors.required">
-                  Start date is required
-                </div>
-              </div> -->
-            </div>
-          </div>
-        </div>
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Select Course</label>
+                      </div>
+                      <div class="col-md-5">
+                          <select type="text" class="form-control" formControlName="startDate">
+                              <option value="">Select Branch</option>
+                          </select>
+                          <!-- <div class="alert alert-danger"
+              *ngIf="paymentData.startDate.invalid && (paymentData.startDate.dirty||paymentData.startDate.touched)">
+              <div *ngIf="paymentData.startDate.errors.required">
+                Start date is required
+              </div>
+            </div> -->
+                      </div>
+                  </div>
+              </div>
 
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4">
-              <label class="control-label">Select Course</label>
-            </div>
-            <div class="col-md-5">
-              <select type="text" class="form-control" formControlName="startDate">
-                <option value="">Select Branch</option>
-              </select>
-              <!-- <div class="alert alert-danger"
-                *ngIf="paymentData.startDate.invalid && (paymentData.startDate.dirty||paymentData.startDate.touched)">
-                <div *ngIf="paymentData.startDate.errors.required">
-                  Start date is required
-                </div>
-              </div> -->
-            </div>
-          </div>
-        </div>
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Select Package</label>
+                      </div>
+                      <div class="col-md-5">
+                          <select type="text" class="form-control" formControlName="startDate">
+                              <option value="">Select Branch</option>
+                          </select>
+                          <!-- <div class="alert alert-danger"
+              *ngIf="paymentData.startDate.invalid && (paymentData.startDate.dirty||paymentData.startDate.touched)">
+              <div *ngIf="paymentData.startDate.errors.required">
+                Start date is required
+              </div>
+            </div> -->
+                      </div>
+                  </div>
+              </div>
 
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4">
-              <label class="control-label">Select Package</label>
-            </div>
-            <div class="col-md-5">
-              <select type="text" class="form-control" formControlName="startDate">
-                <option value="">Select Branch</option>
-              </select>
-              <!-- <div class="alert alert-danger"
-                *ngIf="paymentData.startDate.invalid && (paymentData.startDate.dirty||paymentData.startDate.touched)">
-                <div *ngIf="paymentData.startDate.errors.required">
-                  Start date is required
-                </div>
-              </div> -->
-            </div>
-          </div>
-        </div>
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Payment Mode</label>
+                      </div>
+                      <div class="col-md-5">
+                          <select type="text" class="form-control" formControlName="startDate">
+                              <option value="">Select Branch</option>
+                          </select>
+                          <!-- <div class="alert alert-danger"
+              *ngIf="paymentData.startDate.invalid && (paymentData.startDate.dirty||paymentData.startDate.touched)">
+              <div *ngIf="paymentData.startDate.errors.required">
+                Start date is required
+              </div>
+            </div> -->
+                      </div>
+                  </div>
+              </div>
 
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4">
-              <label class="control-label">Payment Mode</label>
-            </div>
-            <div class="col-md-5">
-              <select type="text" class="form-control" formControlName="startDate">
-                <option value="">Select Branch</option>
-              </select>
-              <!-- <div class="alert alert-danger"
-                *ngIf="paymentData.startDate.invalid && (paymentData.startDate.dirty||paymentData.startDate.touched)">
-                <div *ngIf="paymentData.startDate.errors.required">
-                  Start date is required
-                </div>
-              </div> -->
-            </div>
-          </div>
-        </div>
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4"></div>
+                      <div class="col-md-5">
+                          <button type="submit" class="btn btn-primary col-md-12" [disabled]="!paymentReport.valid ">Submit</button>
+                      </div>
+                  </div>
+              </div>
 
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-5">
-              <button type="submit" class="btn btn-primary col-md-12" [disabled]="!paymentReport.valid ">Submit</button>
-            </div>
-          </div>
-        </div>
-
-      </form>
-    </div>
-    <!-- <table class="table col-md-10 mx-auto table-bordered table-striped table-hover text-center table-responsive-sm">
-          <thead>
-            <tr>
-              <th>Branch Name</th>
-              <th>Counsellor Name</th>
-              <th>Date</th>
-              <th>Walkin</th>
-              <th>Joined</th>
-              <th>Not Joined</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-      </table> -->
+          </form>
+      </div>
+      <!-- <table class="table col-md-10 mx-auto table-bordered table-striped table-hover text-center table-responsive-sm">
+        <thead>
+          <tr>
+            <th>Branch Name</th>
+            <th>Counsellor Name</th>
+            <th>Date</th>
+            <th>Walkin</th>
+            <th>Joined</th>
+            <th>Not Joined</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table> -->
   </div>
 </div>

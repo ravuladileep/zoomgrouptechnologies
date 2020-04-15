@@ -49,22 +49,22 @@
                                   End date is required
                               </div>
                               <div *ngIf="!accountantData.endDate.errors.required && accountantData.endDate.invalid">
-                                End date is invalid
-                             </div>
+                                  End date is invalid
+                              </div>
                           </div>
                       </div>
                   </div>
               </div>
 
               <div class="form-group">
-                <div class="row">
-                  <div class="col-md-4">
+                  <div class="row">
+                      <div class="col-md-4">
 
+                      </div>
+                      <div class="col-md-5">
+                          <button type="submit" class="btn btn-primary col-md-12" [disabled]="!accountantForm.valid ">Submit</button>
+                      </div>
                   </div>
-                  <div class="col-md-5">
-                    <button type="submit" class="btn btn-primary col-md-12" [disabled]="!accountantForm.valid ">Submit</button>
-                  </div>
-                </div>
               </div>
 
           </form>

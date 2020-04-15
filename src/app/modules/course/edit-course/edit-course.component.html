@@ -4,67 +4,66 @@
       <hr>
       <div class="row p-1">
           <div class="col-md-6  p-3">
-            Show
-            <select (change)="changeCount($event)" name="show">
-                <option selected="selected" [value] ="courseDatalist.length">All</option>
-                <option [ngValue]="5">5</option>
-                <option [ngValue]="10">10</option>
-                <option [ngValue]="15">15</option>
-            </select> entries
+              Show
+              <select (change)="changeCount($event)" name="show">
+                  <option selected="selected" [value]="courseDatalist.length">All</option>
+                  <option [ngValue]="5">5</option>
+                  <option [ngValue]="10">10</option>
+                  <option [ngValue]="15">15</option>
+              </select> entries
           </div>
           <div class="col-md-3 ml-auto">
               <input type="text" placeholder="search" class="form-control" [(ngModel)]="term">
           </div>
       </div>
       <table class="table table-bordered table-striped table-hover text-center table-responsive-sm">
-        <thead>
-            <tr>
-                <th>S.no</th>
-                <th (click)="order('coursename')">
-                    Course Name
-                    <i class="fa" [ngClass]="{'fa-sort': column != 'coursename', 'fa-sort-asc': (column == 'coursename' && isDesc), 'fa-sort-desc': (column == 'coursename' && !isDesc) }" aria-hidden="true"> </i>
-                </th>
-                <th (click)="order('fees')">
-                    Fee
-                    <i class="fa" [ngClass]="{'fa-sort': column != 'fees', 'fa-sort-asc': (column == 'fees' && isDesc), 'fa-sort-desc': (column == 'fees' && !isDesc) }" aria-hidden="true"> </i>
-                </th>
-                <th (click)="order('servicetax')">
-                    servicetax
-                    <i class="fa" [ngClass]="{'fa-sort': column != 'servicetax', 'fa-sort-asc': (column == 'servicetax' && isDesc), 'fa-sort-desc': (column == 'servicetax' && !isDesc) }" aria-hidden="true"> </i>
-                </th>
-                <th (click)="order('totalfee')">
-                    totalfee
-                    <i class="fa" [ngClass]="{'fa-sort': column != 'totalfee', 'fa-sort-asc': (column == 'totalfee' && isDesc), 'fa-sort-desc': (column == 'totalfee' && !isDesc) }" aria-hidden="true"> </i>
-                </th>
-                <th (click)="order('seats')">
-                    seats
-                    <i class="fa" [ngClass]="{'fa-sort': column != 'seats', 'fa-sort-asc': (column == 'seats' && isDesc), 'fa-sort-desc': (column == 'seats' && !isDesc) }" aria-hidden="true"> </i>
-                </th>
-                <th>Action</th>
+          <thead>
+              <tr>
+                  <th>S.no</th>
+                  <th (click)="order('coursename')">
+                      Course Name
+                      <i class="fa" [ngClass]="{'fa-sort': column != 'coursename', 'fa-sort-asc': (column == 'coursename' && isDesc), 'fa-sort-desc': (column == 'coursename' && !isDesc) }" aria-hidden="true"> </i>
+                  </th>
+                  <th (click)="order('fees')">
+                      Fee
+                      <i class="fa" [ngClass]="{'fa-sort': column != 'fees', 'fa-sort-asc': (column == 'fees' && isDesc), 'fa-sort-desc': (column == 'fees' && !isDesc) }" aria-hidden="true"> </i>
+                  </th>
+                  <th (click)="order('servicetax')">
+                      servicetax
+                      <i class="fa" [ngClass]="{'fa-sort': column != 'servicetax', 'fa-sort-asc': (column == 'servicetax' && isDesc), 'fa-sort-desc': (column == 'servicetax' && !isDesc) }" aria-hidden="true"> </i>
+                  </th>
+                  <th (click)="order('totalfee')">
+                      totalfee
+                      <i class="fa" [ngClass]="{'fa-sort': column != 'totalfee', 'fa-sort-asc': (column == 'totalfee' && isDesc), 'fa-sort-desc': (column == 'totalfee' && !isDesc) }" aria-hidden="true"> </i>
+                  </th>
+                  <th (click)="order('seats')">
+                      seats
+                      <i class="fa" [ngClass]="{'fa-sort': column != 'seats', 'fa-sort-asc': (column == 'seats' && isDesc), 'fa-sort-desc': (column == 'seats' && !isDesc) }" aria-hidden="true"> </i>
+                  </th>
+                  <th>Action</th>
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let data of courseDatalist|paginate: { itemsPerPage: showEntries, currentPage: p, totalItems: courseDatalist.length }|filter:term|orderBy: {property: column, direction: direction};let i= index;">
-                <td>{{i+1}}</td>
-                <td>{{data.coursename}}</td>
-                <td>{{data.fees}}</td>
-                <td>{{data.servicetax}}</td>
-                <td>{{data.totalfee}}</td>
-                <td>{{data.seats}}</td>
-                <td>
-                    <button class="btn btn-success" (click)="editCoursedata(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
-                    <button class="btn btn-danger" (click)="deleteCoursedata(data)">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let data of courseDatalist|paginate: { itemsPerPage: showEntries, currentPage: p, totalItems: courseDatalist.length }|filter:term|orderBy: {property: column, direction: direction};let i= index;">
+                  <td>{{i+1}}</td>
+                  <td>{{data.coursename}}</td>
+                  <td>{{data.fees}}</td>
+                  <td>{{data.servicetax}}</td>
+                  <td>{{data.totalfee}}</td>
+                  <td>{{data.seats}}</td>
+                  <td>
+                      <button class="btn btn-success" (click)="editCoursedata(data)" data-toggle="modal" data-target="#myModal">Edit</button>&nbsp;
+                      <button class="btn btn-danger" (click)="deleteCoursedata(data)">Delete</button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
       <div class="pb-1 text-right">
-        <pagination-controls maxSize="4" (pageChange)="p = $event"></pagination-controls>
+          <pagination-controls maxSize="4" (pageChange)="p = $event"></pagination-controls>
       </div>
   </div>
 </div>
-
 
 <!-- End table -->
 

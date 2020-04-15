@@ -5,7 +5,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { IFee } from '../../entities/fee.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FeeService {
   public feeUrl = 'http://localhost:3000/fee/';

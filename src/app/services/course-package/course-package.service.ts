@@ -4,9 +4,8 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { ICoursePackage } from '../../entities/course-package.model';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CoursePackageService {
   public coursePackageUrl = 'http://localhost:3000/course-package/';

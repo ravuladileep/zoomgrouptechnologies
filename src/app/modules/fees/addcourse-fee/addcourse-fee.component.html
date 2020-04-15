@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <!-- webcam -->
-<!--
-  <div class="row">
-      <div class="col-md-4">
-          <app-camera (pictureTaken)="handleImage($event)"></app-camera>
-      </div>
-      <div class="snapshot col-md-4" *ngIf="webcamImage">
-          <img [src]="webcamImage.imageAsDataUrl" style="width:250px;height: auto;" />
-      </div>
-  </div> -->
+  <!--
+<div class="row">
+    <div class="col-md-4">
+        <app-camera (pictureTaken)="handleImage($event)"></app-camera>
+    </div>
+    <div class="snapshot col-md-4" *ngIf="webcamImage">
+        <img [src]="webcamImage.imageAsDataUrl" style="width:250px;height: auto;" />
+    </div>
+</div> -->
 
   <!-- webcam end -->
 
@@ -329,7 +329,7 @@
                               </div>
                               <div class="col-md-6">
                                   <select class="form-control" formControlName="provideDiscount">
-                                      <option value="" selected >Select Amount</option>
+                                      <option value="" selected>Select Amount</option>
                                       <option value="100">100</option>
                                       <option value="500">500</option>
                                   </select>
@@ -347,7 +347,7 @@
                               <div class="col-md-6">
                               </div>
                               <div class="col-md-6">
-                                  <button type="submit" class="btn btn-success" [disabled]="paymentSpecificData.invalid" >Submit</button>
+                                  <button type="submit" class="btn btn-success" [disabled]="paymentSpecificData.invalid">Submit</button>
                               </div>
                           </div>
                       </div>

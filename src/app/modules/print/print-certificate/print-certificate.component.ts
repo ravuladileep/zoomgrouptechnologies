@@ -25,6 +25,10 @@ export class PrintCertificateComponent implements OnInit {
     return this.certificate.controls;
   }
 
+  public printCertificate(): void{
+    window.print();
+  }
+
   public Submit(): void{
     console.log(this.certificate.value);
   }

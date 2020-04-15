@@ -5,7 +5,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { ISchedule } from '../../entities/schedule.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ScheduleService {
   public ScheduleUrl = 'http://localhost:3000/schedule/';

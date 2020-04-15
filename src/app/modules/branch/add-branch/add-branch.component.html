@@ -69,10 +69,10 @@
                                   Branch Contact Number is required
                               </div>
                               <div *ngIf="branchData.branchContactNumber.errors?.pattern">
-                                Branch Contact Number should be digits only
+                                  Branch Contact Number should be digits only
                               </div>
                               <div *ngIf="!branchData.branchContactNumber.errors?.pattern &&(branchData.branchContactNumber.errors?.maxlength || branchData.branchContactNumber.errors?.minlength)">
-                                Branch Contact Number should be 10 digits
+                                  Branch Contact Number should be 10 digits
                               </div>
                           </div>
                       </div>
@@ -89,4 +89,3 @@
       </div>
   </div>
 </div>
-
