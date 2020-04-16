@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { CommonConstants } from '../../../config/constants';
 
 @Component({
   selector: 'app-payment-report',
@@ -8,6 +9,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class PaymentReportComponent implements OnInit {
   public paymentReport: FormGroup;
+  public branchesDataarr = [...CommonConstants.branchesDataarr];
+  public coursesDataarr = [...CommonConstants.coursesDataarr];
+  public coursePackagearr = [...CommonConstants.coursePackagearr];
+  public paymentModearr = ['Cash', 'Card', 'Cash/Card'];
 
   constructor(private fb: FormBuilder) { }
 
@@ -18,7 +23,12 @@ export class PaymentReportComponent implements OnInit {
   public paymentReportForm(): void{
     this.paymentReport = this.fb.group({
       startDate: [],
-      endDate: []
+      endDate: [],
+      branch: [null],
+      course: [null],
+      coursePackage: [null],
+      paymentMode: [null],
+      paymentStatus: [null]
     });
   }
 

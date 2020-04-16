@@ -25,6 +25,10 @@ export class PrintReceiptComponent implements OnInit {
     return this.receipt.controls;
   }
 
+  public printReceipt(): void{
+    window.print();
+  }
+
   public Submit(): void{
     console.log(this.receipt.value);
   }

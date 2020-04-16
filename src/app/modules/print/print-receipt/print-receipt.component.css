@@ -1,0 +1,97 @@
+.receipt-header{
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.receipt-start {
+  margin: 0px 45px 0px;
+}
+.title {
+  font-weight: 300;
+  color: #666666;
+  font-size: 30px;
+}
+.address {
+  margin:0;
+  font-size: 14px;
+  color: #333;
+}
+.website {
+  margin:0;
+  font-size: 14px;
+  color: #333;
+}
+.receipt-num {
+  font-weight: 300;
+  color: #333;
+  font-size: 24px;
+}
+.receipt-body input {
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.receipt-body {
+  /* color: #333; */
+  font-family: "Lato", sans-serif !important;
+}
+
+.receipt-body p{
+  color: #666666;
+  font-size: 14px;
+}
+.receipt-footer{
+  margin-top: 50px;
+  color: #333;
+}
+.receipt-footer .GSIT p{
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;;
+  font-size: 13px;
+  margin: 0;
+  word-break: break-all;
+  word-wrap: break-word;
+  color: #333;
+  border-radius: 4px;
+}
+
+.Signatory{
+  margin-top: 56px;
+}
+.terms{
+  font-size: 11px;
+  margin-left: 1.5%;
+  margin-top: 2%;
+}
+.dot-border{
+  border-bottom: 1px dashed #000;
+}
+/* styles for id card */
+.id-row{
+  margin: 0px 10px 0px;
+}
+.id-card-title{
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  text-align: center;
+  font-size: 18px;
+}
+.idcard-name{
+  border: 1px solid black;
+  padding: 0% 4% 0%;
+}
+.student-details{
+  font-size: 14px;
+}
+
+.id-footer p{
+  font-size: 11px;
+  margin: 0;
+}
+.idcard-course{
+  border: 1px  solid black;
+  border-left: none;
+  padding: 0% 4% 0%;
+}
+.terms-course{
+  font-size: 11px;
+  font-weight: bold;
+}
+

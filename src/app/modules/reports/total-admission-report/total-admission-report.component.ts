@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToasterService } from 'src/app/shared/dialogs/alerts/toaster.service';
+import { CommonConstants } from 'src/app/config/constants';
 
 @Component({
   selector: 'app-total-admission-report',
@@ -8,8 +9,12 @@ import { ToasterService } from 'src/app/shared/dialogs/alerts/toaster.service';
   styleUrls: ['./total-admission-report.component.css']
 })
 export class TotalAdmissionReportComponent implements OnInit {
-
   public admissionReport: FormGroup;
+  public coursesDataarr = [...CommonConstants.coursesDataarr];
+  public branchesDataarr = [...CommonConstants.branchesDataarr];
+  public coursePackagearr = [...CommonConstants.coursePackagearr];
+
+
 
   constructor(private fb: FormBuilder,  private toaster: ToasterService) {
     this.admissionReportForm();
@@ -20,13 +25,14 @@ export class TotalAdmissionReportComponent implements OnInit {
 
   public admissionReportForm() {
     this.admissionReport = this.fb.group({
-      report: [''],
+      report: ['mixCombination'],
       selectDay: [''],
-      selectBranch: [''],
-      selectCourse: [''],
-      selectPackage: [''],
       startDate: [''],
-      endDate: ['']
+      endDate: [''],
+      branch: [null],
+      course: [null],
+      coursePackage: [null]
+
     });
   }
 

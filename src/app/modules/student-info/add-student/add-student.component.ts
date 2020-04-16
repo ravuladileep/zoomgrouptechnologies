@@ -13,6 +13,7 @@ export class AddStudentComponent implements OnInit {
   public addStudentForm: FormGroup;
   public branch = [...CommonConstants.branchesDataarr];
   public coursesDataarr = [...CommonConstants.coursesDataarr];
+  public coursePackagearr = [...CommonConstants.coursePackagearr];
 
   constructor(
     private fb: FormBuilder,
@@ -47,7 +48,7 @@ export class AddStudentComponent implements OnInit {
       companyName: [''],
       branch: [null, [Validators.required]],
       joiningDate: [new Date(), [Validators.required]],
-      courseType: ['course', [Validators.required]],
+      courseType: ['', [Validators.required]],
       courseName: ['', [Validators.required]],
       startingDate: [new Date(), [Validators.required]],
     });

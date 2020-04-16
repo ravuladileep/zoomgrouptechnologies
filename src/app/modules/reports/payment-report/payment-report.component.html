@@ -14,7 +14,7 @@
                           <label class="control-label">Start Date</label>
                       </div>
                       <div class="col-md-5">
-                          <div class="input-group mb-3">
+                          <div class="input-group ">
                               <input type="text" class="form-control" placeholder="Start Date" #dp1="bsDatepicker" bsDatepicker formControlName="startDate" [bsConfig]="{ adaptivePosition: true }" aria-describedby="basic-addon2">
                               <div class="input-group-append">
                                   <span class="input-group-text" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen" id="basic-addon2"><i class="fas fa-calendar-alt"></i></span>
@@ -38,7 +38,7 @@
                           <label class="control-label">End Date</label>
                       </div>
                       <div class="col-md-5">
-                          <div class="input-group mb-3">
+                          <div class="input-group ">
                               <input type="text" class="form-control" #dp2="bsDatepicker" bsDatepicker formControlName="startDate" [bsConfig]="{ adaptivePosition: true }" placeholder="End Date" formControlName="endDate" aria-describedby="enddate">
                               <div class="input-group-append">
                                   <span class="input-group-text" (click)="dp2.toggle()" [attr.aria-expanded]="dp2.isOpen" id="enddate"><i class="fas fa-calendar-alt"></i></span>
@@ -62,15 +62,16 @@
                           <label class="control-label">Select Branch</label>
                       </div>
                       <div class="col-md-5">
-                          <select type="text" class="form-control" formControlName="startDate">
-                              <option value="">Select Branch</option>
+                          <select type="text" class="form-control" formControlName="branch">
+                              <option [value]="null" disabled selected>Select Branch</option>
+                              <option *ngFor ="let data of branchesDataarr" [value]="data">{{data}}</option>
                           </select>
-                          <!-- <div class="alert alert-danger"
-              *ngIf="paymentData.startDate.invalid && (paymentData.startDate.dirty||paymentData.startDate.touched)">
-              <div *ngIf="paymentData.startDate.errors.required">
-                Start date is required
-              </div>
-            </div> -->
+                          <div class="alert alert-danger"
+                              *ngIf="paymentData.branch.invalid && (paymentData.branch.dirty||paymentData.branch.touched)">
+                              <div *ngIf="paymentData.branch.errors.required">
+                                  Branch is required
+                              </div>
+                          </div>
                       </div>
                   </div>
               </div>
@@ -81,15 +82,16 @@
                           <label class="control-label">Select Course</label>
                       </div>
                       <div class="col-md-5">
-                          <select type="text" class="form-control" formControlName="startDate">
-                              <option value="">Select Branch</option>
+                          <select type="text" class="form-control" formControlName="course">
+                            <option [value]="null" disabled selected>Select Course</option>
+                            <option *ngFor ="let data of coursesDataarr" [value]="data">{{data}}</option>
                           </select>
-                          <!-- <div class="alert alert-danger"
-              *ngIf="paymentData.startDate.invalid && (paymentData.startDate.dirty||paymentData.startDate.touched)">
-              <div *ngIf="paymentData.startDate.errors.required">
-                Start date is required
-              </div>
-            </div> -->
+                          <div class="alert alert-danger"
+                            *ngIf="paymentData.course.invalid && (paymentData.course.dirty||paymentData.course.touched)">
+                            <div *ngIf="paymentData.course.errors.required">
+                                Course is required
+                            </div>
+                          </div>
                       </div>
                   </div>
               </div>
@@ -100,15 +102,15 @@
                           <label class="control-label">Select Package</label>
                       </div>
                       <div class="col-md-5">
-                          <select type="text" class="form-control" formControlName="startDate">
-                              <option value="">Select Branch</option>
+                          <select type="text" class="form-control" formControlName="coursePackage">
+                            <option [value]="null" disabled selected>Select Package</option>
+                            <option *ngFor ="let data of coursePackagearr" [value]="data">{{data}}</option>
                           </select>
-                          <!-- <div class="alert alert-danger"
-              *ngIf="paymentData.startDate.invalid && (paymentData.startDate.dirty||paymentData.startDate.touched)">
-              <div *ngIf="paymentData.startDate.errors.required">
-                Start date is required
-              </div>
-            </div> -->
+                          <div class="alert alert-danger" *ngIf="paymentData.coursePackage.invalid && (paymentData.coursePackage.dirty||paymentData.coursePackage.touched)">
+                            <div *ngIf="paymentData.coursePackage.errors.required">
+                              Package is required
+                            </div>
+                          </div>
                       </div>
                   </div>
               </div>
@@ -119,18 +121,48 @@
                           <label class="control-label">Payment Mode</label>
                       </div>
                       <div class="col-md-5">
-                          <select type="text" class="form-control" formControlName="startDate">
-                              <option value="">Select Branch</option>
+                          <select type="text" class="form-control" formControlName="paymentMode">
+                            <option [value]="null" disabled selected>Select Payment Mode</option>
+                            <option *ngFor ="let data of paymentModearr" [value]="data">{{data}}</option>
                           </select>
-                          <!-- <div class="alert alert-danger"
-              *ngIf="paymentData.startDate.invalid && (paymentData.startDate.dirty||paymentData.startDate.touched)">
-              <div *ngIf="paymentData.startDate.errors.required">
-                Start date is required
-              </div>
-            </div> -->
+                          <div class="alert alert-danger" *ngIf="paymentData.paymentMode.invalid && (paymentData.paymentMode.dirty||paymentData.paymentMode.touched)">
+                              <div *ngIf="paymentData.paymentMode.errors.required">
+                                  Payment Mode is required
+                              </div>
+                          </div>
                       </div>
                   </div>
               </div>
+
+              <div class="form-group">
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <label class="control-label">Payment Status:</label>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="full" formControlName="paymentStatus" value="full" name="paymentStatus" class="custom-control-input">
+                            <label class="custom-control-label" for="full">FULL PAID</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="part" formControlName="paymentStatus" value="part" name="paymentStatus" class="custom-control-input">
+                            <label class="custom-control-label" for="part">PART PAID</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" id="both" formControlName="paymentStatus" value="both" name="paymentStatus" class="custom-control-input">
+                          <label class="custom-control-label" for="both">BOTH</label>
+                        </div>
+
+                        <div class="alert alert-danger" *ngIf="paymentData.paymentStatus.invalid && (paymentData.paymentStatus.dirty||paymentData.paymentStatus.touched)">
+                            <div *ngIf="paymentData.paymentStatus.errors.required">
+                                Payment Status is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
 
               <div class="form-group">
                   <div class="row">

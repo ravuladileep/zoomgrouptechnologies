@@ -4,7 +4,7 @@
       <h5 class="add-section-heading my-3 text-center text-secondary">Payment Receipt</h5>
   </div>
 
-  <div class="bg-white py-5">
+  <div class="bg-white d-print-none py-5">
       <div class="row p-1">
           <div class="col-md-8">
               <form [formGroup]="receipt" (ngSubmit)="Submit()">
@@ -37,9 +37,165 @@
               </form>
           </div>
           <div class="col-md-4  ">
-              <button class="btn btn-secondary">Print</button> &nbsp;
+              <button class="btn btn-secondary" (click)= "printReceipt()">Print</button> &nbsp;
               <button class="btn btn-secondary ">Send Email</button>
           </div>
       </div>
   </div>
+
+  <!-- receipt -->
+  <div class="bg-white  px-5 py-5">
+    <div class="receipt-start">
+        <div class="text-center receipt-header">
+          <h2 class="title">Zoom Technologies (India) Pvt. Ltd.</h2>
+          <p class="address">Road No.12, Banjara Hills, Hyderabad - 500034. Ph:23394150</p>
+          <p class="website">www.zoomgroup.com</p>
+          <h3 class="receipt-num">RECEIPT NO: AM-28</h3>
+        </div>
+        <div class="receipt-body">
+            <p class="text-right">Date: 07/17/2014</p>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <p><strong>Recieved with thanks from M/s./ Mr./Ms.</strong></p>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="col-md-12">
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                  <p><strong>Student ID</strong></p>
+              </div>
+              <div class="col-md-6">
+                  <input type="text" class="col-md-12">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                  <p><strong>the sum of Rs.</strong></p>
+              </div>
+              <div class="col-md-6">
+                  <input type="text" class="col-md-12">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                  <p><strong>Mode</strong></p>
+              </div>
+              <div class="col-md-6">
+                  <input type="text" class="col-md-12">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                  <p><strong>course</strong></p>
+              </div>
+              <div class="col-md-6">
+                  <input type="text" class="col-md-12">
+              </div>
+            </div>
+
+            <table class="table table-bordered">
+              <tr>
+                <td>Assy Value:</td>
+                <td>Rs. 5815.79</td>
+                <td>+</td>
+                <td>Service Tax :</td>
+                <td>Rs. 814.21</td>
+                <td>=</td>
+                <td>Total:</td>
+                <td>Rs. 6630</td>
+              </tr>
+            </table>
+
+        </div>
+        <div class="receipt-footer">
+            <div class="row ">
+                <div class="col-md-6 GSIT">
+                  <p class=""> <b>GSIT No : 36AAACZ0692A1ZK</b></p>
+                  <p class=""><b> SAC/HSN Code : 00440229</b></p>
+                  <p class=""><b>CIN: U722001997PTC028550</b></p>
+                  <p class=""><b>Service Goods Description: Commercial Coaching & Training</b></p>
+
+                </div>
+                <div class="col-md-6 ">
+                  <p class="text-right Signatory"> <strong>Authorised Signatory</strong></p>
+                </div>
+            </div>
+
+            <div class="terms">
+                <p><strong>Terms & conditions</strong></p>
+                <ol>
+                  <li>Organization reserves the right to expel any student during the training period.</li>
+                  <li>Fees once paid will not be refunded or adjusted against other courses /batches /students under any circumstances whatsoever.</li>
+                  <li> Students should always carry their ID card with them and shall produce the same as and when requested.</li>
+                  <li> Once the batch is allotted it will be permanent and no shifting will be entertained.</li>
+                  <li>In case, a student fails to attend the given batch the amount given will be forfeited against his / her name.</li>
+                  <li>Payments of cheques are subject to realization .</li>
+                  <li>Vehicles are kept at owners risk.</li>
+                  <li>Any discrepancies are subject to Hyderabad jurisdiction.</li>
+                </ol>
+            </div>
+
+        </div>
+        <p class="dot-border pt-3"></p>
+        <!-- id card -->
+        <div class="id-card mt-5">
+          <div class="row id-row">
+              <div class="col-md-6 idcard-name">
+                  <h4 class="id-card-title pt-2">STUDENT IDENTITY CARD</h4>
+                  <div class="row pt-3">
+                      <div class="col-md-6">
+                        <img src="../../../../assets/images/photo.jpg" class="img-fluid" alt="">
+                        <p class="pt-2"><b> Date:</b>07/17/2014</p>
+                      </div>
+                      <div class="col-md-6 student-details">
+                          <p>Name:	Jyothi Chiranjeev</p>
+                          <p> Student ID:	ZTAM100</p>
+                          <p>Branch:	Ameerpet</p>
+                          <h6 class="text-right pt-4">Signature</h6>
+                      </div>
+                  </div>
+                  <div class="text-center id-footer">
+                    <p><b>Zoom Technologies (india).Pvt.Ltd</b> </p>
+                    <p>Adj. to SBI,8-2-681 1/A/1/A,Road No. 12,Banjara Hills</p>
+                    <p>Hyderabad-500 034. ph:+91-40-2339 4150</p>
+                  </div>
+              </div>
+              <div class="col-md-6 idcard-course">
+                  <div class="mt-2">
+                      <table class="table table-bordered">
+                         <tr>
+                            <th>Course Name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Batch</th>
+                         </tr>
+                         <tr>
+                           <td>CCNA</td>
+                           <td>09/15/2014</td>
+                           <td>10 /15/2014</td>
+                           <td>Evening</td>
+                         </tr>
+                      </table>
+                  </div>
+                  <div class="terms-course">
+                    <p>Terms and conditions:</p>
+                      <ol>
+                        <li>Students should carry ID card daily.</li>
+                        <li>Laptop, CD'S, Floppies, Pendrive, Bags etc. are not allowed in classroom.</li>
+                        <li>No batch shifting will be entertained.</li>
+                      </ol>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
 </div>

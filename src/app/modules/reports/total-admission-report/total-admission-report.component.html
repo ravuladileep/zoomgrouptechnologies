@@ -25,78 +25,164 @@
                           <label class="custom-control-label" for="email">Month wise</label>
                       </div>
                       <div class="custom-control custom-radio custom-control-inline">
-                          <input type="radio" id="course" formControlName="report" value="branch" name="report" class="custom-control-input">
-                          <label class="custom-control-label" for="course">Branch</label>
+                          <input type="radio" id="branch" formControlName="report" value="branch" name="report" class="custom-control-input">
+                          <label class="custom-control-label" for="branch">Branch</label>
                       </div>
                       <div class="custom-control custom-radio custom-control-inline">
-                          <input type="radio" id="studentId" formControlName="report" value="course" name="report" class="custom-control-input">
-                          <label class="custom-control-label" for="studentId">Course</label>
+                          <input type="radio" id="course" formControlName="report" value="course" name="report" class="custom-control-input">
+                          <label class="custom-control-label" for="course">Course</label>
                       </div>
                       <div class="custom-control custom-radio custom-control-inline">
-                          <input type="radio" id="studentId" formControlName="report" value="coursePackage" name="report" class="custom-control-input">
-                          <label class="custom-control-label" for="studentId">Course Package</label>
+                          <input type="radio" id="coursePackage" formControlName="report" value="coursePackage" name="report" class="custom-control-input">
+                          <label class="custom-control-label" for="coursePackage">Course Package</label>
                       </div>
 
                   </div>
               </div>
           </div>
+
+          <div class="form-group" *ngIf="admissionData.report.value === 'mixCombination' || admissionData.report.value === 'dayWise'">
+              <div class="row">
+                  <div class="col-md-2">
+                      <label class="control-label">Select Day</label>
+                  </div>
+                  <div class="col-md-4" >
+                    <div class="input-group ">
+                        <input type="text" class="form-control" placeholder="select Day" #dp1="bsDatepicker" bsDatepicker formControlName="selectDay" [bsConfig]="{ adaptivePosition: true }" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <span class="input-group-text" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen" id="basic-addon2"><i class="fas fa-calendar-alt"></i></span>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="admissionData.selectDay.invalid && (admissionData.selectDay.dirty||admissionData.selectDay.touched)">
+                        <div *ngIf="admissionData.selectDay.errors.required">
+                            select day is required
+                        </div>
+                        <div *ngIf="!admissionData.selectDay.errors.required && admissionData.selectDay.invalid">
+                            select day is invalid
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="form-group" *ngIf="admissionData.report.value === 'monthWise'">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="control-label">Start Date</label>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group ">
+                        <input type="text" class="form-control" placeholder="Start Date" #dp2="bsDatepicker" bsDatepicker formControlName="startDate" [bsConfig]="{ adaptivePosition: true }" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <span class="input-group-text" (click)="dp2.toggle()" [attr.aria-expanded]="dp2.isOpen" id="basic-addon2"><i class="fas fa-calendar-alt"></i></span>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="admissionData.startDate.invalid && (admissionData.startDate.dirty||admissionData.startDate.touched)">
+                        <div *ngIf="admissionData.startDate.errors.required">
+                            Start date is required
+                        </div>
+                        <div *ngIf="!admissionData.startDate.errors.required && admissionData.startDate.invalid">
+                            Start date is invalid
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" *ngIf="admissionData.report.value === 'monthWise'">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="control-label">End Date</label>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group ">
+                        <input type="text" class="form-control" #dp3="bsDatepicker" bsDatepicker formControlName="startDate" [bsConfig]="{ adaptivePosition: true }" placeholder="End Date" formControlName="endDate" aria-describedby="enddate">
+                        <div class="input-group-append">
+                            <span class="input-group-text" (click)="dp3.toggle()" [attr.aria-expanded]="dp3.isOpen" id="enddate"><i class="fas fa-calendar-alt"></i></span>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="admissionData.endDate.invalid && (admissionData.endDate.dirty||admissionData.endDate.touched)">
+                        <div *ngIf="admissionData.endDate.errors.required">
+                            End date is required
+                        </div>
+                        <div *ngIf="!admissionData.endDate.errors.required && admissionData.endDate.invalid">
+                            End date is invalid
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+          <div class="form-group" *ngIf="admissionData.report.value === 'mixCombination' || admissionData.report.value === 'branch'">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="control-label">Select Branch</label>
+                </div>
+                <div class="col-md-4">
+                    <select type="text" class="form-control" formControlName="branch">
+                        <option [value]="null" disabled selected>Select Branch</option>
+                        <option *ngFor ="let data of branchesDataarr" [value]="data">{{data}}</option>
+                    </select>
+                    <div class="alert alert-danger"
+                        *ngIf="admissionData.branch.invalid && (admissionData.branch.dirty||admissionData.branch.touched)">
+                        <div *ngIf="admissionData.branch.errors.required">
+                            Branch is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="form-group" *ngIf="admissionData.report.value === 'mixCombination' || admissionData.report.value === 'course'">
+              <div class="row">
+                  <div class="col-md-2">
+                      <label class="control-label">Select Course</label>
+                  </div>
+                  <div class="col-md-4">
+                      <select type="text" class="form-control" formControlName="course">
+                        <option [value]="null" disabled selected>Select Course</option>
+                        <option *ngFor ="let data of coursesDataarr" [value]="data">{{data}}</option>
+                      </select>
+                      <div class="alert alert-danger"
+                        *ngIf="admissionData.course.invalid && (admissionData.course.dirty||admissionData.course.touched)">
+                        <div *ngIf="admissionData.course.errors.required">
+                            Course is required
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="form-group" *ngIf="admissionData.report.value === 'mixCombination' || admissionData.report.value === 'coursePackage'">
+              <div class="row">
+                  <div class="col-md-2">
+                      <label class="control-label">Course Package</label>
+                  </div>
+                  <div class="col-md-4">
+                      <select type="text" class="form-control" formControlName="coursePackage">
+                        <option [value]="null" disabled selected>Select Package</option>
+                        <option *ngFor ="let data of coursePackagearr" [value]="data">{{data}}</option>
+                      </select>
+                      <div class="alert alert-danger" *ngIf="admissionData.coursePackage.invalid && (admissionData.coursePackage.dirty||admissionData.coursePackage.touched)">
+                        <div *ngIf="admissionData.coursePackage.errors.required">
+                          Package is required
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
 
           <div class="form-group">
               <div class="row">
-                  <div class="col-md-2">
-                      <label class="control-label">Details:</label>
+                  <div class="col-md-2"></div>
+                  <div class="col-md-4">
+                    <button class="btn btn-warning text-white" (click)="resetForm()">Reset</button>&nbsp;
+                    <button class="btn btn-primary " type="submit">Submit</button>
                   </div>
-                  <div class="col-md-4" *ngIf="admissionData.report.value === 'name'">
-                      <input class="form-control" formControlName="name" placeholder="Name">
-                      <!-- <div class="alert alert-danger" *ngIf="admissionData.name.invalid && (admissionData.name.dirty||admissionData.name.touched)">
-                    <div *ngIf="admissionData.name.errors.required">
-                         Name is required
-                    </div>
-                </div> -->
-                  </div>
-
-                  <div class="col-md-4" *ngIf="admissionData.report.value === 'phone'">
-                      <input class="form-control" formControlName="phone" placeholder="phone">
-                      <!-- <div class="alert alert-danger" *ngIf="admissionData.name.invalid && (admissionData.name.dirty||admissionData.name.touched)">
-                  <div *ngIf="admissionData.name.errors.required">
-                       Name is required
-                  </div>
-              </div> -->
-                  </div>
-
-                  <div class="col-md-4" *ngIf="admissionData.report.value === 'email'">
-                      <input class="form-control" formControlName="email" placeholder="Email">
-                      <!-- <div class="alert alert-danger" *ngIf="admissionData.name.invalid && (admissionData.name.dirty||admissionData.name.touched)">
-                  <div *ngIf="admissionData.name.errors.required">
-                       Name is required
-                  </div>
-              </div> -->
-                  </div>
-
-                  <div class="col-md-4" *ngIf="admissionData.report.value === 'course'">
-                      <input class="form-control" formControlName="course" placeholder="course">
-                      <!-- <div class="alert alert-danger" *ngIf="admissionData.name.invalid && (admissionData.name.dirty||admissionData.name.touched)">
-                  <div *ngIf="admissionData.name.errors.required">
-                       Name is required
-                  </div>
-              </div> -->
-                  </div>
-
-                  <div class="col-md-4" *ngIf="admissionData.report.value === 'studentId'">
-                      <input class="form-control" formControlName="studentId" placeholder="studentId">
-                      <!-- <div class="alert alert-danger" *ngIf="admissionData.name.invalid && (admissionData.name.dirty||admissionData.name.touched)">
-                  <div *ngIf="admissionData.name.errors.required">
-                       Name is required
-                  </div>
-              </div> -->
-                  </div>
-
               </div>
-          </div>
-
-          <div class="form-group">
-              <button class="btn btn-warning text-white" (click)="resetForm()">Reset</button>&nbsp;
-              <button class="btn btn-primary " type="submit">Submit</button>
           </div>
 
       </form>

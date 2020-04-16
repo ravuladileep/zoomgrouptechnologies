@@ -146,6 +146,32 @@ export namespace CommonConstants {
     'Total Admission Report'
     ];
 
+  export const coursePackagearr = [
+    'H/W and Networking Package Course',
+    'CISCO (R&S) TRACK',
+    'CCNA AND CCNP (R&S)',
+    'Test CSRF',
+    'TEST CSRF1',
+    'CCNP + CCIE',
+    'LINUX Administration',
+    'VMWARE PACKAGE',
+    'JOB Guarantee program',
+    'ASA Firewall + CISCO IPS (CCNA & CCNP - Security)',
+    'CCNA & CCNP (Routing & Switching)',
+    'Cybersecurity Professional',
+    'LINUX, AWS-Amazon Web Services',
+    'one year diploma course - Cybersecurity, computer Hardware & Networking',
+    'Ethical Hacking and Cloud Package',
+    'Ethical Hacking And Networking Package Course',
+    'Hardware & Networking Package',
+    'Cybersecurity Associate',
+    'Cybersecurity Associate Package',
+    'Cybersecurity Professional Package',
+    'Cybersecurity Professional Module-1 - VJW',
+    'Cybersecurity Professional - VJW',
+    'All Package'
+  ];
+
   export function jsons() {
     return JSON.stringify;
   }

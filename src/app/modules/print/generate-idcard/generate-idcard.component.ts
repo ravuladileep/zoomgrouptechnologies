@@ -25,6 +25,10 @@ export class GenerateIdcardComponent implements OnInit {
     return this.generateIdCard.controls;
   }
 
+  public printIdCard(): void{
+    window.print();
+  }
+
   public Submit(): void{
     console.log(this.generateIdCard.value);
   }

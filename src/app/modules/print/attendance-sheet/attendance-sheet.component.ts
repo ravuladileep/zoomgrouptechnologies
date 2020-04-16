@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { CommonConstants } from '../../../config/constants';
 
 @Component({
   selector: 'app-attendance-sheet',
@@ -8,6 +9,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class AttendanceSheetComponent implements OnInit {
   public attendanceSheet: FormGroup;
+  public branchesDataarr = [...CommonConstants.branchesDataarr];
+  public coursesDataarr = [...CommonConstants.coursesDataarr];
 
   constructor(private fb: FormBuilder) { }
 
@@ -19,6 +22,8 @@ export class AttendanceSheetComponent implements OnInit {
     this.attendanceSheet = this.fb.group({
       startDate: [],
       endDate: [],
+      branch: [null],
+      course: [null],
       paymentOptions: []
     });
   }

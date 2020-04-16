@@ -1,0 +1,32 @@
+/* styles for id card */
+.id-row{
+  margin: 0px 10px 0px;
+}
+.id-card-title{
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  text-align: center;
+  font-size: 18px;
+}
+.idcard-name{
+  border: 1px solid black;
+  padding: 0% 4% 0%;
+}
+.student-details{
+  font-size: 14px;
+}
+
+.id-footer p{
+  font-size: 11px;
+  margin: 0;
+}
+.idcard-course{
+  border: 1px  solid black;
+  border-left: none;
+  padding: 0% 4% 0%;
+}
+.terms-course{
+  font-size: 11px;
+  font-weight: bold;
+}
+

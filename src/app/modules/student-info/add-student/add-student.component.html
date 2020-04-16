@@ -112,7 +112,7 @@
                           <label class="control-label">Address</label>
                       </div>
                       <div class="col-md-8">
-                          <textarea class="form-control" formControlName="address" cols="20" rows="2" placeholder="Email">
+                          <textarea class="form-control" formControlName="address" cols="20" rows="2" placeholder="Address">
                           </textarea>
                           <div class="alert alert-danger" *ngIf="studentData.address.invalid && (studentData.address.dirty||studentData.address.touched)">
                               <div *ngIf="studentData.address.errors.required">
@@ -287,7 +287,8 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr>
+                      <tr *ngFor="let data of coursePackagearr">
+                        <td><input type="checkbox"> {{data}}</td>
                       </tr>
                   </tbody>
               </table>
