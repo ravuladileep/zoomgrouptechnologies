@@ -10,7 +10,7 @@
 
               <div class="form-group">
                   <div class="row">
-                      <div class="col-md-4  my-auto">
+                      <div class="col-md-4  ">
                           <label class="control-label">First Name</label>
                       </div>
                       <div class="col-md-8">
@@ -26,7 +26,7 @@
 
               <div class="form-group">
                   <div class="row">
-                      <div class="col-md-4  my-auto">
+                      <div class="col-md-4  ">
                           <label class="control-label">Last Name</label>
                       </div>
                       <div class="col-md-8">
@@ -67,7 +67,7 @@
 
               <div class="form-group">
                   <div class="row">
-                      <div class="col-md-4  my-auto">
+                      <div class="col-md-4  ">
                           <label class="control-label">Mobile Number</label>
                       </div>
                       <div class="col-md-8">
@@ -89,7 +89,7 @@
 
               <div class="form-group">
                   <div class="row">
-                      <div class="col-md-4  my-auto">
+                      <div class="col-md-4">
                           <label class="control-label">Email</label>
                       </div>
                       <div class="col-md-8">
@@ -108,7 +108,7 @@
 
               <div class="form-group">
                   <div class="row">
-                      <div class="col-md-4  my-auto">
+                      <div class="col-md-4  ">
                           <label class="control-label">Address</label>
                       </div>
                       <div class="col-md-8">
@@ -147,10 +147,79 @@
                       </div>
                   </div>
               </div>
+              <!-- If foreigner it should display -->
+            <div *ngIf = "studentData.nationality.value === 'foreigner'">
+              <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4  ">
+                        <label class="control-label">Select Country :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <select class="form-control" formControlName="country" placeholder="Select Country">
+                          <option value="null"> Select Country</option>
+                          <option *ngFor="let data of countriesList" [value]="data">{{data.name}}</option>
+                        </select>
+                        <div class="alert alert-danger" *ngIf="studentData.country.invalid && (studentData.country.dirty||studentData.country.touched)">
+                            <div *ngIf="studentData.country.errors.required">
+                                Country is required
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+              </div>
 
               <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4  ">
+                        <label class="control-label">Passport No :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" formControlName="passport" placeholder="Passport No">
+                        <div class="alert alert-danger" *ngIf="studentData.passport.invalid && (studentData.passport.dirty||studentData.passport.touched)">
+                            <div *ngIf="studentData.passport.errors.required">
+                                Passport Number is required
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+               </div>
+
+               <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4  ">
+                        <label class="control-label">Visa No :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" formControlName="visa" placeholder="Visa No">
+                        <div class="alert alert-danger" *ngIf="studentData.visa.invalid && (studentData.visa.dirty||studentData.visa.touched)">
+                            <div *ngIf="studentData.visa.errors.required">
+                                Visa Number is required
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4  ">
+                        <label class="control-label">RP No :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" formControlName="rpnumber" placeholder="RP No">
+                        <div class="alert alert-danger" *ngIf="studentData.rpnumber.invalid && (studentData.rpnumber.dirty||studentData.rpnumber.touched)">
+                            <div *ngIf="studentData.rpnumber.errors.required">
+                                RP Number is required
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+               </div>
+            </div>
+              <!-- End foreginer -->
+              <div class="form-group">
                   <div class="row">
-                      <div class="col-md-4  my-auto">
+                      <div class="col-md-4  ">
                           <label class="control-label">Qualification :</label>
                       </div>
                       <div class="col-md-8">
@@ -166,7 +235,7 @@
 
               <div class="form-group">
                   <div class="row">
-                      <div class="col-md-4  my-auto">
+                      <div class="col-md-4  ">
                           <label class="control-label">If employed:</label>
                       </div>
                       <div class="col-md-8">
@@ -182,7 +251,7 @@
 
               <div class="form-group">
                   <div class="row">
-                      <div class="col-md-4  my-auto">
+                      <div class="col-md-4  ">
                           <label class="control-label">Branch Interested</label>
                       </div>
                       <div class="col-md-8">
@@ -201,7 +270,7 @@
 
               <div class="form-group">
                   <div class="row">
-                      <div class="col-md-4  my-auto">
+                      <div class="col-md-4  ">
                           <label class="control-label">Interested date of joining: </label>
                       </div>
                       <div class="col-md-8">
@@ -248,7 +317,7 @@
                       </div>
                   </div>
               </div>
-
+            <!-- course type of coursename -->
               <table *ngIf="studentData.courseType.value === 'course'" class="table table-responsive-sm  table-bordered">
                   <thead>
                       <tr>
@@ -259,12 +328,16 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let data of coursesDataarr">
+                      <tr *ngFor="let courseName of addStudentForm['controls'].courseName['controls']; let i = index">
                           <td>
-                              <input formControlName="courseName" type="checkbox"> {{data}}
+                            <div class="form-check-inline" formArrayName="courseName" >
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{coursesData[i]}}
+                              </label>
+                            </div>
                           </td>
                           <td>
-                              <select #dp2="bsDatepicker" [bsConfig]="{ adaptivePosition: true }" bsDatepicker>
+                              <select >
                                   <option selected value="null">Select Date</option>
                               </select>
                           </td>
@@ -277,7 +350,35 @@
                       </tr>
                   </tbody>
               </table>
-
+            <!-- course type of coursepackage -->
+            <!-- selected list -->
+              <table *ngIf = "selectedCoursePackages.length > 0" class="table table-responsive-sm  table-bordered">
+                <thead>
+                    <tr>
+                        <th>CourseName</th>
+                        <th>Starting Date</th>
+                        <th>Batch</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor ="let data of selectedCoursePackages;let i =index">
+                        <td>
+                            {{data}}
+                        </td>
+                        <td>
+                            <select >
+                                <option selected value="null">Select Date</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select>
+                                <option selected value="null">Select Batch</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+              </table>
+              <!-- course package list -->
               <table *ngIf="studentData.courseType.value === 'coursePackage'" class="table table-responsive-sm table-bordered">
                   <thead>
                       <tr>
@@ -287,8 +388,24 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let data of coursePackagearr">
-                        <td><input type="checkbox"> {{data}}</td>
+                      <tr *ngFor="let coursePackage of addStudentForm['controls'].coursePackage['controls']; let i = index">
+                        <td>
+                            <div class="form-check-inline" formArrayName="coursePackage" >
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{packageData[i]}}
+                              </label>
+                            </div>
+                       </td>
+                       <td >
+                         <div *ngFor = "let data of coursePackageAndNames[i]['courseNames']">
+                            {{data}},
+                         </div>
+                       </td>
+                        <td >
+                          <div *ngFor = "let data of coursePackageAndNames[i]['branches']">
+                            {{data}},
+                          </div>
+                        </td>
                       </tr>
                   </tbody>
               </table>

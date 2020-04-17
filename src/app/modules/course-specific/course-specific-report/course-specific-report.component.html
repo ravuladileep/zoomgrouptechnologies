@@ -14,9 +14,9 @@
                           <label class="control-label">Course Name <span class="text-danger">*</span></label>
                       </div>
                       <div class="col-md-5">
-                          <select class="form-control" formControlName="courseName" (change)="changeCourseName($event)">
-                              <option value="">Choose your Course</option>
-                              <option *ngFor="let course of Course" [ngValue]="course">{{course}}</option>
+                          <select class="form-control" formControlName="courseName">
+                              <option selected disabled value="null">Choose your Course</option>
+                              <option *ngFor="let data of coursesDataarr" [value]="data">{{data}}</option>
                           </select>
                       </div>
                   </div>
@@ -27,11 +27,21 @@
                       <div class="col-md-4 ">
                           <label class="control-label">Select Schedule Date <span class="text-danger">*</span></label>
                       </div>
-                      <div class="col-md-5 invisible">
-                          <select class="form-control">
-                              <option value="">Select Date</option>
-                              <option></option>
-                          </select>
+                      <div class="col-md-5" *ngIf="specificData.courseName.value !== null">
+                          <div class="input-group ">
+                            <input type="text" class="form-control" placeholder="Schedule Date" #dp1="bsDatepicker" bsDatepicker formControlName="scheduleDate" [bsConfig]="{ adaptivePosition: true }" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <span class="input-group-text" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen" id="basic-addon2"><i class="fas fa-calendar-alt"></i></span>
+                            </div>
+                          </div>
+                          <!-- <div class="alert alert-danger" *ngIf="scheduleData.startDate.invalid && (scheduleData.startDate.dirty||scheduleData.startDate.touched)">
+                              <div *ngIf="scheduleData.startDate.errors.required">
+                                  Start date is required
+                              </div>
+                              <div *ngIf="!scheduleData.startDate.errors.required && scheduleData.startDate.invalid">
+                                  Start date is invalid
+                              </div>
+                          </div> -->
                       </div>
                   </div>
               </div>
@@ -42,9 +52,9 @@
                           <label class="control-label">Branch</label>
                       </div>
                       <div class="col-md-5">
-                          <select class="form-control" formControlName="branchName" (change)="changeBranchName($event)">
-                              <option value="">Choose your Branch</option>
-                              <option *ngFor="let branch of Branch" [ngValue]="branch">{{branch}}</option>
+                          <select class="form-control" formControlName="branchName" >
+                              <option selected disabled value="null">Choose your Branch</option>
+                              <option *ngFor="let data of branchesDataarr" [value]="data">{{data}}</option>
                           </select>
                       </div>
                   </div>

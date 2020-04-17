@@ -171,7 +171,118 @@ export namespace CommonConstants {
     'Cybersecurity Professional - VJW',
     'All Package'
   ];
-
+  export const coursePackageAndNames = [
+    {
+      packageName: 'H/W and Networking Package Course',
+      courseNames : ['CCNA', ' MCSE - Windows Server 2012', 'LINUX Administration', ' Workshop on emerging Technologies', 'Hardware and Networking'],
+      branches: ['Ameerpet', 'Banjara Hills', 'Dilsukh nagar', 'Secunderabad']
+    },
+    {
+      packageName: 'CISCO (R&S) TRACK',
+      courseNames : [	'CCNA', 'CCNP', 'CCIE (R&S)'],
+      branches: ['Ameerpet']
+    },
+    {
+      packageName: 'CCNA AND CCNP (R&S)',
+      courseNames : ['CCNA', 'CCNP'],
+      branches: ['Ameerpet']
+    },
+    {
+      packageName: 'Test CSRF',
+      courseNames : ['CCNA', 'MCSE - Windows Server 2012'],
+      branches: ['Ameerpet', ' Banjara Hills', 'Dilsukh nagar', 'Secunderabad', 'Test linux']
+    },
+    {
+      packageName: 'TEST CSRF1',
+      courseNames : ['CCNA', ' EXCHANGE SERVER 2013'],
+      branches: [	'Ameerpet', ' Banjara Hills', 'Dilsukh nagar', 'Secunderabad', 'Test linux']
+    },
+    {
+      packageName: 'CCNP + CCIE',
+      courseNames : ['CCNA', 'CCIE (R&S)'],
+      branches: [	'Ameerpet']
+    },
+    {
+      packageName: 'LINUX Administration',
+      courseNames : ['LINUX Administration', ' LINUX - Advanced'],
+      branches: [	'Ameerpet', ' Banjara Hills', 'Dilsukh nagar', 'Secunderabad']
+    },
+    {
+      packageName: 'VMWARE PACKAGE',
+      courseNames : [	'VMware Cloud', 'VMware vSphere 6.0'],
+      branches: ['Ameerpet']
+    },
+    {
+      packageName: 'JOB Guarantee program',
+      courseNames : ['Hardware and Networking', 'Ethical Hacking and Prevention', 'MCSE (Server Infrastructure)', 'LINUX', 'CCNA - V3.0', 'Cisco Security'],
+      branches: ['Ameerpet']
+    },
+    {
+      packageName: ' ASA Firewall + CISCO IPS (CCNA & CCNP - Security)',
+      courseNames : ['CISCO ASA Firewall + CISCO IPS', 'CCNA (Security)'],
+      branches: ['Ameerpet']
+    },
+    {
+      packageName: 'CCNA & CCNP (Routing & Switching)',
+      courseNames : ['CCNA', 'CCNP - Routing & Switching'],
+      branches: ['Ameerpet']
+    },
+    {
+      packageName: ' Cybersecurity Professional',
+      courseNames : ['CCNA', 'LINUX Administration', 'Hardware and Networking', 'Cybersecurity Professional', 'MCSE - 2012 (CP)'],
+      branches: [	'Ameerpet', 'Vijayawada']
+    },
+    {
+      packageName: 'LINUX, AWS-Amazon Web Services',
+      courseNames : ['LINUX Administration', ' Amazon Web Services'],
+      branches: [	'Ameerpet']
+    },
+    {
+      packageName: 'one year diploma course - Cybersecurity, computer Hardware & Networking',
+      courseNames : ['CCNA', 'MCSE - Windows Server 2012', 'LINUX Administration', ' Cybersecurity Professional', 'Computer Hardware'],
+      branches: [	'Surat']
+    },
+    {
+      packageName: 'Ethical Hacking and Cloud Package',
+      courseNames : ['CCNA', 'MCSE - Windows Server 2012', 'LINUX Administration', 'Microsoft AZURE', 'Microsoft Office 365', 'Ethical Hacking and Prevention'],
+      branches: ['Surat']
+    },
+    {
+      packageName: ' Ethical Hacking And Networking Package Course',
+      courseNames : ['CCNA', 'MCSE - Windows Server 2012', 'LINUX Administration', 'Hardware and Networking', 'Ethical Hacking and Prevention'],
+      branches: ['Ameerpet']
+    },
+    {
+      packageName: 'Hardware & Networking Package',
+      courseNames : [	'CCNA', 'LINUX Administration', 'Hardware and Networking', 'MCSE - 2012 (NP)'],
+      branches: [	'Ameerpet', 'Banjara Hills', 'Vijayawada']
+    },
+    {
+      packageName: 'Cybersecurity Associate',
+      courseNames : ['CCNA', 'LINUX Administration', 'Hardware and Networking', 'Ethical Hacking and Prevention', 'MCSE - 2012 (CA)'],
+      branches: [	'Ameerpet', 'Banjara Hills', 'Vijayawada']
+    },
+    {
+      packageName: ' Cybersecurity Associate Package',
+      courseNames : ['MCSE (CA)', 'LINUX', 'CCNA - V3.0', 'Cisco Security', 'Ethical Hacking & Prevention'],
+      branches: [	'Ameerpet', 'Banjara Hills', 'Surat', 'Vijayawada']
+    },
+    {
+      packageName: ' Cybersecurity Professional Package',
+      courseNames : ['Cybersecurity Professional', ' MCSE (CP)', 'LINUX', 'CCNA - V3.0', 'Cisco Security'],
+      branches: [	'Ameerpet', 'Vijayawada']
+    },
+    {
+      packageName: ' Cybersecurity Professional Module-1 - VJW',
+      courseNames : ['MCSE-VJW', 'CCNA-VJW', 'Linux-VJW'],
+      branches: [	'Vijayawada']
+    },
+    {
+      packageName: 'Cybersecurity Professional - VJW',
+      courseNames : ['MCSE-VJW', 'CCNA-VJW', 'Linux-VJW', 'Cybersecurity Professional -VJW'],
+      branches: ['Vijayawada']
+    }
+  ];
   export function jsons() {
     return JSON.stringify;
   }

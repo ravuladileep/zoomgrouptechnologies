@@ -4,8 +4,6 @@ import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { UserService } from '../../../services/user/user.service';
 import {Iuser} from '../../../entities/user.model';
 import { CommonConstants } from '../../../config/constants';
-
-
 declare var $: any;
 
 @Component({
