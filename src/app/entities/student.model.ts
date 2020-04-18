@@ -11,4 +11,6 @@ export interface IStudent {
   branch?: string;
   joiningDate?: number;
   courseType?: string;
+  courseName?: any;
+  coursePackage?: any;
 }

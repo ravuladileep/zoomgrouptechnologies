@@ -157,7 +157,7 @@
                     <div class="col-md-8">
                         <select class="form-control" formControlName="country" placeholder="Select Country">
                           <option value="null"> Select Country</option>
-                          <option *ngFor="let data of countriesList" [value]="data">{{data.name}}</option>
+                          <option *ngFor="let data of countriesList" [value]="data.name">{{data.name}}</option>
                         </select>
                         <div class="alert alert-danger" *ngIf="studentData.country.invalid && (studentData.country.dirty||studentData.country.touched)">
                             <div *ngIf="studentData.country.errors.required">

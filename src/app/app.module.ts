@@ -60,6 +60,7 @@ import { PrintCertificateComponent } from './modules/print/print-certificate/pri
 import { PrintReceiptComponent } from './modules/print/print-receipt/print-receipt.component';
 import { GenerateIdcardComponent } from './modules/print/generate-idcard/generate-idcard.component';
 import { AttendanceSheetComponent } from './modules/print/attendance-sheet/attendance-sheet.component';
+import { ExcelService } from './services/excel/excel.service';
 // import { PaginationModule } from 'ngx-bootstrap';
 
 @NgModule({
@@ -135,7 +136,8 @@ import { AttendanceSheetComponent } from './modules/print/attendance-sheet/atten
     ToasterService,
     UserService,
     CoursePackageService,
-    ScheduleService
+    ScheduleService,
+    ExcelService
   ],
   bootstrap: [AppComponent]
 })

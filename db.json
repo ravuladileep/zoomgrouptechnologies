@@ -211,7 +211,10 @@
       "branch": "Banjara Hills",
       "joiningDate": "2020-04-07T05:50:03.983Z",
       "courseType": "course",
-      "courseName": "",
+      "courseName": [
+        "CCNA"
+      ],
+      "coursePackage": [],
       "startingDate": "2020-04-07T05:50:03.983Z",
       "id": 1
     },
@@ -219,18 +222,49 @@
       "firstName": "david",
       "lastName": "warner",
       "gender": "male",
-      "mobileNumber": "7894587978",
+      "mobileNumber": "9849079549",
       "email": "david@gmail.com",
-      "address": "Australia",
-      "nationality": "foreigner",
-      "qualification": "MBA",
-      "companyName": "Aus",
-      "branch": "Ameerpet",
-      "joiningDate": "2020-04-15T05:27:02.208Z",
+      "address": "aus",
+      "nationality": "indian",
+      "country": null,
+      "passport": "",
+      "visa": "",
+      "rpnumber": "",
+      "qualification": "gtyhujkl",
+      "companyName": "fghjkl",
+      "branch": "Dilsukh nagar",
+      "joiningDate": "2020-04-18T12:04:59.194Z",
       "courseType": "course",
-      "courseName": true,
-      "startingDate": "2020-04-15T05:27:02.208Z",
+      "courseName": [
+        "CCNA"
+      ],
+      "coursePackage": [],
+      "startingDate": "2020-04-18T12:04:59.194Z",
       "id": 2
+    },
+    {
+      "firstName": "lorem",
+      "lastName": "ipsum",
+      "gender": "male",
+      "mobileNumber": "9849079877",
+      "email": "lorem@gmail.com",
+      "address": "lorem",
+      "nationality": "indian",
+      "country": null,
+      "passport": "",
+      "visa": "",
+      "rpnumber": "",
+      "qualification": "fghjkl",
+      "companyName": "gfhjkl",
+      "branch": "Banjara Hills",
+      "joiningDate": "2020-04-18T14:15:59.653Z",
+      "courseType": "coursePackage",
+      "courseName": [],
+      "coursePackage": [
+        "H/W and Networking Package Course"
+      ],
+      "startingDate": "2020-04-18T14:15:59.654Z",
+      "id": 3
     }
   ],
   "fee": [

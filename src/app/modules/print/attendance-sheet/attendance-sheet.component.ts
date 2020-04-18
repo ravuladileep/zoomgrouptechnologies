@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CommonConstants } from '../../../config/constants';
+import { ExcelService } from 'src/app/services/excel/excel.service';
 
 @Component({
   selector: 'app-attendance-sheet',
@@ -12,7 +13,7 @@ export class AttendanceSheetComponent implements OnInit {
   public branchesDataarr = [...CommonConstants.branchesDataarr];
   public coursesDataarr = [...CommonConstants.coursesDataarr];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private excelService: ExcelService) { }
 
   ngOnInit(): void {
     this.attendanceSheetForm();
@@ -30,6 +31,10 @@ export class AttendanceSheetComponent implements OnInit {
 
   get attendanceData() {
    return  this.attendanceSheet.controls;
+  }
+
+  public saveAttendance(): void{
+    // this.excelService.exportAsExcelFile(, 'attendanceSheet');
   }
 
   public submit(): void{

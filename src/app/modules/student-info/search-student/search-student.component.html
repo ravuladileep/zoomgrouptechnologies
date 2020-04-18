@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="!details">
   <h5 class="text-center text-secondary my-2">Search Student</h5>
   <div class="bg-white p-3">
       <h5>Search Student</h5>
@@ -104,6 +104,7 @@
                   <th>Contact Number</th>
                   <th>Email</th>
                   <th>Qualification</th>
+                  <th>Action</th>
               </tr>
           </thead>
           <tbody>
@@ -113,8 +114,435 @@
                   <td>{{data.mobileNumber}}</td>
                   <td>{{data.email}}</td>
                   <td>{{data.qualification}}</td>
+                  <td><button class="btn btn-success" (click)="moreDetails(data.id)">More Details</button></td>
               </tr>
           </tbody>
       </table>
   </div>
+</div>
+
+
+<!-- edit student -->
+
+<div class="container-fluid" *ngIf="details">
+  <h5 class="text-center text-secondary my-3">Student Details</h5>
+
+  <form [formGroup]="editStudentForm" (ngSubmit)="updateStudent()">
+      <div class="row bg-white mx-lg-2 p-3">
+
+          <div class="col-12 col-lg-6">
+              <h6>Personal Details</h6>
+              <hr>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4  ">
+                          <label class="control-label">First Name</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" formControlName="firstName" placeholder="First Name">
+                          <div class="alert alert-danger" *ngIf="studentData.firstName.invalid && (studentData.firstName.dirty||studentData.firstName.touched)">
+                              <div *ngIf="studentData.firstName.errors.required">
+                                  firstName is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4  ">
+                          <label class="control-label">Last Name</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" formControlName="lastName" placeholder="Last Name">
+                          <div class="alert alert-danger" *ngIf="studentData.lastName.invalid && (studentData.lastName.dirty||studentData.lastName.touched)">
+                              <div *ngIf="studentData.lastName.errors.required">
+                                  lastName is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row mt-3">
+                      <div class="col-md-4">
+                          <label class="control-label">Gender:</label>
+                      </div>
+                      <div class="col-md-6">
+
+                          <div class="custom-control custom-radio custom-control-inline">
+                              <input type="radio" id="male" formControlName="gender" value="male" name="gender" class="custom-control-input">
+                              <label class="custom-control-label" for="male">Male</label>
+                          </div>
+                          <div class="custom-control custom-radio custom-control-inline">
+                              <input type="radio" id="female" formControlName="gender" value="female" name="gender" class="custom-control-input">
+                              <label class="custom-control-label" for="female">Female</label>
+                          </div>
+
+                          <div class="alert alert-danger" *ngIf="studentData.gender.invalid && (studentData.gender.dirty||studentData.gender.touched)">
+                              <div *ngIf="studentData.gender.errors.required">
+                                  gender is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4  ">
+                          <label class="control-label">Mobile Number</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" formControlName="mobileNumber" placeholder="Mobile Number">
+                          <div class="alert alert-danger" *ngIf="studentData.mobileNumber.invalid && (studentData.mobileNumber.dirty||studentData.mobileNumber.touched)">
+                              <div *ngIf="studentData.mobileNumber.errors.required">
+                                  Mobile Number is required
+                              </div>
+                              <div *ngIf="studentData.mobileNumber.errors?.pattern">
+                                  Mobile Number should be digits only
+                              </div>
+                              <div *ngIf="!studentData.mobileNumber.errors?.pattern &&(studentData.mobileNumber.errors?.maxlength || studentData.mobileNumber.errors?.minlength)">
+                                  Mobile Number should be 10 digits
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label class="control-label">Email</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" formControlName="email" placeholder="Email">
+                          <div class="alert alert-danger" *ngIf="studentData.email.invalid && (studentData.email.dirty||studentData.email.touched)">
+                              <div *ngIf="studentData.email.errors?.required">
+                                  Email is required
+                              </div>
+                              <div *ngIf="studentData.email.errors?.pattern">
+                                  Invalid Email Id
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4  ">
+                          <label class="control-label">Address</label>
+                      </div>
+                      <div class="col-md-8">
+                          <textarea class="form-control" formControlName="address" cols="20" rows="2" placeholder="Address">
+                          </textarea>
+                          <div class="alert alert-danger" *ngIf="studentData.address.invalid && (studentData.address.dirty||studentData.address.touched)">
+                              <div *ngIf="studentData.address.errors.required">
+                                  Address is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row mt-3">
+                      <div class="col-md-4">
+                          <label class="control-label">Nationality:</label>
+                      </div>
+                      <div class="col-md-6">
+
+                          <div class="custom-control custom-radio custom-control-inline">
+                              <input type="radio" id="indian" formControlName="nationality" value="indian" name="nationality" class="custom-control-input">
+                              <label class="custom-control-label" for="indian">Indian</label>
+                          </div>
+                          <div class="custom-control custom-radio custom-control-inline">
+                              <input type="radio" id="foreigner" formControlName="nationality" value="foreigner" name="nationality" class="custom-control-input">
+                              <label class="custom-control-label" for="foreigner">Foreigner</label>
+                          </div>
+
+                          <div class="alert alert-danger" *ngIf="studentData.nationality.invalid && (studentData.nationality.dirty||studentData.nationality.touched)">
+                              <div *ngIf="studentData.nationality.errors.required">
+                                  Nationality is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- If foreigner it should display -->
+            <div *ngIf = "studentData.nationality.value === 'foreigner'">
+              <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4  ">
+                        <label class="control-label">Select Country :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <select class="form-control" formControlName="country" placeholder="Select Country">
+                          <option value="null"> Select Country</option>
+                          <option *ngFor="let data of countriesList" [value]="data.name">{{data.name}}</option>
+                        </select>
+                        <div class="alert alert-danger" *ngIf="studentData.country.invalid && (studentData.country.dirty||studentData.country.touched)">
+                            <div *ngIf="studentData.country.errors.required">
+                                Country is required
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4  ">
+                        <label class="control-label">Passport No :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" formControlName="passport" placeholder="Passport No">
+                        <div class="alert alert-danger" *ngIf="studentData.passport.invalid && (studentData.passport.dirty||studentData.passport.touched)">
+                            <div *ngIf="studentData.passport.errors.required">
+                                Passport Number is required
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+               </div>
+
+               <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4  ">
+                        <label class="control-label">Visa No :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" formControlName="visa" placeholder="Visa No">
+                        <div class="alert alert-danger" *ngIf="studentData.visa.invalid && (studentData.visa.dirty||studentData.visa.touched)">
+                            <div *ngIf="studentData.visa.errors.required">
+                                Visa Number is required
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4  ">
+                        <label class="control-label">RP No :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" formControlName="rpnumber" placeholder="RP No">
+                        <div class="alert alert-danger" *ngIf="studentData.rpnumber.invalid && (studentData.rpnumber.dirty||studentData.rpnumber.touched)">
+                            <div *ngIf="studentData.rpnumber.errors.required">
+                                RP Number is required
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+               </div>
+            </div>
+              <!-- End foreginer -->
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4  ">
+                          <label class="control-label">Qualification :</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" formControlName="qualification" placeholder="Qualification">
+                          <div class="alert alert-danger" *ngIf="studentData.qualification.invalid && (studentData.qualification.dirty||studentData.qualification.touched)">
+                              <div *ngIf="studentData.qualification.errors.required">
+                                  Qualification is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4  ">
+                          <label class="control-label">If employed:</label>
+                      </div>
+                      <div class="col-md-8">
+                          <input class="form-control" formControlName="companyName" placeholder="Company Name">
+                          <!-- <div class="alert alert-danger" *ngIf="studentData.companyName.invalid && (studentData.companyName.dirty||studentData.companyName.touched)">
+                      <div *ngIf="studentData.companyName.errors.required">
+                          companyName is required
+                      </div>
+                  </div> -->
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4  ">
+                          <label class="control-label">Branch Interested</label>
+                      </div>
+                      <div class="col-md-8">
+                          <select class="form-control" formControlName="branch" placeholder="Select Branch">
+                              <option value="null"> Select Branch</option>
+                              <option *ngFor="let data of branch" [value]="data">{{data}}</option>
+                          </select>
+                          <div class="alert alert-danger" *ngIf="studentData.branch.invalid && (studentData.branch.dirty||studentData.branch.touched)">
+                              <div *ngIf="studentData.branch.errors.required">
+                                  Branch is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-md-4  ">
+                          <label class="control-label">Interested date of joining: </label>
+                      </div>
+                      <div class="col-md-8">
+                          <div class="input-group mb-3">
+                              <input class="form-control" #dp1="bsDatepicker" bsDatepicker formControlName="joiningDate" placeholder="Date" [bsConfig]="{ adaptivePosition: true }" aria-describedby="basic-addon2">
+                              <div class="input-group-append">
+                                  <span class="input-group-text" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen" id="basic-addon2"><i class="fas fa-calendar-alt"></i></span>
+                              </div>
+                          </div>
+                          <div class="alert alert-danger" *ngIf="studentData.joiningDate.invalid && (studentData.joiningDate.dirty||studentData.joiningDate.touched)">
+                              <div *ngIf="studentData.joiningDate.errors.required">
+                                  joiningDate is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+          <!-- course type tables -->
+          <div class="col-12 col-lg-6">
+
+              <div class="form-group">
+                  <div class="row mt-3">
+                      <div class="col-md-4">
+                          <label class="control-label">Choose Course Type:</label>
+                      </div>
+                      <div class="col-md-6">
+
+                          <div class="custom-control custom-radio custom-control-inline">
+                              <input type="radio" id="course" formControlName="courseType" value="course" name="courseType" class="custom-control-input">
+                              <label class="custom-control-label" for="course">Course</label>
+                          </div>
+                          <div class="custom-control custom-radio custom-control-inline">
+                              <input type="radio" id="coursePackage" formControlName="courseType" value="coursePackage" name="courseType" class="custom-control-input">
+                              <label class="custom-control-label" for="coursePackage">Course Package</label>
+                          </div>
+
+                          <div class="alert alert-danger" *ngIf="studentData.courseType.invalid && (studentData.courseType.dirty||studentData.courseType.touched)">
+                              <div *ngIf="studentData.courseType.errors.required">
+                                  courseType is required
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            <!-- course type of coursename -->
+              <table *ngIf="studentData.courseType.value === 'course'" class="table table-responsive-sm  table-bordered">
+                  <thead>
+                      <tr>
+                          <th>CourseName</th>
+                          <th>Starting Date</th>
+                          <th>Batch</th>
+                          <th>Course Seat</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let courseName of editStudentForm['controls'].courseName['controls']; let i = index">
+                          <td>
+                            <div class="form-check-inline" formArrayName="courseName" >
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{coursesData[i]}}
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                              <select >
+                                  <option selected value="null">Select Date</option>
+                              </select>
+                          </td>
+                          <td>
+                              <select>
+                                  <option selected value="null">Select Batch</option>
+                              </select>
+                          </td>
+                          <td></td>
+                      </tr>
+                  </tbody>
+              </table>
+            <!-- course type of coursepackage -->
+            <!-- selected list -->
+              <table *ngIf = "selectedCoursePackages.length > 0" class="table table-responsive-sm  table-bordered">
+                <thead>
+                    <tr>
+                        <th>CourseName</th>
+                        <th>Starting Date</th>
+                        <th>Batch</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor ="let data of selectedCoursePackages;let i =index">
+                        <td>
+                            {{data}}
+                        </td>
+                        <td>
+                            <select >
+                                <option selected value="null">Select Date</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select>
+                                <option selected value="null">Select Batch</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+              </table>
+              <!-- course package list -->
+              <table *ngIf="studentData.courseType.value === 'coursePackage'" class="table table-responsive-sm table-bordered">
+                  <thead>
+                      <tr>
+                          <th>Course Package Name</th>
+                          <th>Course Names</th>
+                          <th>Branch Name</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let coursePackage of editStudentForm['controls'].coursePackage['controls']; let i = index">
+                        <td>
+                            <div class="form-check-inline" formArrayName="coursePackage" >
+                              <label class="checkbox-inline">
+                                  <input type="checkbox" class="form-check-input" [formControlName]="i"> {{packageData[i]}}
+                              </label>
+                            </div>
+                       </td>
+                       <td >
+                         <div *ngFor = "let data of coursePackageAndNames[i]['courseNames']">
+                            {{data}},
+                         </div>
+                       </td>
+                        <td >
+                          <div *ngFor = "let data of coursePackageAndNames[i]['branches']">
+                            {{data}},
+                          </div>
+                        </td>
+                      </tr>
+                  </tbody>
+              </table>
+
+              <div class="form-group">
+                  <button class="btn btn-success" type="submit">Update</button>
+              </div>
+
+          </div>
+
+      </div>
+
+  </form>
 </div>

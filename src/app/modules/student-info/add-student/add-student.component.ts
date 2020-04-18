@@ -1,6 +1,6 @@
-import { Component, OnInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Validators, FormBuilder, FormGroup, FormControl, FormArray} from '@angular/forms';
-import { of, from } from 'rxjs';
+import { of } from 'rxjs';
 import { StudentService } from '../../../services/student/student.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { CommonConstants } from '../../../config/constants';
@@ -52,6 +52,7 @@ export class AddStudentComponent implements OnInit {
     this.addStudentForm = this.fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
+      // name: [],
       gender: ['', [Validators.required]],
       mobileNumber: [
         '',
@@ -79,7 +80,7 @@ export class AddStudentComponent implements OnInit {
       courseType: ['course', [Validators.required]],
       courseName: this.fb.array([]),
       coursePackage: this.fb.array([]),
-      startingDate: [new Date(), [Validators.required]],
+      startingDate: [new Date()],
     });
 
     of(this.getCourses()).subscribe((res) => {
@@ -128,6 +129,7 @@ export class AddStudentComponent implements OnInit {
    * @ version  : 1.0.1
    * @ author   : dileep_ravula
    */
+
   public checkboxMapping() {
     this.addStudentForm.value.courseName = this.addStudentForm.value.courseName
       .map((v, i) => (v ? this.coursesData[i] : null))
@@ -137,6 +139,11 @@ export class AddStudentComponent implements OnInit {
       .filter((v) => v != null);
   }
 
+  // public fullName(): void{
+  //   const name = this.addStudentForm.get('firstName').value + ' ' + this.addStudentForm.get('lastName').value;
+  //   this.addStudentForm.get('name').patchValue(name);
+  // }
+
   /**
    * @ function : Submit()
    * @ Purpose  : submitting the form data
@@ -145,12 +152,13 @@ export class AddStudentComponent implements OnInit {
    */
 
   public Submit(): void {
-    // this.studentService
-    //   .addStudent(this.addStudentForm.value)
-    //   .subscribe((res) => {
-    //     this.toaster.recordAdded();
-    //   });
+    // this.fullName();
     this.checkboxMapping();
+    this.studentService
+      .addStudent(this.addStudentForm.value)
+      .subscribe((res) => {
+        this.toaster.recordAdded();
+      });
     console.log(this.addStudentForm.value);
     this.addStudentForm.reset();
   }

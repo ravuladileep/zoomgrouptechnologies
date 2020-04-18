@@ -43,10 +43,11 @@ export class StudentService {
   }
 
   public getStudentBySearch(key, value): Observable<IStudent> {
-    let myparams = new HttpParams();
-    myparams = myparams.append(key, value);
+    // let myparams = new HttpParams();
+    // myparams = myparams.append(key, value);
+    const myparams = new HttpParams({fromString: `${key}=${value}`});
     return this.http
-      .get<IStudent>(this.studentUrl, { params: myparams })
+      .get<IStudent>(this.studentUrl, {params: myparams})
       .pipe(retry(1), catchError(this.errorHandler));
   }
 
