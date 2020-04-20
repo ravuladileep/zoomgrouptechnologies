@@ -61,6 +61,7 @@ import { PrintReceiptComponent } from './modules/print/print-receipt/print-recei
 import { GenerateIdcardComponent } from './modules/print/generate-idcard/generate-idcard.component';
 import { AttendanceSheetComponent } from './modules/print/attendance-sheet/attendance-sheet.component';
 import { ExcelService } from './services/excel/excel.service';
+import {NgxPrintModule} from 'ngx-print';
 // import { PaginationModule } from 'ngx-bootstrap';
 
 @NgModule({
@@ -120,7 +121,8 @@ import { ExcelService } from './services/excel/excel.service';
     }),
     WebcamModule,
     BsDatepickerModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxPrintModule
     // PaginationModule.forRoot()
   ],
   providers: [

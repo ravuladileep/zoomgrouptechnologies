@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" >
 
   <div class="add-page-tittle">
       <h5 class="add-section-heading my-3 text-center text-secondary">Certificate</h5>
@@ -42,8 +42,8 @@
           </div>
       </div>
 
-      <div class="certificate ">
-          <div class="" class="certificatediv">
+      <div class="certificate" #printsection>
+          <div  class="certificatediv d-print-block" [ngClass]="student== undefined?'d-none':'d-block'">
               <div class="row">
                   <div class="col-md-3"></div>
                   <div class="col-md-6">
@@ -56,14 +56,14 @@
 
               <div class="content mt-3">
                   <div class="certificate-content">
-                      <p>This is to certify that Mr. / Ms. <span><input type="text" class="certificate-name col-md-8"></span></p>
+                      <p>This is to certify that Mr. / Ms. <span><input type="text" readonly [(ngModel)]="studentname" class="certificate-name col-md-8"></span></p>
                       <p>Has successfully completed the Course in
-                          <span><input type="text" class="course-name mt-2 col-md-12"></span></p>
-                      <p>Start Date <span><input type="text" class="course-date"></span> End Date<span><input type="text" class="course-date"></span></p>
+                          <span><input type="text" readonly [(ngModel)]="coursename" class="course-name mt-2 col-md-12"></span></p>
+                      <p>Start Date <span><input type="text" readonly [(ngModel)]="startdate" class="course-date"></span> End Date<span><input type="text" readonly class="course-date"></span></p>
                       <p>Reference No.
-                          <span><input type="text" class="last-input"></span> Date
-                          <span><input type="text" class="last-input"></span> at
-                          <span><input type="text" class="last-input"></span> Education Center.</p>
+                          <span><input type="text" readonly class="last-input"></span> Date
+                          <span><input type="text" readonly class="last-input"></span> at
+                          <span><input type="text" readonly class="last-input" [(ngModel)]="branch"></span> Education Center.</p>
                   </div>
                   <div class="certificate-footer">
                       <div class="ml-auto">

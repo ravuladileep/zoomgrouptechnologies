@@ -3,5 +3,5 @@ export interface IBranch {
   branchName?: string;
   branchCode?: string;
   branchAddress?: string;
-  branchContactNumber?: any;
+  branchContactNumber?: number;
 }

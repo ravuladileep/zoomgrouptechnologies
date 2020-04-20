@@ -1,4 +1,7 @@
 // defining the message constant
+
+import { throwError } from 'rxjs';
+
 // tslint:disable-next-line: no-namespace
 export namespace CommonConstants {
   export const ERROR_MSG_409 = 'Currently data sync in progress. Please try after some time.';
@@ -321,5 +324,18 @@ export namespace CommonConstants {
 
   export function clearLocalStorage() {
     return localStorage.clear();
+  }
+
+  export function errorHandler(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
   }
 }

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Iuser } from '../../entities/user.model';
+import { CommonConstants } from '../../config/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -15,43 +16,31 @@ export class UserService {
   public adduser(data): Observable<Iuser> {
     return this.http
       .post<Iuser>(this.userUrl, data)
-      .pipe(retry(1), catchError(this.errorHandler));
+      .pipe(retry(1), catchError(CommonConstants.errorHandler));
   }
 
   public getuserData(): Observable<Iuser[]> {
     return this.http
       .get<Iuser[]>(this.userUrl)
-      .pipe(retry(1), catchError(this.errorHandler));
+      .pipe(retry(1), catchError(CommonConstants.errorHandler));
   }
 
   public updateuserData(id, data): Observable<Iuser> {
     return this.http
       .patch<Iuser>(this.userUrl + id, data)
-      .pipe(retry(1), catchError(this.errorHandler));
+      .pipe(retry(1), catchError(CommonConstants.errorHandler));
   }
 
   public deleteuser(id): Observable<Iuser> {
     return this.http
       .delete<Iuser>(this.userUrl + id)
-      .pipe(retry(1), catchError(this.errorHandler));
+      .pipe(retry(1), catchError(CommonConstants.errorHandler));
   }
 
   public getuserById(id): Observable<Iuser> {
     return this.http
       .get<Iuser>(this.userUrl + id)
-      .pipe(retry(1), catchError(this.errorHandler));
+      .pipe(retry(1), catchError(CommonConstants.errorHandler));
   }
 
-  public errorHandler(error) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    window.alert(errorMessage);
-    return throwError(errorMessage);
-  }
 }

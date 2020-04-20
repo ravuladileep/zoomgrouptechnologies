@@ -22,8 +22,8 @@ export class EditcourseScheduleComponent implements OnInit {
   public updateid: any;
   public branchesData = [];
   public batchesData = [];
-  public term: any;
-  public showEntries;
+  public term: string;
+  public showEntries: number;
   public p = 1;
 
 
@@ -96,8 +96,6 @@ export class EditcourseScheduleComponent implements OnInit {
     return this.updateScheduleSpecificForm.controls;
   }
 
-
-
   /**
    * @ function : loadScheduleData
    * @ Purpose  : fetching the branchdata
@@ -123,8 +121,6 @@ export class EditcourseScheduleComponent implements OnInit {
     this.p = 1;
     this.showEntries = event.target.value;
   }
-
-
 
 
   /**

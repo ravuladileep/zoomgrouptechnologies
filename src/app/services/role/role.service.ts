@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { IRole } from '../../entities/role.model';
+import { CommonConstants } from '../../config/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -15,43 +16,31 @@ export class RoleService {
   public addRole(data): Observable<IRole> {
     return this.http
       .post<IRole>(this.roleUrl, data)
-      .pipe(retry(1), catchError(this.errorHandler));
+      .pipe(retry(1), catchError(CommonConstants.errorHandler));
   }
 
   public getRoleData(): Observable<IRole[]> {
     return this.http
       .get<IRole[]>(this.roleUrl)
-      .pipe(retry(1), catchError(this.errorHandler));
+      .pipe(retry(1), catchError(CommonConstants.errorHandler));
   }
 
   public updateRoleData(id, data): Observable<IRole> {
     return this.http
       .patch<IRole>(this.roleUrl + id, data)
-      .pipe(retry(1), catchError(this.errorHandler));
+      .pipe(retry(1), catchError(CommonConstants.errorHandler));
   }
 
   public deleteRole(id): Observable<IRole> {
     return this.http
       .delete<IRole>(this.roleUrl + id)
-      .pipe(retry(1), catchError(this.errorHandler));
+      .pipe(retry(1), catchError(CommonConstants.errorHandler));
   }
 
   public getRoleById(id): Observable<IRole> {
     return this.http
       .get<IRole>(this.roleUrl + id)
-      .pipe(retry(1), catchError(this.errorHandler));
+      .pipe(retry(1), catchError(CommonConstants.errorHandler));
   }
 
-  public errorHandler(error) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    window.alert(errorMessage);
-    return throwError(errorMessage);
-  }
 }

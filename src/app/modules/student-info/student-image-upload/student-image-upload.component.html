@@ -9,7 +9,7 @@
                       <label class="control-label">Student ID:</label>
                   </div>
                   <div class="col-md-4">
-                      <input class="form-control" placeholder="Student ID: ZTAM100">
+                      <input class="form-control" #studentId placeholder="Student ID: ZTAM100">
                       <!-- <div class="alert alert-danger" *ngIf="studentData.studentId.invalid && (studentData.studentId.dirty||studentData.studentId.touched)">
                       <div *ngIf="studentData.studentId.errors.required">
                           StudentId is required
@@ -31,7 +31,7 @@
       </div>
   </form>
 
-  <div class="bg-white  p-3" *ngIf="isSubmit">
+  <div class="bg-white  p-3" *ngIf="student !== undefined || student?.length ">
       <div class="row justify-content-center">
           <div class="col-md-2 upload-card">
               <img src="../../../../assets/images/user.png" data-toggle="modal" data-target="#studentphoto" alt="user" class="p-2 mx-auto d-block user-img img-fluid">
@@ -116,14 +116,14 @@
           </div>
 
       </div>
-      <table class="table table-bordered  table-responsive-sm">
+      <table class="table table-bordered  table-responsive-sm" >
           <tr>
               <td>StudentId</td>
-              <td></td>
+              <td>{{student.id}}</td>
           </tr>
           <tr>
               <td>Student Name</td>
-              <td></td>
+              <td>{{student.firstName}}</td>
           </tr>
           <tr>
               <td>Student Status</td>
@@ -131,27 +131,27 @@
           </tr>
           <tr>
               <td>Mobile no.</td>
-              <td></td>
+              <td>{{student.mobileNumber}}</td>
           </tr>
           <tr>
               <td>Email</td>
-              <td></td>
+              <td>{{student.email}}</td>
           </tr>
           <tr>
               <td>Date Of Registration</td>
-              <td></td>
+              <td>{{student.joiningDate}}</td>
           </tr>
           <tr>
               <td>Branch</td>
-              <td></td>
+              <td>{{student.branch}}</td>
           </tr>
           <tr>
               <td>Course name</td>
-              <td></td>
+              <td><div *ngFor="let data of student.courseName">{{data}}</div></td>
           </tr>
           <tr>
               <td>Package name</td>
-              <td></td>
+              <td><div *ngFor="let data of student.coursePackage">{{data}}</div></td>
           </tr>
           <tr>
               <td>Total Amount</td>

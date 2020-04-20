@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, ValidatorFn, FormArray, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { of } from 'rxjs';
 import { RoleService } from '../../../services/role/role.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
@@ -23,8 +23,8 @@ export class EditRoleComponent implements OnInit {
   public assignFunctionData = [];
   public reportsData = [];
   public communicationData = [];
-  public term: any;
-  public showEntries;
+  public term: string;
+  public showEntries: number;
   public p = 1;
 
 

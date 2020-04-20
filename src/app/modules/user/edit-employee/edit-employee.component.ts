@@ -18,8 +18,8 @@ export class EditEmployeeComponent implements OnInit {
   public userDatalist: Iuser[] = [];
   public updateuserSpecificData: FormGroup;
   public updateid: any;
-  public term: any;
-  public showEntries;
+  public term: string;
+  public showEntries: number;
   public p = 1;
 
   //  orderBy data
@@ -68,7 +68,6 @@ export class EditEmployeeComponent implements OnInit {
     });
   }
 
-
   /**
    * @ function : changeCount
    * @ Purpose  : items per page
@@ -80,9 +79,6 @@ export class EditEmployeeComponent implements OnInit {
     this.p = 1;
     this.showEntries = event.target.value;
   }
-
-
-
 
   /**
    * @ function : order

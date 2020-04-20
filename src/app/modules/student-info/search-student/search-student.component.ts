@@ -49,7 +49,7 @@ export class SearchStudentComponent implements OnInit {
       name: [''],
       mobileNumber: [''],
       email: [''],
-      course: [''],
+      courseName: [''],
       studentId: [''],
     });
   }
@@ -160,8 +160,8 @@ export class SearchStudentComponent implements OnInit {
   // edit student form end
 
   public moreDetails(id): void{
-    this.details = true;
     this.studentService.getStudentById(id).subscribe((res) => {
+      this.details = true;
       this.updateid = id;
       this.editStudentForm.patchValue(res);
       this.editStudentForm.controls.joiningDate.patchValue(new Date(res.joiningDate));
@@ -184,8 +184,35 @@ export class SearchStudentComponent implements OnInit {
     });
   }
 
+  /**
+   * @ function : checkboxMapping
+   * @ Purpose  : converting the checkbox values from true/false to value
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
+
+  public checkboxMapping(): void{
+    this.editStudentForm.value.courseName = this.editStudentForm.value.courseName
+      .map((v, i) => (v ? this.coursesData[i] : null))
+      .filter((v) => v != null);
+    this.editStudentForm.value.coursePackage = this.editStudentForm.value.coursePackage
+      .map((v, i) => (v ? this.coursePackageData[i] : null))
+      .filter((v) => v != null);
+  }
+
+  /**
+   * @ function : updateStudent
+   * @ Purpose  : updating the student data
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
+
   public updateStudent(): void{
-    //
+    this.checkboxMapping();
+    this.studentService.updateStudentData(this.updateid, this.editStudentForm.value)
+    .subscribe((res) => {
+      this.toaster.recordUpdated();
+    });
   }
 
   public submit(): void {

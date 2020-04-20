@@ -25,7 +25,7 @@
                           <label class="custom-control-label" for="email">Email</label>
                       </div>
                       <div class="custom-control custom-radio custom-control-inline">
-                          <input type="radio" id="course" formControlName="searchBy" value="course" name="searchBy" class="custom-control-input">
+                          <input type="radio" id="course" formControlName="searchBy" value="courseName" name="searchBy" class="custom-control-input">
                           <label class="custom-control-label" for="course">Course</label>
                       </div>
                       <div class="custom-control custom-radio custom-control-inline">
@@ -69,8 +69,8 @@
               </div> -->
                   </div>
 
-                  <div class="col-md-4" *ngIf="searchData.searchBy.value === 'course'">
-                      <input class="form-control" formControlName="course" placeholder="course">
+                  <div class="col-md-4" *ngIf="searchData.searchBy.value === 'courseName'">
+                      <input class="form-control" formControlName="courseName" placeholder="course">
                       <!-- <div class="alert alert-danger" *ngIf="searchData.name.invalid && (searchData.name.dirty||searchData.name.touched)">
                   <div *ngIf="searchData.name.errors.required">
                        Name is required

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { StudentService } from '../../../services/student/student.service';
 
 @Component({
   selector: 'app-student-image-upload',
@@ -6,16 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./student-image-upload.component.css'],
 })
 export class StudentImageUploadComponent implements OnInit {
-  public isSubmit = false;
-  constructor() {}
+  @ViewChild('studentId')studentId: ElementRef;
+  public student;
+  constructor(private studentService: StudentService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   public print(): void {
     window.print();
   }
 
   public submit(): void {
-    this.isSubmit = true;
+    this.studentService.getStudentById(this.studentId.nativeElement.value).subscribe(res => {
+      this.student = res;
+    });
   }
 }

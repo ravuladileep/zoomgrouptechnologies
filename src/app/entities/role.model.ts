@@ -1,6 +1,6 @@
 export interface IRole {
   id?: any;
-  roleName?: any;
+  roleName?: string;
   assignFunction?: any;
   reports?: any;
   communication?: any;

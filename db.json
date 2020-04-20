@@ -18,7 +18,7 @@
       "branchName": "Surat",
       "branchCode": "4578",
       "branchAddress": "Surat,Gujarat",
-      "branchContactNumber": "9878978854",
+      "branchContactNumber": "9878978855",
       "id": 4
     },
     {
@@ -200,7 +200,7 @@
   "student": [
     {
       "firstName": "john",
-      "lastName": "doe ",
+      "lastName": "doee",
       "gender": "male",
       "mobileNumber": "9849078987",
       "email": "john@gmail.com",
@@ -216,13 +216,18 @@
       ],
       "coursePackage": [],
       "startingDate": "2020-04-07T05:50:03.983Z",
-      "id": 1
+      "id": 1,
+      "name": null,
+      "country": null,
+      "passport": "",
+      "visa": "",
+      "rpnumber": ""
     },
     {
       "firstName": "david",
       "lastName": "warner",
       "gender": "male",
-      "mobileNumber": "9849079549",
+      "mobileNumber": "9849079519",
       "email": "david@gmail.com",
       "address": "aus",
       "nationality": "indian",
@@ -234,37 +239,42 @@
       "companyName": "fghjkl",
       "branch": "Dilsukh nagar",
       "joiningDate": "2020-04-18T12:04:59.194Z",
-      "courseType": "course",
+      "courseType": "coursePackage",
       "courseName": [
         "CCNA"
       ],
-      "coursePackage": [],
+      "coursePackage": [
+        "CCNA AND CCNP (R&S)",
+        "Test CSRF"
+      ],
       "startingDate": "2020-04-18T12:04:59.194Z",
-      "id": 2
+      "id": 2,
+      "name": null
     },
     {
-      "firstName": "lorem",
-      "lastName": "ipsum",
+      "firstName": "sit",
+      "lastName": "amet",
       "gender": "male",
-      "mobileNumber": "9849079877",
-      "email": "lorem@gmail.com",
-      "address": "lorem",
+      "mobileNumber": "9849078789",
+      "email": "sit@gmail.com",
+      "address": "ghjkl;",
       "nationality": "indian",
       "country": null,
       "passport": "",
       "visa": "",
       "rpnumber": "",
-      "qualification": "fghjkl",
-      "companyName": "gfhjkl",
-      "branch": "Banjara Hills",
-      "joiningDate": "2020-04-18T14:15:59.653Z",
-      "courseType": "coursePackage",
-      "courseName": [],
-      "coursePackage": [
-        "H/W and Networking Package Course"
+      "qualification": "vghjkl;",
+      "companyName": "fghjkl",
+      "branch": "Secunderabad",
+      "joiningDate": "2020-04-19T08:55:00.563Z",
+      "courseType": "course",
+      "courseName": [
+        "MCSE - Windows Server 2012",
+        "LINUX Administration"
       ],
-      "startingDate": "2020-04-18T14:15:59.654Z",
-      "id": 3
+      "coursePackage": [],
+      "startingDate": "2020-04-19T08:55:00.564Z",
+      "id": 4
     }
   ],
   "fee": [

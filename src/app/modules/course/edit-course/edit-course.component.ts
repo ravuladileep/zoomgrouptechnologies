@@ -21,8 +21,8 @@ export class EditCourseComponent implements OnInit {
   public totalCourseFee: number;
   public branchesDataarr = [...CommonConstants.branchesDataarr];
   public branchesData = [];
-  public term: any;
-  public showEntries;
+  public term: string;
+  public showEntries: number;
   public p = 1;
 
   //  orderBy data
@@ -64,6 +64,13 @@ export class EditCourseComponent implements OnInit {
       // this.addCheckboxes();
 
   }
+
+  /**
+   * @ function : addCheckboxes & getBranches
+   * @ Purpose  : adding the checkboxes to the formarray
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
 
   private addCheckboxes() {
     this.branchesData.forEach((o, i) => {
@@ -158,6 +165,18 @@ export class EditCourseComponent implements OnInit {
     });
   }
 
+  /**
+   * @ function : checkboxMapping
+   * @ Purpose  : converting the checkbox values from true/false to actual value
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
+
+  public checkboxMapping(): void{
+    this.updateCourseSpecificData.value.branch = this.updateCourseSpecificData.value.branch
+    .map((v, i) => (v ? this.branchesData[i] : null))
+    .filter(v => v != null);
+  }
 
 
   /**
@@ -168,9 +187,7 @@ export class EditCourseComponent implements OnInit {
    */
 
   public updateCourse(): void {
-    this.updateCourseSpecificData.value.branch = this.updateCourseSpecificData.value.branch
-    .map((v, i) => (v ? this.branchesData[i] : null))
-    .filter(v => v != null);
+    this.checkboxMapping();
     this.courseService
       .updateCourseData(this.updateid, this.updateCourseSpecificData.value)
       .subscribe(res => {
@@ -199,21 +216,4 @@ export class EditCourseComponent implements OnInit {
 }
 
 
-  /**
-   * @ function : minSelectedCheckboxes
-   * @ Purpose  : validatorFn for minselected checkboxes
-   * @ version  : 1.0.1
-   * @ author   : dileep_ravula
-   */
 
-function minSelectedCheckboxes(min = 1) {
-      const validator: ValidatorFn = (formArray: FormArray) => {
-        const totalSelected = formArray.controls
-          .map(control => control.value)
-          .reduce((prev, next) => next ? prev + next : prev, 0);
-
-        return totalSelected >= min ? null : { required: true };
-      };
-
-      return validator;
-}

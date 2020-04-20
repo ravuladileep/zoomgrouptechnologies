@@ -3,7 +3,7 @@ export interface ICoursePackage {
   packageName?: string;
   courseName?: any;
   branch?: any;
-  packageAmount?: any;
-  servicetax?: any;
-  totalPackage?: any;
+  packageAmount?: number;
+  servicetax?: number;
+  totalPackage?: number;
 }

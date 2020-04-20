@@ -17,8 +17,8 @@ export class EditBranchComponent implements OnInit {
   public branchDatalist: IBranch[] = [];
   public updatebranchSpecificData: FormGroup;
   public updateid: any;
-  public term: any;
-  public showEntries;
+  public term: string;
+  public showEntries: number;
   public p = 1;
   public totalItems = [...this.branchDatalist];
 

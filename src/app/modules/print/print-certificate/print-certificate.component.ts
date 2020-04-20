@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { StudentService } from '../../../services/student/student.service';
+declare var $: any;
 
 @Component({
   selector: 'app-print-certificate',
@@ -7,9 +9,14 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./print-certificate.component.css']
 })
 export class PrintCertificateComponent implements OnInit {
+  @ViewChild('printsection')printsection: ElementRef;
   public certificate: FormGroup;
-
-  constructor(private fb: FormBuilder) { }
+  public student;
+  public studentname;
+  public coursename;
+  public startdate;
+  public branch;
+  constructor(private fb: FormBuilder, private studentService: StudentService) { }
 
   ngOnInit(): void {
     this.certificateForm();
@@ -25,12 +32,23 @@ export class PrintCertificateComponent implements OnInit {
     return this.certificate.controls;
   }
 
+
   public printCertificate(): void{
     window.print();
   }
 
+  public bindingCertificateData(): void{
+    this.studentname = this.student.firstName + ' ' + this.student.lastName;
+    this.coursename = this.student.courseName.toString();
+    this.startdate = new Date(this.student.startingDate).toLocaleDateString('en-GB');
+    this.branch = this.student.branch;
+   }
+
   public Submit(): void{
-    console.log(this.certificate.value);
+    this.studentService.getStudentById(this.certificate.get('studentId').value).subscribe((res) => {
+      this.student = res;
+      this.bindingCertificateData();
+    });
   }
 
 }

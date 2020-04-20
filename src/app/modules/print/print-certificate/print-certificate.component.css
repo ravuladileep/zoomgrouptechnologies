@@ -9,6 +9,12 @@
 }
 .certificatediv input{
   text-align: center;
+  text-transform: uppercase;
+  font-family: "Lato", sans-serif !important;
+  color: #666666;
+  font-weight: bold;
+  font-size: 14px;
+  outline: none;
 }
 .zoom1{
   width: 430px;

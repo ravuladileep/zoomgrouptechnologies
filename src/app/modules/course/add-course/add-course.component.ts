@@ -45,6 +45,13 @@ export class AddCourseComponent implements OnInit {
     // this.addCheckboxes();
   }
 
+  /**
+   * @ function : addCheckboxes & getBranches
+   * @ Purpose  : adding checkboxes dynamically
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
+
   private addCheckboxes() {
     this.branchesData.forEach((o, i) => {
       const control = new FormControl(); // i===0 if first item set to true, else false
@@ -75,16 +82,28 @@ export class AddCourseComponent implements OnInit {
   }
 
   /**
-   * @ function : Submit
+   * @ function : checkboxMapping
+   * @ Purpose  : converting the selected checkboxes from true/false to actual value
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
+
+
+  public checkboxMapping(): void {
+    this.addCourseSpecificForm.value.branch = this.addCourseSpecificForm.value.branch
+    .map((v, i) => (v ? this.branchesData[i] : null))
+    .filter(v => v != null);
+  }
+
+  /**
+   * @ function : submit
    * @ Purpose  : submitting the form data
    * @ version  : 1.0.1
    * @ author   : dileep_ravula
    */
 
   public submit(): void {
-    this.addCourseSpecificForm.value.branch = this.addCourseSpecificForm.value.branch
-      .map((v, i) => (v ? this.branchesData[i] : null))
-      .filter(v => v != null);
+    this.checkboxMapping();
     this.courseService.addCourse(this.addCourseSpecificForm.value).subscribe((res) => {
       this.toaster.recordAdded();
     });

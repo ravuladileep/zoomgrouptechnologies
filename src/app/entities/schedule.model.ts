@@ -2,7 +2,7 @@ export interface ISchedule {
   id?: any;
   courseName?: string;
   branch?: any;
-  startDate?: any;
-  endDate?: any;
+  startDate?: Date;
+  endDate?: Date;
   batch?: any;
 }

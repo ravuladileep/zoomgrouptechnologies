@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, ValidatorFn, FormArray, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { of } from 'rxjs';
 import { CoursePackageService } from '../../../services/course-package/course-package.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
@@ -22,8 +22,8 @@ export class EditcoursePackageComponent implements OnInit {
   public branchesDataarr = [...CommonConstants.branchesDataarr];
   public branchesData = [];
   public coursesData = [];
-  public term: any;
-  public showEntries;
+  public term: string;
+  public showEntries: number;
   public p = 1;
 
   //  orderBy data
@@ -69,6 +69,13 @@ export class EditcoursePackageComponent implements OnInit {
       // this.addCheckboxes();
 
   }
+
+  /**
+   * @ function : addCheckboxesbranch & getBranches
+   * @ Purpose  : adding the checkboxes to the formarray
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
 
   private addCheckboxesbranch() {
     this.branchesData.forEach((o, i) => {

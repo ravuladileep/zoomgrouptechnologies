@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { of } from 'rxjs';
 import { CoursePackageService } from '../../../services/course-package/course-package.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
@@ -20,7 +20,7 @@ export class AddcoursePackageComponent implements OnInit {
   public branchesDataarr = [...CommonConstants.branchesDataarr];
   public branchesData = [];
   public coursesData = [];
-  constructor(private fb: FormBuilder, private coursePackage: CoursePackageService, private toaster: ToasterService) {
+  constructor(private fb: FormBuilder, private packageService: CoursePackageService, private toaster: ToasterService) {
     this.addPackageForm();
   }
 
@@ -51,6 +51,13 @@ export class AddcoursePackageComponent implements OnInit {
     // this.addCheckboxesbranch();
 
   }
+
+  /**
+   * @ function : addCheckboxesbranch &getBranches
+   * @ Purpose  : adding checkboxes dynamically to the formarray
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
 
   private addCheckboxesbranch() {
     this.branchesData.forEach((o, i) => {
@@ -117,7 +124,7 @@ export class AddcoursePackageComponent implements OnInit {
 
   public submit(): void {
     this.checkboxMapping();
-    this.coursePackage.addCoursePackage(this.addCoursePackageSpecificForm.value).subscribe((res) => {
+    this.packageService.addCoursePackage(this.addCoursePackageSpecificForm.value).subscribe((res) => {
       this.toaster.recordAdded();
     });
     this.addCoursePackageSpecificForm.reset();

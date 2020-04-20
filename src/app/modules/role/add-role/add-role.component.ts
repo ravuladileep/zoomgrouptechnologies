@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { of } from 'rxjs';
 import { RoleService } from '../../../services/role/role.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
@@ -54,6 +54,13 @@ export class AddRoleComponent implements OnInit {
     // this.addCheckboxesbranch();
 
   }
+
+  /**
+   * @ function : addCheckboxesAssignFunction&getAssignFunction
+   * @ Purpose  : adding checkboxes to the formarray
+   * @ version  : 1.0.1
+   * @ author   : dileep_ravula
+   */
 
   private addCheckboxesAssignFunction() {
     this.assignFunctionData.forEach((o, i) => {
@@ -117,7 +124,7 @@ export class AddRoleComponent implements OnInit {
   }
 
   /**
-   * @ function : Submit
+   * @ function : submit
    * @ Purpose  : submitting the form data
    * @ version  : 1.0.1
    * @ author   : dileep_ravula

@@ -34,7 +34,7 @@ export class AttendanceSheetComponent implements OnInit {
   }
 
   public saveAttendance(): void{
-    // this.excelService.exportAsExcelFile(, 'attendanceSheet');
+    this.excelService.exportAsExcelFile(this.coursesDataarr, 'Attendance_Sheet');
   }
 
   public submit(): void{
