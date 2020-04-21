@@ -36,6 +36,8 @@ import { PrintCertificateComponent } from './modules/print/print-certificate/pri
 import { PrintReceiptComponent } from './modules/print/print-receipt/print-receipt.component';
 import { GenerateIdcardComponent } from './modules/print/generate-idcard/generate-idcard.component';
 import { AttendanceSheetComponent } from './modules/print/attendance-sheet/attendance-sheet.component';
+import { ChangePasswordComponent } from './core/components/change-password/change-password.component';
+import { CanDeactivateGuard } from './core/guards/candeactivate/can-deactivate.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -46,7 +48,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'configure_access', pathMatch: 'full' },
       { path: 'configure_access', component: CourseSpecificReportComponent },
-      { path: 'add_branch', component: AddBranchComponent },
+      { path: 'add_branch', component: AddBranchComponent, canDeactivate: [CanDeactivateGuard] },
       { path: 'edit_branch', component: EditBranchComponent },
       { path: 'add_course', component: AddCourseComponent },
       { path: 'edit_course', component: EditCourseComponent },
@@ -76,7 +78,8 @@ const routes: Routes = [
       { path: 'print_certificate', component: PrintCertificateComponent},
       { path: 'print_receipt', component: PrintReceiptComponent},
       { path: 'generate_idcard', component: GenerateIdcardComponent},
-      { path: 'attendance_sheet', component: AttendanceSheetComponent}
+      { path: 'attendance_sheet', component: AttendanceSheetComponent},
+      { path: 'change_password', component: ChangePasswordComponent}
     ]
   },
   {path: '**', component: NotFoundComponent}

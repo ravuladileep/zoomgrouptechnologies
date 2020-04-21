@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
@@ -8,7 +8,8 @@ import { CommonConstants } from '../../../config/constants';
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
-  styleUrls: ['./add-employee.component.css']
+  styleUrls: ['./add-employee.component.css'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class AddEmployeeComponent implements OnInit {
   public userSpecificData: FormGroup;

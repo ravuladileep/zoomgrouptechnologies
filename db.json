@@ -55,6 +55,13 @@
       "branchAddress": "Ameerpet,Hyderabad",
       "branchContactNumber": "9874568745",
       "id": 9
+    },
+    {
+      "branchName": "branch Name",
+      "branchCode": "5241",
+      "branchAddress": "hyd",
+      "branchContactNumber": "9878978487",
+      "id": 10
     }
   ],
   "course": [
@@ -100,7 +107,7 @@
     {
       "userEmail": "john@gmail.com",
       "fullName": "john",
-      "role": "Counsellor",
+      "role": "Counsellor Plus",
       "branch": "Banjara Hills",
       "password": "john",
       "id": 1

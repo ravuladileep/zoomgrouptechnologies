@@ -62,6 +62,8 @@ import { GenerateIdcardComponent } from './modules/print/generate-idcard/generat
 import { AttendanceSheetComponent } from './modules/print/attendance-sheet/attendance-sheet.component';
 import { ExcelService } from './services/excel/excel.service';
 import {NgxPrintModule} from 'ngx-print';
+import { ChangePasswordComponent } from './core/components/change-password/change-password.component';
+import { CanDeactivateGuard } from './core/guards/candeactivate/can-deactivate.guard';
 // import { PaginationModule } from 'ngx-bootstrap';
 
 @NgModule({
@@ -105,7 +107,8 @@ import {NgxPrintModule} from 'ngx-print';
     PrintCertificateComponent,
     PrintReceiptComponent,
     GenerateIdcardComponent,
-    AttendanceSheetComponent
+    AttendanceSheetComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -139,7 +142,8 @@ import {NgxPrintModule} from 'ngx-print';
     UserService,
     CoursePackageService,
     ScheduleService,
-    ExcelService
+    ExcelService,
+    CanDeactivateGuard
   ],
   bootstrap: [AppComponent]
 })

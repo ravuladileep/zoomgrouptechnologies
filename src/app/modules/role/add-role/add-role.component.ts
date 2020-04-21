@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { of } from 'rxjs';
 import { RoleService } from '../../../services/role/role.service';
@@ -9,7 +9,8 @@ import { CustomValidators } from '../../../shared/directives/checkboxmin.validat
 @Component({
   selector: 'app-add-role',
   templateUrl: './add-role.component.html',
-  styleUrls: ['./add-role.component.css']
+  styleUrls: ['./add-role.component.css'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class AddRoleComponent implements OnInit {
   public addRoleSpecificForm: FormGroup;

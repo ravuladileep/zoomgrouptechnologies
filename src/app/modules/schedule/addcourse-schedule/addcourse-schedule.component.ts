@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {FormGroup, FormBuilder, Validators, FormArray, FormControl, ValidatorFn} from '@angular/forms';
 import { of } from 'rxjs';
 import { ScheduleService } from '../../../services/schedule/schedule.service';
@@ -9,7 +9,8 @@ import { CustomValidators } from '../../../shared/directives/checkboxmin.validat
 @Component({
   selector: 'app-addcourse-schedule',
   templateUrl: './addcourse-schedule.component.html',
-  styleUrls: ['./addcourse-schedule.component.css']
+  styleUrls: ['./addcourse-schedule.component.css'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class AddcourseScheduleComponent implements OnInit {
   public addScheduleSpecificForm: FormGroup;

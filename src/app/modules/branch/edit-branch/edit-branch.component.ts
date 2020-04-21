@@ -10,7 +10,7 @@ declare var $: any;
 @Component({
   selector: 'app-edit-branch',
   templateUrl: './edit-branch.component.html',
-  styleUrls: ['./edit-branch.component.css']
+  styleUrls: ['./edit-branch.component.css'],
 })
 export class EditBranchComponent implements OnInit {
   @ViewChild('modal') modal: ElementRef;

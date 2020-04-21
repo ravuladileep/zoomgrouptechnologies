@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { of } from 'rxjs';
 import { CoursePackageService } from '../../../services/course-package/course-package.service';
@@ -10,7 +10,8 @@ import { CustomValidators } from '../../../shared/directives/checkboxmin.validat
 @Component({
   selector: 'app-addcourse-package',
   templateUrl: './addcourse-package.component.html',
-  styleUrls: ['./addcourse-package.component.css']
+  styleUrls: ['./addcourse-package.component.css'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class AddcoursePackageComponent implements OnInit {
   public coursesDataarr = [...CommonConstants.coursesDataarr];

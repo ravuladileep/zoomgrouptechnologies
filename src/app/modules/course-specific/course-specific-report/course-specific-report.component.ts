@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CommonConstants } from '../../../config/constants';
 
@@ -6,6 +6,7 @@ import { CommonConstants } from '../../../config/constants';
   selector: 'app-course-specific-report',
   templateUrl: './course-specific-report.component.html',
   styleUrls: ['./course-specific-report.component.css'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class CourseSpecificReportComponent implements OnInit {
   public courseSpecificData: FormGroup;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {FormGroup, FormBuilder, Validators, FormArray, FormControl, ValidatorFn} from '@angular/forms';
 import { of } from 'rxjs';
 import { CourseService } from '../../../services/course/course.service';
@@ -9,7 +9,8 @@ import { CustomValidators } from '../../../shared/directives/checkboxmin.validat
 @Component({
   selector: 'app-add-course',
   templateUrl: './add-course.component.html',
-  styleUrls: ['./add-course.component.css']
+  styleUrls: ['./add-course.component.css'],
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class AddCourseComponent implements OnInit {
   public addCourseSpecificForm: FormGroup;
