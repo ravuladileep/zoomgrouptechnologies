@@ -5,6 +5,7 @@ import { ScheduleService } from '../../../services/schedule/schedule.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { CommonConstants } from '../../../config/constants';
 import { CustomValidators } from '../../../shared/directives/checkboxmin.validator';
+import { FormCanDeactivate } from '../../../core/guards/candeactivate/form-can-deactivate';
 
 @Component({
   selector: 'app-addcourse-schedule',
@@ -12,7 +13,7 @@ import { CustomValidators } from '../../../shared/directives/checkboxmin.validat
   styleUrls: ['./addcourse-schedule.component.css'],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class AddcourseScheduleComponent implements OnInit {
+export class AddcourseScheduleComponent extends FormCanDeactivate implements OnInit {
   public addScheduleSpecificForm: FormGroup;
   public coursesDataarr = [...CommonConstants.coursesDataarr];
   public branchesDataarr = [...CommonConstants.branchesDataarr];
@@ -22,10 +23,13 @@ export class AddcourseScheduleComponent implements OnInit {
   public bsValue = new Date();
 
   constructor(private fb: FormBuilder, private scheduleService: ScheduleService, private toaster: ToasterService) {
+    super();
     this.scheduleForm();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.formCanDeactivate = this.addScheduleSpecificForm;
+  }
 
   public scheduleForm(): void {
     this.addScheduleSpecificForm = this.fb.group({

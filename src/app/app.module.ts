@@ -64,6 +64,7 @@ import { ExcelService } from './services/excel/excel.service';
 import {NgxPrintModule} from 'ngx-print';
 import { ChangePasswordComponent } from './core/components/change-password/change-password.component';
 import { CanDeactivateGuard } from './core/guards/candeactivate/can-deactivate.guard';
+import { NgxSpinnerModule } from 'ngx-spinner';
 // import { PaginationModule } from 'ngx-bootstrap';
 
 @NgModule({
@@ -125,7 +126,8 @@ import { CanDeactivateGuard } from './core/guards/candeactivate/can-deactivate.g
     WebcamModule,
     BsDatepickerModule.forRoot(),
     NgxPaginationModule,
-    NgxPrintModule
+    NgxPrintModule,
+    NgxSpinnerModule
     // PaginationModule.forRoot()
   ],
   providers: [

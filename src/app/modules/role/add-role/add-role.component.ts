@@ -5,6 +5,7 @@ import { RoleService } from '../../../services/role/role.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { CommonConstants } from '../../../config/constants';
 import { CustomValidators } from '../../../shared/directives/checkboxmin.validator';
+import { FormCanDeactivate } from '../../../core/guards/candeactivate/form-can-deactivate';
 
 @Component({
   selector: 'app-add-role',
@@ -12,7 +13,7 @@ import { CustomValidators } from '../../../shared/directives/checkboxmin.validat
   styleUrls: ['./add-role.component.css'],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class AddRoleComponent implements OnInit {
+export class AddRoleComponent extends FormCanDeactivate implements OnInit {
   public addRoleSpecificForm: FormGroup;
   public assignFunctionDataarr = [...CommonConstants.assignFunctionDataarr];
   public reportsDataarr = [...CommonConstants.reportsDataarr];
@@ -22,10 +23,13 @@ export class AddRoleComponent implements OnInit {
   public communicationData = [];
 
   constructor(private fb: FormBuilder, private roleService: RoleService, private toaster: ToasterService) {
+    super();
     this.roleForm();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.formCanDeactivate = this.addRoleSpecificForm;
+  }
 
   public roleForm(): void {
     this.addRoleSpecificForm = this.fb.group({

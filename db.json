@@ -2,14 +2,14 @@
   "branch": [
     {
       "branchName": "Secunderabad",
-      "branchCode": "4521",
+      "branchCode": "4523",
       "branchAddress": "Hyderabad",
       "branchContactNumber": "9874562145",
       "id": 2
     },
     {
       "branchName": "Ameerpet",
-      "branchCode": "8547",
+      "branchCode": "8548",
       "branchAddress": "Ameerpet,Hyderabad",
       "branchContactNumber": "8974562478",
       "id": 3
@@ -55,13 +55,6 @@
       "branchAddress": "Ameerpet,Hyderabad",
       "branchContactNumber": "9874568745",
       "id": 9
-    },
-    {
-      "branchName": "branch Name",
-      "branchCode": "5241",
-      "branchAddress": "hyd",
-      "branchContactNumber": "9878978487",
-      "id": 10
     }
   ],
   "course": [
@@ -207,7 +200,7 @@
   "student": [
     {
       "firstName": "john",
-      "lastName": "doee",
+      "lastName": "doe",
       "gender": "male",
       "mobileNumber": "9849078987",
       "email": "john@gmail.com",
@@ -219,7 +212,7 @@
       "joiningDate": "2020-04-07T05:50:03.983Z",
       "courseType": "course",
       "courseName": [
-        "CCNA"
+        "MCSE - Windows Server 2012"
       ],
       "coursePackage": [],
       "startingDate": "2020-04-07T05:50:03.983Z",
@@ -251,6 +244,7 @@
         "CCNA"
       ],
       "coursePackage": [
+        "CISCO (R&S) TRACK",
         "CCNA AND CCNP (R&S)",
         "Test CSRF"
       ],

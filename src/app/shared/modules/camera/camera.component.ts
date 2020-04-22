@@ -66,6 +66,7 @@ export class CameraComponent implements OnInit {
   }
 
   public handleImage(webcamImage: WebcamImage): void {
+    // tslint:disable-next-line: no-console
     console.info('received webcam image', webcamImage);
     this.pictureTaken.emit(webcamImage);
   }

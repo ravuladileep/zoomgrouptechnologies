@@ -21,7 +21,7 @@ export class AddBranchComponent extends FormCanDeactivate  implements OnInit {
     this.addbranchform();
   }
   ngOnInit(): void {
-    this.myform = this.branchSpecificData;
+    this.formCanDeactivate = this.branchSpecificData;
   }
 
 

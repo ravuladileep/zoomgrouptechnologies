@@ -5,6 +5,7 @@ import { CourseService } from '../../../services/course/course.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { CommonConstants } from '../../../config/constants';
 import { CustomValidators } from '../../../shared/directives/checkboxmin.validator';
+import { FormCanDeactivate } from '../../../core/guards/candeactivate/form-can-deactivate';
 
 @Component({
   selector: 'app-add-course',
@@ -12,7 +13,7 @@ import { CustomValidators } from '../../../shared/directives/checkboxmin.validat
   styleUrls: ['./add-course.component.css'],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class AddCourseComponent implements OnInit {
+export class AddCourseComponent extends FormCanDeactivate implements OnInit {
   public addCourseSpecificForm: FormGroup;
   public taxValue: number;
   public totalCourseFee: number;
@@ -20,10 +21,13 @@ export class AddCourseComponent implements OnInit {
   public branchesData = [];
 
   constructor(private fb: FormBuilder, private courseService: CourseService, private toaster: ToasterService) {
+    super();
     this.addCourseForm();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.formCanDeactivate = this.addCourseSpecificForm;
+  }
 
   public addCourseForm(): void {
     this.addCourseSpecificForm = this.fb.group({

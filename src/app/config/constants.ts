@@ -338,4 +338,5 @@ export namespace CommonConstants {
     window.alert(errorMessage);
     return throwError(errorMessage);
   }
+
 }
