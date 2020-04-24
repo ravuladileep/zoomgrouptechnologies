@@ -10,7 +10,8 @@
 .certificatediv input{
   text-align: center;
   text-transform: uppercase;
-  font-family: "Lato", sans-serif !important;
+  /* font-family: "Lato", sans-serif !important ; */
+  font-family: sans-serif !important ;
   color: #666666;
   font-weight: bold;
   font-size: 14px;

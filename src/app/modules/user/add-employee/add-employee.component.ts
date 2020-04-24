@@ -1,22 +1,36 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { UserService } from '../../../services/user/user.service';
 import { CommonConstants } from '../../../config/constants';
 import { FormCanDeactivate } from '../../../core/guards/candeactivate/form-can-deactivate';
 
+@UntilDestroy()
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
   styleUrls: ['./add-employee.component.css'],
-  encapsulation: ViewEncapsulation.Emulated
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class AddEmployeeComponent extends FormCanDeactivate implements OnInit {
   public userSpecificData: FormGroup;
   public branches = [...CommonConstants.branchesDataarr];
-  public roles = ['Admin', 'Counsellor', 'Accountant', 'Counsellor Plus', 'Finance', 'Audit', 'Telephonic'];
-  constructor(private fb: FormBuilder, private userService: UserService, private toaster: ToasterService) {
+  public roles = [
+    'Admin',
+    'Counsellor',
+    'Accountant',
+    'Counsellor Plus',
+    'Finance',
+    'Audit',
+    'Telephonic',
+  ];
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private toaster: ToasterService
+  ) {
     super();
     this.addUserForm();
   }
@@ -26,11 +40,14 @@ export class AddEmployeeComponent extends FormCanDeactivate implements OnInit {
 
   public addUserForm() {
     this.userSpecificData = this.fb.group({
-      userEmail: ['', [Validators.required, Validators.pattern(CommonConstants.EmailRegex)]],
+      userEmail: [
+        '',
+        [Validators.required, Validators.pattern(CommonConstants.EmailRegex)],
+      ],
       fullName: ['', [Validators.required]],
       role: [null, [Validators.required]],
       branch: [null, [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -48,7 +65,8 @@ export class AddEmployeeComponent extends FormCanDeactivate implements OnInit {
   public Submit(): void {
     this.userService
       .adduser(this.userSpecificData.value)
-      .subscribe(res => {
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
         this.toaster.recordAdded();
       });
     this.userSpecificData.reset();

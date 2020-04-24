@@ -28,9 +28,9 @@
                       Contact Number
                       <i class="fa" [ngClass]="{'fa-sort': column != 'lastName', 'fa-sort-asc': (column == 'lastName' && isDesc), 'fa-sort-desc': (column == 'lastName' && !isDesc) }" aria-hidden="true"> </i>
                   </th>
-                  <th (click)="order('gender')">
+                  <th (click)="order('email')">
                       Email
-                      <i class="fa" [ngClass]="{'fa-sort': column != 'gender', 'fa-sort-asc': (column == 'gender' && isDesc), 'fa-sort-desc': (column == 'gender' && !isDesc) }" aria-hidden="true"> </i>
+                      <i class="fa" [ngClass]="{'fa-sort': column != 'email', 'fa-sort-asc': (column == 'email' && isDesc), 'fa-sort-desc': (column == 'email' && !isDesc) }" aria-hidden="true"> </i>
                   </th>
                   <th (click)="order('qualification')">
                       Qualification

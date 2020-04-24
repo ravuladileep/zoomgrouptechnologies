@@ -1,20 +1,31 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { UserService } from '../../../services/user/user.service';
-import {Iuser} from '../../../entities/user.model';
+import { Iuser } from '../../../entities/user.model';
 import { CommonConstants } from '../../../config/constants';
 declare var $: any;
 
+@UntilDestroy()
 @Component({
   selector: 'app-edit-employee',
   templateUrl: './edit-employee.component.html',
-  styleUrls: ['./edit-employee.component.css']
+  styleUrls: ['./edit-employee.component.css'],
 })
 export class EditEmployeeComponent implements OnInit {
   @ViewChild('modal') modal: ElementRef;
   public branches = [...CommonConstants.branchesDataarr];
-  public roles = ['Admin', 'Counsellor', 'Accountant', 'Counsellor Plus', 'Finance', 'Audit', 'Telephonic'];
+  public roles = [
+    'Admin',
+    'Counsellor',
+    'Accountant',
+    'Counsellor Plus',
+    'Finance',
+    'Audit',
+    'Telephonic',
+  ];
   public userDatalist: Iuser[] = [];
   public updateuserSpecificData: FormGroup;
   public updateid: any;
@@ -42,11 +53,14 @@ export class EditEmployeeComponent implements OnInit {
 
   public userForm(): void {
     this.updateuserSpecificData = this.fb.group({
-      userEmail: ['', [Validators.required, Validators.pattern(CommonConstants.EmailRegex)]],
+      userEmail: [
+        '',
+        [Validators.required, Validators.pattern(CommonConstants.EmailRegex)],
+      ],
       fullName: ['', [Validators.required]],
       role: [null, [Validators.required]],
       branch: [null, [Validators.required]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
     });
   }
 
@@ -62,10 +76,13 @@ export class EditEmployeeComponent implements OnInit {
    */
 
   public loadUserData(): void {
-    this.userService.getuserData().subscribe(res => {
-      this.userDatalist = res;
-      this.showEntries = this.userDatalist.length;
-    });
+    this.userService
+      .getuserData()
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.userDatalist = res;
+        this.showEntries = this.userDatalist.length;
+      });
   }
 
   /**
@@ -101,10 +118,13 @@ export class EditEmployeeComponent implements OnInit {
    */
 
   public editUserData(data): void {
-    this.userService.getuserById(data.id).subscribe(res => {
-      this.updateid = data.id;
-      this.updateuserSpecificData.patchValue(res);
-    });
+    this.userService
+      .getuserById(data.id)
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.updateid = data.id;
+        this.updateuserSpecificData.patchValue(res);
+      });
   }
 
   /**
@@ -117,7 +137,8 @@ export class EditEmployeeComponent implements OnInit {
   public updateUser(): void {
     this.userService
       .updateuserData(this.updateid, this.updateuserSpecificData.value)
-      .subscribe(res => {
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
         this.loadUserData();
         this.toaster.recordUpdated();
       });
@@ -133,11 +154,13 @@ export class EditEmployeeComponent implements OnInit {
 
   public deleteUserData(data): void {
     if (confirm('This user deleted permanently')) {
-      this.userService.deleteuser(data.id).subscribe(res => {
-        this.loadUserData();
-        this.toaster.recordDeleted();
-      });
+      this.userService
+        .deleteuser(data.id)
+        .pipe(untilDestroyed(this))
+        .subscribe((res) => {
+          this.loadUserData();
+          this.toaster.recordDeleted();
+        });
     }
   }
-
 }

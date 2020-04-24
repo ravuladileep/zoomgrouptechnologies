@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StudentService } from '../../../services/student/student.service';
 
 
@@ -26,7 +26,7 @@ export class PrintCertificateComponent implements OnInit {
 
   public certificateForm(): void{
     this.certificate = this.fb.group({
-      studentId: ['']
+      studentId: ['', Validators.required]
     });
   }
 

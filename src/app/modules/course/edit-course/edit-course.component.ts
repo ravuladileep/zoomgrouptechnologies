@@ -1,16 +1,19 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, ValidatorFn, FormArray, FormControl } from '@angular/forms';
+import {FormBuilder, Validators, FormGroup, FormArray, FormControl} from '@angular/forms';
 import { of } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
 import { CourseService } from '../../../services/course/course.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { CommonConstants } from '../../../config/constants';
-import { CustomValidators } from 'src/app/shared/directives/checkboxmin.validator';
-
+import { CustomValidators } from '../../../shared/directives/checkboxmin.validator';
 declare var $: any;
+
+@UntilDestroy()
 @Component({
   selector: 'app-edit-course',
   templateUrl: './edit-course.component.html',
-  styleUrls: ['./edit-course.component.css']
+  styleUrls: ['./edit-course.component.css'],
 })
 export class EditCourseComponent implements OnInit {
   @ViewChild('modal') modal: ElementRef;
@@ -50,19 +53,20 @@ export class EditCourseComponent implements OnInit {
       fees: ['', [Validators.required]],
       servicetax: [''],
       totalfee: [''],
-      seats: ['', [Validators.required]]
+      seats: ['', [Validators.required]],
     });
 
-        // async orders
-    of(this.getBranches()).subscribe(res => {
-          this.branchesData = res;
-          this.addCheckboxes();
-        });
+    // async orders
+    of(this.getBranches())
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.branchesData = res;
+        this.addCheckboxes();
+      });
 
-      // synchronous orders
-      // this.orders = this.getBranches();
-      // this.addCheckboxes();
-
+    // synchronous orders
+    // this.orders = this.getBranches();
+    // this.addCheckboxes();
   }
 
   /**
@@ -75,7 +79,9 @@ export class EditCourseComponent implements OnInit {
   private addCheckboxes() {
     this.branchesData.forEach((o, i) => {
       const control = new FormControl(); // i===0 if first item set to true, else false
-      (this.updateCourseSpecificData.controls.branch as FormArray).push(control);
+      (this.updateCourseSpecificData.controls.branch as FormArray).push(
+        control
+      );
     });
   }
 
@@ -109,10 +115,13 @@ export class EditCourseComponent implements OnInit {
    */
 
   public loadCourseData(): void {
-    this.courseService.getCourseData().subscribe(res => {
-      this.courseDatalist = res;
-      this.showEntries = this.courseDatalist.length;
-    });
+    this.courseService
+      .getCourseData()
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.courseDatalist = res;
+        this.showEntries = this.courseDatalist.length;
+      });
   }
 
 
@@ -150,19 +159,22 @@ export class EditCourseComponent implements OnInit {
    */
 
   public editCoursedata(data): void {
-    this.courseService.getCourseById(data.id).subscribe(res => {
-      this.updateid = data.id;
-      this.updateCourseSpecificData.patchValue(res);
-      const mybr = this.updateCourseSpecificData.controls.branch as FormArray;
-      // patching checkboxes according to their respective index numbers
-      for (let i = 0; i < mybr.length; i++) {
-        mybr.at(i).patchValue(null);
-      }
-      res.branch.forEach(x => {
-        mybr.at(this.branchesDataarr.indexOf(x)).patchValue(x);
+    this.courseService
+      .getCourseById(data.id)
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.updateid = data.id;
+        this.updateCourseSpecificData.patchValue(res);
+        const mybr = this.updateCourseSpecificData.controls.branch as FormArray;
+        // patching checkboxes according to their respective index numbers
+        for (let i = 0; i < mybr.length; i++) {
+          mybr.at(i).patchValue(null);
+        }
+        res.branch.forEach((x) => {
+          mybr.at(this.branchesDataarr.indexOf(x)).patchValue(x);
+        });
+        //  end patching
       });
-      //  end patching
-    });
   }
 
   /**
@@ -172,10 +184,10 @@ export class EditCourseComponent implements OnInit {
    * @ author   : dileep_ravula
    */
 
-  public checkboxMapping(): void{
+  public checkboxMapping(): void {
     this.updateCourseSpecificData.value.branch = this.updateCourseSpecificData.value.branch
-    .map((v, i) => (v ? this.branchesData[i] : null))
-    .filter(v => v != null);
+      .map((v, i) => (v ? this.branchesData[i] : null))
+      .filter((v) => v != null);
   }
 
 
@@ -190,7 +202,8 @@ export class EditCourseComponent implements OnInit {
     this.checkboxMapping();
     this.courseService
       .updateCourseData(this.updateid, this.updateCourseSpecificData.value)
-      .subscribe(res => {
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
         this.loadCourseData();
         this.toaster.recordUpdated();
       });
@@ -206,14 +219,14 @@ export class EditCourseComponent implements OnInit {
 
   public deleteCoursedata(data): void {
     if (confirm('This course deleted permanently')) {
-      this.courseService.deleteCourse(data.id).subscribe(res => {
-      this.loadCourseData();
-      this.toaster.recordDeleted();
-      });
+      this.courseService
+        .deleteCourse(data.id)
+        .pipe(untilDestroyed(this))
+        .subscribe((res) => {
+          this.loadCourseData();
+          this.toaster.recordDeleted();
+        });
     }
   }
 
 }
-
-
-

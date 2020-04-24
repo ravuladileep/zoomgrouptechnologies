@@ -1,19 +1,23 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {FormGroup, FormBuilder, Validators, FormArray, FormControl, ValidatorFn} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl} from '@angular/forms';
 import { of } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
 import { ScheduleService } from '../../../services/schedule/schedule.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { CommonConstants } from '../../../config/constants';
 import { CustomValidators } from '../../../shared/directives/checkboxmin.validator';
 import { FormCanDeactivate } from '../../../core/guards/candeactivate/form-can-deactivate';
 
+@UntilDestroy()
 @Component({
   selector: 'app-addcourse-schedule',
   templateUrl: './addcourse-schedule.component.html',
   styleUrls: ['./addcourse-schedule.component.css'],
-  encapsulation: ViewEncapsulation.Emulated
+  encapsulation: ViewEncapsulation.Emulated,
 })
-export class AddcourseScheduleComponent extends FormCanDeactivate implements OnInit {
+export class AddcourseScheduleComponent extends FormCanDeactivate
+  implements OnInit {
   public addScheduleSpecificForm: FormGroup;
   public coursesDataarr = [...CommonConstants.coursesDataarr];
   public branchesDataarr = [...CommonConstants.branchesDataarr];
@@ -22,7 +26,11 @@ export class AddcourseScheduleComponent extends FormCanDeactivate implements OnI
   public batchesData = [];
   public bsValue = new Date();
 
-  constructor(private fb: FormBuilder, private scheduleService: ScheduleService, private toaster: ToasterService) {
+  constructor(
+    private fb: FormBuilder,
+    private scheduleService: ScheduleService,
+    private toaster: ToasterService
+  ) {
     super();
     this.scheduleForm();
   }
@@ -37,19 +45,23 @@ export class AddcourseScheduleComponent extends FormCanDeactivate implements OnI
       branch: this.fb.array([], CustomValidators.multipleCheckboxRequireOne),
       startDate: [this.bsValue, [Validators.required]],
       endDate: ['', [Validators.required]],
-      batch: this.fb.array([], CustomValidators.multipleCheckboxRequireOne)
+      batch: this.fb.array([], CustomValidators.multipleCheckboxRequireOne),
     });
 
     // async orders
-    of(this.getBranches()).subscribe(res => {
-      this.branchesData = res;
-      this.addCheckboxesBranch();
-    });
+    of(this.getBranches())
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.branchesData = res;
+        this.addCheckboxesBranch();
+      });
 
-    of(this.getBatches()).subscribe(res => {
-      this.batchesData = res;
-      this.addCheckboxesBatch();
-    });
+    of(this.getBatches())
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.batchesData = res;
+        this.addCheckboxesBatch();
+      });
 
     // synchronous orders
     // this.orders = this.getBranches();
@@ -89,16 +101,13 @@ export class AddcourseScheduleComponent extends FormCanDeactivate implements OnI
    */
   public checkboxMapping() {
     this.addScheduleSpecificForm.value.branch = this.addScheduleSpecificForm.value.branch
-    .map((v, i) => (v ? this.branchesData[i] : null))
-    .filter(v => v != null);
+      .map((v, i) => (v ? this.branchesData[i] : null))
+      .filter((v) => v != null);
 
     this.addScheduleSpecificForm.value.batch = this.addScheduleSpecificForm.value.batch
-    .map((v, i) => (v ? this.batchesData[i] : null))
-    .filter(v => v != null);
-
+      .map((v, i) => (v ? this.batchesData[i] : null))
+      .filter((v) => v != null);
   }
-
-
 
   /**
    * @ function : Submit
@@ -109,13 +118,13 @@ export class AddcourseScheduleComponent extends FormCanDeactivate implements OnI
 
   public submit(): void {
     this.checkboxMapping();
-    this.scheduleService.addSchedule(this.addScheduleSpecificForm.value).subscribe((res) => {
-      this.toaster.recordAdded();
-    });
+    this.scheduleService
+      .addSchedule(this.addScheduleSpecificForm.value)
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.toaster.recordAdded();
+      });
     console.log(this.addScheduleSpecificForm.value);
     this.addScheduleSpecificForm.reset();
   }
-
 }
-
-

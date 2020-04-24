@@ -1,16 +1,19 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, ValidatorFn, FormArray, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { of } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
 import { ScheduleService } from '../../../services/schedule/schedule.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { CommonConstants } from '../../../config/constants';
 import { CustomValidators } from '../../../shared/directives/checkboxmin.validator';
 declare var $: any;
 
+@UntilDestroy()
 @Component({
   selector: 'app-editcourse-schedule',
   templateUrl: './editcourse-schedule.component.html',
-  styleUrls: ['./editcourse-schedule.component.css']
+  styleUrls: ['./editcourse-schedule.component.css'],
 })
 export class EditcourseScheduleComponent implements OnInit {
   @ViewChild('modal') modal: ElementRef;
@@ -25,7 +28,6 @@ export class EditcourseScheduleComponent implements OnInit {
   public term: string;
   public showEntries: number;
   public p = 1;
-
 
   //  orderBy data
   public records = this.coursePackageDatalist;
@@ -51,37 +53,44 @@ export class EditcourseScheduleComponent implements OnInit {
       branch: this.fb.array([], CustomValidators.multipleCheckboxRequireOne),
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
-      batch: this.fb.array([], CustomValidators.multipleCheckboxRequireOne)
+      batch: this.fb.array([], CustomValidators.multipleCheckboxRequireOne),
     });
 
-        // async orders
-    of(this.getBranches()).subscribe(res => {
-          this.branchesData = res;
-          this.addCheckboxesBranch();
-        });
+    // async orders
+    of(this.getBranches())
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.branchesData = res;
+        this.addCheckboxesBranch();
+      });
 
-    of(this.getBatches()).subscribe(res => {
-          this.batchesData = res;
-          this.addCheckboxesBatch();
-        });
+    of(this.getBatches())
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.batchesData = res;
+        this.addCheckboxesBatch();
+      });
 
-      // synchronous orders
-      // this.orders = this.getBranches();
-      // this.addCheckboxes();
-
+    // synchronous orders
+    // this.orders = this.getBranches();
+    // this.addCheckboxes();
   }
 
   private addCheckboxesBranch() {
     this.branchesData.forEach((o, i) => {
       const control = new FormControl(); // i===0 if first item set to true, else false
-      (this.updateScheduleSpecificForm.controls.branch as FormArray).push(control);
+      (this.updateScheduleSpecificForm.controls.branch as FormArray).push(
+        control
+      );
     });
   }
 
   private addCheckboxesBatch() {
     this.batchesData.forEach((o, i) => {
       const control = new FormControl(); // i===0 if first item set to true, else false
-      (this.updateScheduleSpecificForm.controls.batch as FormArray).push(control);
+      (this.updateScheduleSpecificForm.controls.batch as FormArray).push(
+        control
+      );
     });
   }
 
@@ -104,10 +113,13 @@ export class EditcourseScheduleComponent implements OnInit {
    */
 
   public loadScheduleData(): void {
-    this.scheduleService.getScheduleData().subscribe(res => {
-      this.coursePackageDatalist = res;
-      this.showEntries = this.coursePackageDatalist.length;
-    });
+    this.scheduleService
+      .getScheduleData()
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.coursePackageDatalist = res;
+        this.showEntries = this.coursePackageDatalist.length;
+      });
   }
 
   /**
@@ -121,7 +133,6 @@ export class EditcourseScheduleComponent implements OnInit {
     this.p = 1;
     this.showEntries = event.target.value;
   }
-
 
   /**
    * @ function : order
@@ -144,30 +155,39 @@ export class EditcourseScheduleComponent implements OnInit {
    */
 
   public editSchedule(data): void {
-    this.scheduleService.getScheduleById(data.id).subscribe(res => {
-      this.updateid = data.id;
-      this.updateScheduleSpecificForm.patchValue(res);
-      this.updateScheduleSpecificForm.controls.startDate.patchValue(new Date(res.startDate));
-      this.updateScheduleSpecificForm.controls.endDate.patchValue(new Date(res.endDate));
-      const mybr = this.updateScheduleSpecificForm.controls.branch as FormArray;
-      const mybt = this.updateScheduleSpecificForm.controls.batch as FormArray;
-      // patching checkboxes according to their respective index numbers
-      // for branches
-      for (let i = 0; i < mybr.length; i++) {
-        mybr.at(i).patchValue(null);
-      }
-      res.branch.forEach(x => {
-        mybr.at(this.branchesDataarr.indexOf(x)).patchValue(x);
+    this.scheduleService
+      .getScheduleById(data.id)
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.updateid = data.id;
+        this.updateScheduleSpecificForm.patchValue(res);
+        this.updateScheduleSpecificForm.controls.startDate.patchValue(
+          new Date(res.startDate)
+        );
+        this.updateScheduleSpecificForm.controls.endDate.patchValue(
+          new Date(res.endDate)
+        );
+        const mybr = this.updateScheduleSpecificForm.controls
+          .branch as FormArray;
+        const mybt = this.updateScheduleSpecificForm.controls
+          .batch as FormArray;
+        // patching checkboxes according to their respective index numbers
+        // for branches
+        for (let i = 0; i < mybr.length; i++) {
+          mybr.at(i).patchValue(null);
+        }
+        res.branch.forEach((x) => {
+          mybr.at(this.branchesDataarr.indexOf(x)).patchValue(x);
+        });
+        // for batches
+        for (let i = 0; i < mybt.length; i++) {
+          mybt.at(i).patchValue(null);
+        }
+        res.batch.forEach((x) => {
+          mybt.at(this.batchesDataarr.indexOf(x)).patchValue(x);
+        });
+        // end patching
       });
-      // for batches
-      for (let i = 0; i < mybt.length; i++) {
-        mybt.at(i).patchValue(null);
-      }
-      res.batch.forEach(x => {
-        mybt.at(this.batchesDataarr.indexOf(x)).patchValue(x);
-      });
-      // end patching
-    });
   }
 
   /**
@@ -178,14 +198,12 @@ export class EditcourseScheduleComponent implements OnInit {
    */
   public checkboxMapping() {
     this.updateScheduleSpecificForm.value.branch = this.updateScheduleSpecificForm.value.branch
-    .map((v, i) => (v ? this.branchesData[i] : null))
-    .filter(v => v != null);
+      .map((v, i) => (v ? this.branchesData[i] : null))
+      .filter((v) => v != null);
     this.updateScheduleSpecificForm.value.batch = this.updateScheduleSpecificForm.value.batch
-    .map((v, i) => (v ? this.batchesData[i] : null))
-    .filter(v => v != null);
+      .map((v, i) => (v ? this.batchesData[i] : null))
+      .filter((v) => v != null);
   }
-
-
 
   /**
    * @ function : updateCourse
@@ -198,7 +216,8 @@ export class EditcourseScheduleComponent implements OnInit {
     this.checkboxMapping();
     this.scheduleService
       .updateScheduleData(this.updateid, this.updateScheduleSpecificForm.value)
-      .subscribe(res => {
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
         this.loadScheduleData();
         this.toaster.recordUpdated();
       });
@@ -214,13 +233,13 @@ export class EditcourseScheduleComponent implements OnInit {
 
   public deleteSchedule(data): void {
     if (confirm('This course deleted permanently')) {
-      this.scheduleService.deleteSchedule(data.id).subscribe(res => {
-      this.loadScheduleData();
-      this.toaster.recordDeleted();
-      });
+      this.scheduleService
+        .deleteSchedule(data.id)
+        .pipe(untilDestroyed(this))
+        .subscribe((res) => {
+          this.loadScheduleData();
+          this.toaster.recordDeleted();
+        });
     }
   }
-
 }
-
-

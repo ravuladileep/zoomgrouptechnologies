@@ -1,15 +1,19 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { of } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
 import { CoursePackageService } from '../../../services/course-package/course-package.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { CommonConstants } from '../../../config/constants';
 import { CustomValidators } from '../../../shared/directives/checkboxmin.validator';
 declare var $: any;
+
+@UntilDestroy()
 @Component({
   selector: 'app-editcourse-package',
   templateUrl: './editcourse-package.component.html',
-  styleUrls: ['./editcourse-package.component.css']
+  styleUrls: ['./editcourse-package.component.css'],
 })
 export class EditcoursePackageComponent implements OnInit {
   @ViewChild('modal') modal: ElementRef;
@@ -47,27 +51,33 @@ export class EditcoursePackageComponent implements OnInit {
   public coursePackageForm(): void {
     this.updateCoursePackageSpecificForm = this.fb.group({
       packageName: ['', [Validators.required]],
-      courseName: this.fb.array([], CustomValidators.multipleCheckboxRequireOne),
+      courseName: this.fb.array(
+        [],
+        CustomValidators.multipleCheckboxRequireOne
+      ),
       branch: this.fb.array([], CustomValidators.multipleCheckboxRequireOne),
       packageAmount: ['', [Validators.required]],
       servicetax: [''],
-      totalPackage: ['']
+      totalPackage: [''],
     });
 
-        // async orders
-    of(this.getBranches()).subscribe(res => {
-          this.branchesData = res;
-          this.addCheckboxesbranch();
-        });
-    of(this.getCourses()).subscribe(res => {
-          this.coursesData = res;
-          this.addCheckboxesCourse();
-        });
+    // async orders
+    of(this.getBranches())
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.branchesData = res;
+        this.addCheckboxesbranch();
+      });
+    of(this.getCourses())
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.coursesData = res;
+        this.addCheckboxesCourse();
+      });
 
-      // synchronous orders
-      // this.orders = this.getBranches();
-      // this.addCheckboxes();
-
+    // synchronous orders
+    // this.orders = this.getBranches();
+    // this.addCheckboxes();
   }
 
   /**
@@ -80,14 +90,17 @@ export class EditcoursePackageComponent implements OnInit {
   private addCheckboxesbranch() {
     this.branchesData.forEach((o, i) => {
       const control = new FormControl(); // i===0 if first item set to true, else false
-      (this.updateCoursePackageSpecificForm.controls.branch as FormArray).push(control);
+      (this.updateCoursePackageSpecificForm.controls.branch as FormArray).push(
+        control
+      );
     });
   }
 
   private addCheckboxesCourse() {
     this.coursesData.forEach((o, i) => {
       const control = new FormControl(); // i===0 if first item set to true, else false
-      (this.updateCoursePackageSpecificForm.controls.courseName as FormArray).push(control);
+      (this.updateCoursePackageSpecificForm.controls
+        .courseName as FormArray).push(control);
     });
   }
 
@@ -111,7 +124,9 @@ export class EditcoursePackageComponent implements OnInit {
    */
 
   public calculateTax(): void {
-    this.taxValue = (this.updateCoursePackageSpecificForm.get('packageAmount').value * 18) / 100;
+    this.taxValue =
+      (this.updateCoursePackageSpecificForm.get('packageAmount').value * 18) /
+      100;
     this.totalPackage = +this.packageData.packageAmount.value + +this.taxValue;
     this.packageData.servicetax.patchValue(this.taxValue);
     this.packageData.totalPackage.patchValue(this.totalPackage);
@@ -125,10 +140,13 @@ export class EditcoursePackageComponent implements OnInit {
    */
 
   public loadCoursePackageData(): void {
-    this.coursePackage.getCourseDataPackage().subscribe(res => {
-      this.coursePackageDatalist = res;
-      this.showEntries = this.coursePackageDatalist.length;
-    });
+    this.coursePackage
+      .getCourseDataPackage()
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.coursePackageDatalist = res;
+        this.showEntries = this.coursePackageDatalist.length;
+      });
   }
 
   /**
@@ -142,7 +160,6 @@ export class EditcoursePackageComponent implements OnInit {
     this.p = 1;
     this.showEntries = event.target.value;
   }
-
 
   /**
    * @ function : order
@@ -165,28 +182,33 @@ export class EditcoursePackageComponent implements OnInit {
    */
 
   public editCoursePackagedata(data): void {
-    this.coursePackage.getCoursePackageById(data.id).subscribe(res => {
-      this.updateid = data.id;
-      this.updateCoursePackageSpecificForm.patchValue(res);
-      const mybr = this.updateCoursePackageSpecificForm.controls.branch as FormArray;
-      const mycr = this.updateCoursePackageSpecificForm.controls.courseName as FormArray;
-      // patching checkboxes according to their respective index numbers
-      // for branches
-      for (let i = 0; i < mybr.length; i++) {
-        mybr.at(i).patchValue(null);
-      }
-      res.branch.forEach(x => {
-        mybr.at(this.branchesDataarr.indexOf(x)).patchValue(x);
+    this.coursePackage
+      .getCoursePackageById(data.id)
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.updateid = data.id;
+        this.updateCoursePackageSpecificForm.patchValue(res);
+        const mybr = this.updateCoursePackageSpecificForm.controls
+          .branch as FormArray;
+        const mycr = this.updateCoursePackageSpecificForm.controls
+          .courseName as FormArray;
+        // patching checkboxes according to their respective index numbers
+        // for branches
+        for (let i = 0; i < mybr.length; i++) {
+          mybr.at(i).patchValue(null);
+        }
+        res.branch.forEach((x) => {
+          mybr.at(this.branchesDataarr.indexOf(x)).patchValue(x);
+        });
+        // for courses
+        for (let i = 0; i < mycr.length; i++) {
+          mycr.at(i).patchValue(null);
+        }
+        res.courseName.forEach((x) => {
+          mycr.at(this.coursesDataarr.indexOf(x)).patchValue(x);
+        });
+        //  end patching
       });
-      // for courses
-      for (let i = 0; i < mycr.length; i++) {
-        mycr.at(i).patchValue(null);
-      }
-      res.courseName.forEach(x => {
-        mycr.at(this.coursesDataarr.indexOf(x)).patchValue(x);
-      });
-      //  end patching
-    });
   }
 
   /**
@@ -198,13 +220,12 @@ export class EditcoursePackageComponent implements OnInit {
 
   public checkboxMapping() {
     this.updateCoursePackageSpecificForm.value.branch = this.updateCoursePackageSpecificForm.value.branch
-    .map((v, i) => (v ? this.branchesData[i] : null))
-    .filter(v => v != null);
+      .map((v, i) => (v ? this.branchesData[i] : null))
+      .filter((v) => v != null);
     this.updateCoursePackageSpecificForm.value.courseName = this.updateCoursePackageSpecificForm.value.courseName
-    .map((v, i) => (v ? this.coursesData[i] : null))
-    .filter(v => v != null);
+      .map((v, i) => (v ? this.coursesData[i] : null))
+      .filter((v) => v != null);
   }
-
 
   /**
    * @ function : updateCourse
@@ -216,8 +237,12 @@ export class EditcoursePackageComponent implements OnInit {
   public updateCoursePackage(): void {
     this.checkboxMapping();
     this.coursePackage
-      .updateCoursePackageData(this.updateid, this.updateCoursePackageSpecificForm.value)
-      .subscribe(res => {
+      .updateCoursePackageData(
+        this.updateid,
+        this.updateCoursePackageSpecificForm.value
+      )
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
         this.loadCoursePackageData();
         this.toaster.recordUpdated();
       });
@@ -233,13 +258,13 @@ export class EditcoursePackageComponent implements OnInit {
 
   public deleteCoursePackagedata(data): void {
     if (confirm('This course deleted permanently')) {
-      this.coursePackage.deleteCoursePackage(data.id).subscribe(res => {
-      this.loadCoursePackageData();
-      this.toaster.recordDeleted();
-      });
+      this.coursePackage
+        .deleteCoursePackage(data.id)
+        .pipe(untilDestroyed(this))
+        .subscribe((res) => {
+          this.loadCoursePackageData();
+          this.toaster.recordDeleted();
+        });
     }
   }
-
 }
-
-

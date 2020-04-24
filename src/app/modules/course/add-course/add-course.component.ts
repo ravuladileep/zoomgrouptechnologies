@@ -1,17 +1,20 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {FormGroup, FormBuilder, Validators, FormArray, FormControl, ValidatorFn} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl} from '@angular/forms';
 import { of } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
 import { CourseService } from '../../../services/course/course.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { CommonConstants } from '../../../config/constants';
 import { CustomValidators } from '../../../shared/directives/checkboxmin.validator';
 import { FormCanDeactivate } from '../../../core/guards/candeactivate/form-can-deactivate';
 
+@UntilDestroy()
 @Component({
   selector: 'app-add-course',
   templateUrl: './add-course.component.html',
   styleUrls: ['./add-course.component.css'],
-  encapsulation: ViewEncapsulation.Emulated
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class AddCourseComponent extends FormCanDeactivate implements OnInit {
   public addCourseSpecificForm: FormGroup;
@@ -20,7 +23,11 @@ export class AddCourseComponent extends FormCanDeactivate implements OnInit {
   public branchesDataarr = [...CommonConstants.branchesDataarr];
   public branchesData = [];
 
-  constructor(private fb: FormBuilder, private courseService: CourseService, private toaster: ToasterService) {
+  constructor(
+    private fb: FormBuilder,
+    private courseService: CourseService,
+    private toaster: ToasterService
+  ) {
     super();
     this.addCourseForm();
   }
@@ -36,14 +43,16 @@ export class AddCourseComponent extends FormCanDeactivate implements OnInit {
       fees: ['', [Validators.required]],
       servicetax: [''],
       totalfee: [''],
-      seats: ['', [Validators.required]]
+      seats: ['', [Validators.required]],
     });
 
     // async orders
-    of(this.getBranches()).subscribe(res => {
-      this.branchesData = res;
-      this.addCheckboxes();
-    });
+    of(this.getBranches())
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.branchesData = res;
+        this.addCheckboxes();
+      });
 
     // synchronous orders
     // this.orders = this.getBranches();
@@ -93,11 +102,10 @@ export class AddCourseComponent extends FormCanDeactivate implements OnInit {
    * @ author   : dileep_ravula
    */
 
-
   public checkboxMapping(): void {
     this.addCourseSpecificForm.value.branch = this.addCourseSpecificForm.value.branch
-    .map((v, i) => (v ? this.branchesData[i] : null))
-    .filter(v => v != null);
+      .map((v, i) => (v ? this.branchesData[i] : null))
+      .filter((v) => v != null);
   }
 
   /**
@@ -109,12 +117,12 @@ export class AddCourseComponent extends FormCanDeactivate implements OnInit {
 
   public submit(): void {
     this.checkboxMapping();
-    this.courseService.addCourse(this.addCourseSpecificForm.value).subscribe((res) => {
-      this.toaster.recordAdded();
-    });
+    this.courseService
+      .addCourse(this.addCourseSpecificForm.value)
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.toaster.recordAdded();
+      });
     this.addCourseSpecificForm.reset();
   }
-
 }
-
-

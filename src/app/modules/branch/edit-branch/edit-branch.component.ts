@@ -1,13 +1,14 @@
-import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
 import { IBranch } from '../../../entities/branch.model';
 import { BranchService } from '../../../services/branch/branch.service';
 import { ToasterService } from '../../../shared/dialogs/alerts/toaster.service';
 import { CommonConstants } from '../../../config/constants';
-import { NgxSpinnerService } from 'ngx-spinner';
-
 declare var $: any;
 
+@UntilDestroy()
 @Component({
   selector: 'app-edit-branch',
   templateUrl: './edit-branch.component.html',
@@ -70,10 +71,13 @@ export class EditBranchComponent implements OnInit {
    */
 
   public loadBranchdata(): void {
-    this.branchService.getBranchData().subscribe(res => {
-      this.branchDatalist = res;
-      this.showEntries = this.branchDatalist.length;
-    });
+    this.branchService
+      .getBranchData()
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.branchDatalist = res;
+        this.showEntries = this.branchDatalist.length;
+      });
   }
 
   /**
@@ -87,7 +91,6 @@ export class EditBranchComponent implements OnInit {
     this.p = 1;
     this.showEntries = event.target.value;
   }
-
 
   /**
    * @ function : order
@@ -110,10 +113,13 @@ export class EditBranchComponent implements OnInit {
    */
 
   public editBranchdata(data): void {
-    this.branchService.getBranchById(data.id).subscribe(res => {
-      this.updateid = data.id;
-      this.updatebranchSpecificData.patchValue(res);
-    });
+    this.branchService
+      .getBranchById(data.id)
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        this.updateid = data.id;
+        this.updatebranchSpecificData.patchValue(res);
+      });
   }
 
   /**
@@ -126,7 +132,8 @@ export class EditBranchComponent implements OnInit {
   public updateBranch(): void {
     this.branchService
       .updateBranchData(this.updateid, this.updatebranchSpecificData.value)
-      .subscribe(res => {
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
         this.loadBranchdata();
         this.toaster.recordUpdated();
       });
@@ -142,10 +149,13 @@ export class EditBranchComponent implements OnInit {
 
   public deleteBranchdata(data): void {
     if (confirm('This branch deleted permanently')) {
-      this.branchService.deleteBranch(data.id).subscribe(res => {
-        this.loadBranchdata();
-        this.toaster.recordDeleted();
-      });
+      this.branchService
+        .deleteBranch(data.id)
+        .pipe(untilDestroyed(this))
+        .subscribe((res) => {
+          this.loadBranchdata();
+          this.toaster.recordDeleted();
+        });
     }
   }
 }
